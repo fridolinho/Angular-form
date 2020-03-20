@@ -1,0 +1,53 @@
+.client-form {
+  width: 80%;
+  margin: 20px auto;
+  table {
+    padding: 0;
+    tr {
+      width: 100%;
+      mat-form-field {
+        width: 100%;
+      }
+    }
+  }
+  .identity {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    mat-radio-button {
+      margin:0 20px 20px 0;
+    }
+    label {
+      margin-right: 20px;
+    }
+    mat-form-field {
+      display: block;
+      width: 100%;
+    }
+  }
+  .other-details {
+    mat-form-field {
+      display: block;
+      width: 100%;
+    }
+    label {
+      margin-right: 20px;
+    }
+    mat-radio-button {
+      margin-right: 20px;
+    }
+    table {
+      padding: 0;
+      width: 100%;
+      tr {
+        width: 100%;
+        td {
+          width: 50%;
+          mat-form-field {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+  }
+}
