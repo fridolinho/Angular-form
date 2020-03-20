@@ -1,0 +1,42 @@
+.client-form {
+  z-index: 1;
+  width: 80%;
+  margin: 20px auto;
+
+  label {
+    margin-right: 20px;
+  }
+
+  mat-radio-button {
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+
+  table {
+    width: 100%;
+    padding: 0;
+    tr {
+      width: 100%;
+      mat-form-field {
+        width: 100%;
+      }
+
+
+    }
+  }
+
+  .asset-id {
+
+  }
+
+  .locataire {
+      margin-bottom: 30px;
+  }
+
+  .co-titulaire {
+
+  }
+  .other-details {
+
+  }
+}

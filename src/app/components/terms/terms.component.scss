@@ -1,0 +1,19 @@
+.terms-container {
+  display: none;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #eaeaea;
+  opacity: .9;
+  .terms {
+    width: 500px;
+    padding: 30px;
+    margin: 100px auto;
+    background-color: #ffffff;
+    opacity: 1;
+    z-index: 3;
+  }
+}

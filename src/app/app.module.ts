@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CreateUserComponent } from './components/create-user/create-user.component';
 import { ViewUsersComponent } from './components/view-users/view-users.component';
 import { HeaderComponent } from './components/header/header.component';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -13,13 +12,20 @@ import { MatInputModule } from '@angular/material/input';
 import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
 import {MatRadioModule} from "@angular/material/radio";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import { TermsComponent } from './components/terms/terms.component';
+import { MatButtonModule } from '@angular/material/button';
+import { ContactFormComponent } from './components/contact-form/contact-form.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
-    CreateUserComponent,
     ViewUsersComponent,
-    HeaderComponent
+    HeaderComponent,
+    TermsComponent,
+    ContactFormComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +36,11 @@ import {MatRadioModule} from "@angular/material/radio";
     MatOptionModule,
     MatSelectModule,
     MatInputModule,
-    MatRadioModule
+    MatRadioModule,
+    MatCheckboxModule,
+    MatButtonModule,
+    MatStepperModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
