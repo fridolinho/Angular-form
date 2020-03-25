@@ -11,13 +11,13 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>ADRESSE</mat-label>
-                  <input matInput [formControl]="textFormControl" [errorStateMatcher]="matcher" required>
+                  <input matInput formControlName="email">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>NPA/LOCALITE</mat-label>
-                  <input matInput type="text" required>
+                  <input matInput type="text" formControlName="localite">
                 </mat-form-field>
               </td>
             </tr>
@@ -28,19 +28,19 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>PIECE(S)</mat-label>
-                  <input matInput required>
+                  <input matInput formControlName="piece">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>ETAGE</mat-label>
-                  <input matInput required>
+                  <input matInput formControlName="etage">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>PRECEDENT LOC</mat-label>
-                  <input matInput required>
+                  <input matInput formControlName="precedentLoc">
                 </mat-form-field>
               </td>
             </tr>
@@ -52,19 +52,19 @@
                 <mat-form-field appearance="fill">
                   <mat-label>LOYER NET</mat-label>
                   <span matPrefix> CHF &nbsp;</span>
-                  <input matInput required>
+                  <input matInput formControlName="loyerNet">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>CHARGES</mat-label>
-                  <input matInput required>
+                  <input matInput formControlName="charges">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>REFERENCE OBJET</mat-label>
-                  <input matInput required>
+                  <input matInput formControlName="referenceObjet">
                 </mat-form-field>
               </td>
             </tr>
@@ -75,7 +75,7 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>SI Disponible</mat-label>
-                  <mat-select required>
+                  <mat-select formControlName="siDisponible">
                     <mat-option value="parking_ext">PARKING EXT</mat-option>
                     <mat-option value="parking_couv">PARKING COUV</mat-option>
                     <mat-option value="garage">GARAGE</mat-option>
@@ -86,7 +86,7 @@
                 <mat-form-field appearance="fill">
                   <mat-label>CHARGES</mat-label>
                   <span matPrefix> CHF &nbsp;</span>
-                  <input matInput required>
+                  <input matInput formControlName="chfCharges">
                 </mat-form-field>
               </td>
             </tr>
@@ -97,20 +97,20 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>DATE D’EMMENAGEMENT SOUHAITEE</mat-label>
-                  <input matInput required>
+                  <input matInput formControlName="dateDemmenagementSouhaitee">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>DATE DE VISITE</mat-label>
-                  <input matInput required>
+                  <input matInput formControlName="dateDeVisite">
                 </mat-form-field>
               </td>
             </tr>
           </table>
         </div>
         <div>
-          <button mat-button matStepperNext>Next</button>
+          <button mat-button matStepperNext [disabled]="!firstFormGroup.valid">Next</button>
         </div>
       </form>
     </mat-step>
@@ -642,7 +642,7 @@
         <div>
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button (click)="stepper.reset()">Reset</button>
-          <button mat-button>Save</button>
+          <button mat-button >Save</button>
         </div>
       </form>
     </mat-step>
