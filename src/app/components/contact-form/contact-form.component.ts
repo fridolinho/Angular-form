@@ -15,13 +15,13 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./contact-form.component.scss']
 })
 export class ContactFormComponent implements OnInit {
-  secondFormGroup: FormGroup;
   firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   fourthFormGroup: FormGroup;
 
   textFormControl =
-    new FormControl('',[
+    new FormControl('', [
       Validators.required,
       Validators.email,
     ]
@@ -29,13 +29,24 @@ export class ContactFormComponent implements OnInit {
 
   matcher = new MyErrorStateMatcher();
 
-  constructor(private _formBuilder: FormBuilder) { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+    this.firstFormGroup = this.fb.group({
+      email: this.fb.control('', [Validators.email, Validators.required]),
+      localite: this.fb.control('', [Validators.required]),
+      piece: this.fb.control('', [Validators.required]),
+      etage: this.fb.control('', [Validators.required]),
+      precedentLoc: this.fb.control('', [Validators.required]),
+      loyerNet: this.fb.control('', [Validators.required]),
+      charges: this.fb.control('', [Validators.required]),
+      referenceObjet: this.fb.control('', [Validators.required]),
+      siDisponible: this.fb.control('', [Validators.required]),
+      chfCharges: this.fb.control('', [Validators.required]),
+      dateDemmenagementSouhaitee: this.fb.control('', [Validators.required]),
+      dateDeVisite: this.fb.control('', [Validators.required]),
     });
-    this.secondFormGroup = this._formBuilder.group({
+    this.secondFormGroup = this.fb.group({
       secondCtrl: ['', Validators.required]
     });
   }
