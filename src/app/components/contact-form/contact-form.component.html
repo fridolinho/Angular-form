@@ -425,7 +425,7 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Profession</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="profession">
                 </mat-form-field>
               </td>
               <td>
@@ -526,7 +526,7 @@
               </td>
               <td>
                 <label>Logement occupé par le titulaire/co-titulaire</label>
-                <mat-radio-group aria-label="Select an option" formControlName="logementOccupe">
+                <mat-radio-group aria-label="Select an option" formControlName="siOccupéParTitulaireOuCoTitulaire">
                   <mat-radio-button value="yes">Oui</mat-radio-button>
                   <mat-radio-button value="no">Non</mat-radio-button>
                 </mat-radio-group>
@@ -541,7 +541,7 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Noms du titulaire/co-titulaire</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="nomsDuTitulaireOuCoTitulaure">
                 </mat-form-field>
               </td>
               <td>
@@ -568,9 +568,9 @@
                 </mat-radio-group>
               </td>
               <td>
-                <mat-form-field appearance="fill" formControlName="siAnimaux">
+                <mat-form-field appearance="fill">
                   <mat-label>le(s)quel(s)</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="siAnimaux">
                 </mat-form-field>
               </td>
               <td>&nbsp;</td>
