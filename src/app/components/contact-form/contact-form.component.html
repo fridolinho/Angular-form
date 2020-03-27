@@ -1,8 +1,8 @@
 <div class="client-form">
-  <mat-horizontal-stepper #stepper>
+  <mat-horizontal-stepper #stepper [linear]="true">
 
     <!-- real estate details -->
-    <mat-step [stepControl]="firstFormGroup">
+    <mat-step [stepControl]="firstFormGroup" [completed]="firstFormGroup.valid">
       <form [formGroup]="firstFormGroup">
         <ng-template matStepLabel>Details d' immobilier</ng-template>
         <div class="asset-id">
@@ -11,7 +11,7 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>ADRESSE</mat-label>
-                  <input matInput formControlName="email">
+                  <input matInput formControlName="adresse">
                 </mat-form-field>
               </td>
               <td>
@@ -117,12 +117,12 @@
     <!-- real estate details ends here -->
 
     <!-- Tenant details -->
-    <mat-step [stepControl]="secondFormGroup">
+    <mat-step [stepControl]="secondFormGroup" [completed]="secondFormGroup.valid">
       <form [formGroup]="secondFormGroup">
         <ng-template matStepLabel>Details du locataire</ng-template>
         <div class="locataire">
           <h2>LOCATAIRE</h2>
-          <mat-radio-group aria-label="Select an option">
+          <mat-radio-group aria-label="Select an option" formControlName="locataire">
             <mat-radio-button value="male">Monsieur</mat-radio-button>
             <mat-radio-button value="female">Madame</mat-radio-button>
           </mat-radio-group>
@@ -132,25 +132,25 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Nom</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="nom">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Prénom</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="prenom">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Adresse actuelle</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="adresseActuelle">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Adresse légale (Si differente)</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="adresseLegale">
                 </mat-form-field>
               </td>
             </tr>
@@ -158,25 +158,25 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>NPA/Localité</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="NPALocalite">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Nationalité</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="nationalite">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Pérmis</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="permis">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Lieu d’origine</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="lieuOrigine">
                 </mat-form-field>
               </td>
             </tr>
@@ -187,13 +187,13 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Date naissance</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="dateDeNaissance">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Etat civil</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="etatCivil">
                 </mat-form-field>
               </td>
             </tr>
@@ -204,25 +204,25 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Téléphone fixe</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="telephoneFixe">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Téléphone professionel</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="telephoneProfessionel">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Portable</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="portable">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>E-mail</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="email">
                 </mat-form-field>
               </td>
             </tr>
@@ -233,19 +233,19 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Profession</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="profession">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Employeur</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="employeur">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Depuis</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="depuis">
                 </mat-form-field>
               </td>
             </tr>
@@ -256,25 +256,25 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Revenue mensuel</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="revenueMensuel">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Gérance actuelle</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="geranceActuelle">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Loyer actuelle</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="loyerActuelle">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Charges</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="charges">
                 </mat-form-field>
               </td>
             </tr>
@@ -283,14 +283,14 @@
             <tr>
               <td>
                 <label>Avez-vous des poursuites à votre encontre</label>
-                <mat-radio-group aria-label="Select an option">
+                <mat-radio-group aria-label="Select an option" formControlName="poursuites">
                   <mat-radio-button value="male">Oui</mat-radio-button>
                   <mat-radio-button value="female">Non</mat-radio-button>
                 </mat-radio-group>
               </td>
               <td>
                 <label>Etes-vous au bénéfice d'une mesure de protection de l’adulte</label>
-                <mat-radio-group aria-label="Select an option">
+                <mat-radio-group aria-label="Select an option" formControlName="protection">
                   <mat-radio-button value="male">Oui</mat-radio-button>
                   <mat-radio-button value="female">Non</mat-radio-button>
                 </mat-radio-group>
@@ -300,7 +300,7 @@
         </div>
         <div>
           <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
+          <button mat-button matStepperNext [disabled]="!secondFormGroup.valid">Next</button>
         </div>
       </form>
     </mat-step>
@@ -309,7 +309,7 @@
 
     <!-- co-owner details -->
 
-    <mat-step [stepControl]="thirdFormGroup">
+    <mat-step [stepControl]="thirdFormGroup" [completed]="thirdFormGroup.valid">
       <form [formGroup]="thirdFormGroup">
         <ng-template matStepLabel>Details du co-titulaire</ng-template>
         <div class="co_titulaire">
@@ -511,7 +511,7 @@
 
     <!-- More details -->
 
-    <mat-step [stepControl]="fourthFormGroup">
+    <mat-step [stepControl]="fourthFormGroup" [completed]="fourthFormGroup.valid">
       <form [formGroup]="fourthFormGroup">
         <ng-template matStepLabel>Plus de details</ng-template>
         <div class="other-details">
