@@ -314,7 +314,7 @@
         <ng-template matStepLabel>Details du co-titulaire</ng-template>
         <div class="co_titulaire">
           <h2>CO-TITULAIRE</h2>
-          <mat-radio-group aria-label="Select an option">
+          <mat-radio-group aria-label="Select an option" formControlName="coTitulaire">
             <mat-radio-button value="male">Monsieur</mat-radio-button>
             <mat-radio-button value="female">Madame</mat-radio-button>
           </mat-radio-group>
@@ -324,25 +324,25 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Nom</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="nom">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Prénom</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="prenom">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Adresse actuelle</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="adresseActuelle">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Adresse légale (Si differente)</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="adresseSiDifferente">
                 </mat-form-field>
               </td>
             </tr>
@@ -350,25 +350,25 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>NPA/Localité</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="NPALocalite">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Nationalité</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="nationalite">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Pérmis</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="permis">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Lieu d’origine</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="lieuDorigine">
                 </mat-form-field>
               </td>
             </tr>
@@ -379,13 +379,13 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Date naissance</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="dateDeNaissance">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Etat civil</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="etatCivil">
                 </mat-form-field>
               </td>
             </tr>
@@ -396,25 +396,25 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Téléphone fixe</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="telephoneFixe">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Téléphone professionel</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="telephoneProfessionel">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Portable</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="portable">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>E-mail</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="email">
                 </mat-form-field>
               </td>
             </tr>
@@ -431,13 +431,13 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Employeur</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="employeur">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Depuis</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="depuis">
                 </mat-form-field>
               </td>
             </tr>
@@ -448,25 +448,25 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Revenue mensuel</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="revenueMensuel">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Gérance actuelle</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="geranceActuelle">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Loyer actuelle</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="loyerActuelle">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Charges</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="charges">
                 </mat-form-field>
               </td>
             </tr>
@@ -475,14 +475,14 @@
             <tr>
               <td>
                 <label>Avez-vous des poursuites à votre encontre</label>
-                <mat-radio-group aria-label="Select an option">
+                <mat-radio-group aria-label="Select an option" formControlName="poursuites">
                   <mat-radio-button value="male">Oui</mat-radio-button>
                   <mat-radio-button value="female">Non</mat-radio-button>
                 </mat-radio-group>
               </td>
               <td>
                 <label>Etes-vous au bénéfice d'une mesure de protection de l’adulte</label>
-                <mat-radio-group aria-label="Select an option">
+                <mat-radio-group aria-label="Select an option" formControlName="protection">
                   <mat-radio-button value="male">Oui</mat-radio-button>
                   <mat-radio-button value="female">Non</mat-radio-button>
                 </mat-radio-group>
@@ -494,7 +494,7 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Si oui, coordonnées du tuteur/curateur</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="siTuteur">
                 </mat-form-field>
               </td>
             </tr>
@@ -503,7 +503,7 @@
       </form>
       <div>
         <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperNext [disabled]="!thirdFormGroup.valid">Next</button>
       </div>
     </mat-step>
 
@@ -519,14 +519,14 @@
             <tr>
               <td>
                 <label>Logement</label>
-                <mat-radio-group aria-label="Select an option">
+                <mat-radio-group aria-label="Select an option" formControlName="logement">
                   <mat-radio-button value="principale">Principale</mat-radio-button>
                   <mat-radio-button value="secondaire">Secondaire</mat-radio-button>
                 </mat-radio-group>
               </td>
               <td>
                 <label>Logement occupé par le titulaire/co-titulaire</label>
-                <mat-radio-group aria-label="Select an option">
+                <mat-radio-group aria-label="Select an option" formControlName="logementOccupe">
                   <mat-radio-button value="yes">Oui</mat-radio-button>
                   <mat-radio-button value="no">Non</mat-radio-button>
                 </mat-radio-group>
@@ -547,13 +547,13 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Personne(adultes) qui habiteront l’appartement</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="occupantsAdultes">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Les enfants qui habiteront l’appartement</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="occupantsEnfants">
                 </mat-form-field>
               </td>
             </tr>
@@ -562,13 +562,13 @@
             <tr>
               <td>
                 <label>Animaux</label>
-                <mat-radio-group aria-label="Select an option">
+                <mat-radio-group aria-label="Select an option" formControlName="animaux">
                   <mat-radio-button value="yes">Oui</mat-radio-button>
                   <mat-radio-button value="no">Non</mat-radio-button>
                 </mat-radio-group>
               </td>
               <td>
-                <mat-form-field appearance="fill">
+                <mat-form-field appearance="fill" formControlName="siAnimaux">
                   <mat-label>le(s)quel(s)</mat-label>
                   <input matInput>
                 </mat-form-field>
@@ -578,7 +578,7 @@
             <tr>
               <td>
                 <label>Véhicule(s)</label>
-                  <mat-radio-group aria-label="Select an option">
+                  <mat-radio-group aria-label="Select an option" formControlName="vehicules">
                     <mat-radio-button value="yes">Oui</mat-radio-button>
                     <mat-radio-button value="no">Non</mat-radio-button>
                   </mat-radio-group>
@@ -586,14 +586,14 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Numéro(s) plaques</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="noPlaques">
                 </mat-form-field>
               </td>
             </tr>
             <tr>
               <td>
                 <label>Jouez-vous d’un instrument de musique</label>
-                <mat-radio-group aria-label="Select an option">
+                <mat-radio-group aria-label="Select an option" formControlName="siInstruments">
                   <mat-radio-button value="yes">Oui</mat-radio-button>
                   <mat-radio-button value="no">Non</mat-radio-button>
                 </mat-radio-group>
@@ -601,21 +601,21 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>le(s)quel(s)</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="instruments">
                 </mat-form-field>
               </td>
             </tr>
             <tr>
               <td>
                 <label>Votre contrat de bail actuel a-t-il déjà été résilié</label>
-                <mat-radio-group aria-label="Select an option">
+                <mat-radio-group aria-label="Select an option" formControlName="siBailRésilié">
                   <mat-radio-button value="yes">Oui</mat-radio-button>
                   <mat-radio-button value="no">Non</mat-radio-button>
                 </mat-radio-group>
               </td>
               <td>
                 <label>Par</label>
-                <mat-radio-group aria-label="Select an option">
+                <mat-radio-group aria-label="Select an option" formControlName="résilièPar">
                   <mat-radio-button value="locataire">le locataire</mat-radio-button>
                   <mat-radio-button value="bailleur">le bailleur</mat-radio-button>
                 </mat-radio-group>
@@ -628,21 +628,21 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Motif du déménagement</mat-label>
-                  <input matInput>
+                  <input matInput formControlName="motifDuDéménagement">
                 </mat-form-field>
               </td>
             </tr>
           </table>
 
 
-          <mat-checkbox>
+          <mat-checkbox formControlName="tosAgreement">
             I have read and agreed <a href="">Terms & conditions</a> for this agreement
           </mat-checkbox>
         </div>
         <div>
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button (click)="stepper.reset()">Reset</button>
-          <button mat-button >Save</button>
+          <button mat-button [disabled]="!fourthFormGroup.valid" (click)="submitForm()">Save</button>
         </div>
       </form>
     </mat-step>

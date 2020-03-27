@@ -72,8 +72,50 @@ export class ContactFormComponent implements OnInit {
       poursuites: this.fb.control('', [Validators.required]),
       protection: this.fb.control('', [Validators.required]),
     });
-    this.thirdFormGroup = this.fb.group({});
-    this.fourthFormGroup = this.fb.group({});
+    this.thirdFormGroup = this.fb.group({
+      coTitulaire: this.fb.control('', [Validators.required]),
+      nom: this.fb.control('', [Validators.required]),
+      prenom: this.fb.control('', [Validators.required]),
+      adresseActuelle: this.fb.control('', [Validators.required]),
+      adresseSiDifferente: this.fb.control(''),
+      NPALocalite: this.fb.control('', [Validators.required]),
+      nationalite: this.fb.control('', [Validators.required]),
+      permis: this.fb.control('', [Validators.required]),
+      lieuDorigine: this.fb.control('', [Validators.required]),
+      dateDeNaissance: this.fb.control('', [Validators.required]),
+      etatCivil: this.fb.control('', [Validators.required]),
+      telephoneFixe: this.fb.control('', [Validators.required]),
+      telephoneProfessionel: this.fb.control('', [Validators.required]),
+      portable: this.fb.control('', [Validators.required]),
+      email: this.fb.control('', [Validators.required, Validators.email]),
+      employeur: this.fb.control('', [Validators.required]),
+      depuis: this.fb.control('', [Validators.required]),
+      revenueMensuel: this.fb.control('', [Validators.required]),
+      geranceActuelle: this.fb.control('', [Validators.required]),
+      loyerActuelle: this.fb.control('', [Validators.required]),
+      charges: this.fb.control('', [Validators.required]),
+      poursuites: this.fb.control('', [Validators.required]),
+      protection: this.fb.control('', [Validators.required]),
+      siTuteur: this.fb.control('', [Validators.required]),
+    });
+    this.fourthFormGroup = this.fb.group({
+      logement: this.fb.control('', [Validators.required]),
+      logementOccupe: this.fb.control('', [Validators.required]),
+      occupantsAdultes: this.fb.control('', [Validators.required]),
+      occupantsEnfants: this.fb.control('', [Validators.required]),
+      animaux: this.fb.control('', [Validators.required]),
+      siAnimaux: this.fb.control('', [Validators.required]),
+      vehicules: this.fb.control('', [Validators.required]),
+      noPlaques: this.fb.control('', [Validators.required]),
+      siInstruments: this.fb.control('', [Validators.required]),
+      instruments: this.fb.control('', [Validators.required]),
+      siBailRésilié: this.fb.control('', [Validators.required]),
+      résilièPar: this.fb.control('', [Validators.required]),
+      motifDuDéménagement: this.fb.control('', [Validators.required]),
+      tosAgreement: this.fb.control('', [Validators.required]),
+    });
   }
+
+  submitForm() {}
 
 }
