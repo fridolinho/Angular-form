@@ -88,6 +88,7 @@ export class ContactFormComponent implements OnInit {
       telephoneProfessionel: this.fb.control('', [Validators.required]),
       portable: this.fb.control('', [Validators.required]),
       email: this.fb.control('', [Validators.required, Validators.email]),
+      profession: this.fb.control('', [Validators.required]),
       employeur: this.fb.control('', [Validators.required]),
       depuis: this.fb.control('', [Validators.required]),
       revenueMensuel: this.fb.control('', [Validators.required]),
@@ -100,7 +101,8 @@ export class ContactFormComponent implements OnInit {
     });
     this.fourthFormGroup = this.fb.group({
       logement: this.fb.control('', [Validators.required]),
-      logementOccupe: this.fb.control('', [Validators.required]),
+      siOccupéParTitulaireOuCoTitulaire: this.fb.control('', [Validators.required]),
+      nomsDuTitulaireOuCoTitulaure: this.fb.control('', [Validators.required]),
       occupantsAdultes: this.fb.control('', [Validators.required]),
       occupantsEnfants: this.fb.control('', [Validators.required]),
       animaux: this.fb.control('', [Validators.required]),
@@ -116,6 +118,15 @@ export class ContactFormComponent implements OnInit {
     });
   }
 
-  submitForm() {}
+  submitForm() {
+    const formData = {
+      firstForm: this.firstFormGroup.value,
+      secondForm: this.secondFormGroup.value,
+      thirdForm: this.thirdFormGroup.value,
+      fourhForm: this.fourthFormGroup.value
+    };
+
+    console.log(formData);
+  }
 
 }
