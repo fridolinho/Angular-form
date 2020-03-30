@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "rn-shop-app-e431a": {
+      "hosting": {
+        "clients-form": [
+          "rn-shop-app-e431a"
+        ]
+      }
+    }
+  }
+}

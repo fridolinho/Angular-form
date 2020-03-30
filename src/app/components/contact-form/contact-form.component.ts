@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { Observable } from 'rxjs';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -19,6 +21,7 @@ export class ContactFormComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   fourthFormGroup: FormGroup;
+  firebaseDb: AngularFireDatabase;
 
   textFormControl =
     new FormControl('', [
@@ -29,7 +32,9 @@ export class ContactFormComponent implements OnInit {
 
   matcher = new MyErrorStateMatcher();
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, db: AngularFireDatabase) {
+    this.firebaseDb = db;
+  }
 
   ngOnInit(): void {
     this.firstFormGroup = this.fb.group({
@@ -126,7 +131,8 @@ export class ContactFormComponent implements OnInit {
       fourhForm: this.fourthFormGroup.value
     };
 
-    console.log(formData);
+    const clientForm = this.firebaseDb.object('clientForm');
+    clientForm.set(formData);
   }
 
 }
