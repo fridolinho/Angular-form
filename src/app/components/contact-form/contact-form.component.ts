@@ -21,16 +21,19 @@ export class ContactFormComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   fourthFormGroup: FormGroup;
+  fifthFormGroup: FormGroup;
   firebaseDb: AngularFireDatabase;
 
   textFormControl =
     new FormControl('', [
-      Validators.required,
-      Validators.email,
-    ]
-  );
+        Validators.required,
+        Validators.email,
+      ]
+    );
 
   matcher = new MyErrorStateMatcher();
+  images = [];
+  startDate = new Date(2020, 0, 1);
 
   constructor(private fb: FormBuilder, db: AngularFireDatabase) {
     this.firebaseDb = db;
@@ -138,4 +141,27 @@ export class ContactFormComponent implements OnInit {
     clientForm.set(formData);
   }
 
+  numberOnly(event) {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
+  }
+
+  onSelectFile(event) {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        this.images.push({src: event.target.result});
+        console.log(this.images);
+      };
+    }
+  }
+
+  removeImage(image: any) {
+    this.images = this.images.filter(item => item.src !== image.src);
+  }
 }

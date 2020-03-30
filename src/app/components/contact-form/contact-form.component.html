@@ -10,37 +10,14 @@
             <tr>
               <td>
                 <mat-form-field appearance="fill">
-                  <mat-label>ADRESSE</mat-label>
-                  <input matInput formControlName="adresse">
+                  <mat-label>Adresse</mat-label>
+                  <input matInput formControlName="adresse" required>
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
-                  <mat-label>NPA/LOCALITE</mat-label>
-                  <input matInput type="text" formControlName="localite">
-                </mat-form-field>
-              </td>
-            </tr>
-          </table>
-
-          <table cellspacing="0">
-            <tr>
-              <td>
-                <mat-form-field appearance="fill">
-                  <mat-label>PIECE(S)</mat-label>
-                  <input matInput formControlName="piece">
-                </mat-form-field>
-              </td>
-              <td>
-                <mat-form-field appearance="fill">
-                  <mat-label>ETAGE</mat-label>
-                  <input matInput formControlName="etage">
-                </mat-form-field>
-              </td>
-              <td>
-                <mat-form-field appearance="fill">
-                  <mat-label>PRECEDENT LOC</mat-label>
-                  <input matInput formControlName="precedentLoc">
+                  <mat-label>NPA/Localite</mat-label>
+                  <input matInput formControlName="localite" (keypress)="numberOnly($event)" type="text" required>
                 </mat-form-field>
               </td>
             </tr>
@@ -50,21 +27,44 @@
             <tr>
               <td>
                 <mat-form-field appearance="fill">
-                  <mat-label>LOYER NET</mat-label>
+                  <mat-label>Piece(s)</mat-label>
+                  <input matInput formControlName="piece" (keypress)="numberOnly($event)" required>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Etage</mat-label>
+                  <input matInput formControlName="etage" (keypress)="numberOnly($event)" required>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Precedent location</mat-label>
+                  <input matInput formControlName="precedentLoc" required>
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+
+          <table cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Loyer net</mat-label>
                   <span matPrefix> CHF &nbsp;</span>
-                  <input matInput formControlName="loyerNet">
+                  <input matInput formControlName="loyerNet" (keypress)="numberOnly($event)" required>
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
-                  <mat-label>CHARGES</mat-label>
-                  <input matInput formControlName="charges">
+                  <mat-label>Charges</mat-label>
+                  <input matInput formControlName="charges" (keypress)="numberOnly($event)" required>
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
-                  <mat-label>REFERENCE OBJET</mat-label>
-                  <input matInput formControlName="referenceObjet">
+                  <mat-label>Reference objet</mat-label>
+                  <input matInput formControlName="referenceObjet" required>
                 </mat-form-field>
               </td>
             </tr>
@@ -74,19 +74,19 @@
             <tr>
               <td>
                 <mat-form-field appearance="fill">
-                  <mat-label>SI Disponible</mat-label>
-                  <mat-select formControlName="siDisponible">
-                    <mat-option value="parking_ext">PARKING EXT</mat-option>
-                    <mat-option value="parking_couv">PARKING COUV</mat-option>
-                    <mat-option value="garage">GARAGE</mat-option>
+                  <mat-label>Parking</mat-label>
+                  <mat-select formControlName="siDisponible" required>
+                    <mat-option value="parking_ext">Parking EXT</mat-option>
+                    <mat-option value="parking_couv">Parking COUV</mat-option>
+                    <mat-option value="garage">Garage</mat-option>
                   </mat-select>
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
-                  <mat-label>CHARGES</mat-label>
+                  <mat-label>Charges</mat-label>
                   <span matPrefix> CHF &nbsp;</span>
-                  <input matInput formControlName="chfCharges">
+                  <input matInput formControlName="chfCharges" (keypress)="numberOnly($event)" required>
                 </mat-form-field>
               </td>
             </tr>
@@ -96,14 +96,18 @@
             <tr>
               <td>
                 <mat-form-field appearance="fill">
-                  <mat-label>DATE D’EMMENAGEMENT SOUHAITEE</mat-label>
-                  <input matInput formControlName="dateDemmenagementSouhaitee">
+                  <mat-label>Date d' ammenagement souhaitée</mat-label>
+                  <input matInput formControlName="dateDemmenagementSouhaitee" [matDatepicker]="picker" required>
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
-                  <mat-label>DATE DE VISITE</mat-label>
-                  <input matInput formControlName="dateDeVisite">
+                  <mat-label>Date de visite</mat-label>
+                  <input matInput formControlName="dateDeVisite" [matDatepicker]="visite" required>
+                  <mat-datepicker-toggle matSuffix [for]="visite"></mat-datepicker-toggle>
+                  <mat-datepicker #visite startView="year" [startAt]="startDate"></mat-datepicker>
                 </mat-form-field>
               </td>
             </tr>
@@ -149,8 +153,8 @@
               </td>
               <td>
                 <mat-form-field appearance="fill">
-                  <mat-label>Adresse légale (Si differente)</mat-label>
-                  <input matInput formControlName="adresseLegale">
+                  <mat-label>Adresse légale (si differente)</mat-label>
+                  <input formControlName="adresseLegale" matInput>
                 </mat-form-field>
               </td>
             </tr>
@@ -158,7 +162,7 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>NPA/Localité</mat-label>
-                  <input matInput formControlName="NPALocalite">
+                  <input matInput formControlName="NPALocalite (keypress)="numberOnly($event)" required>
                 </mat-form-field>
               </td>
               <td>
@@ -186,8 +190,10 @@
             <tr>
               <td>
                 <mat-form-field appearance="fill">
-                  <mat-label>Date naissance</mat-label>
-                  <input matInput formControlName="dateDeNaissance">
+                  <mat-label>Date de naissance</mat-label>
+                  <input matInput formControlName="dateDeNaissance" [matDatepicker]="pickerLocataire" required>
+                  <mat-datepicker-toggle matSuffix [for]="pickerLocataire"></mat-datepicker-toggle>
+                  <mat-datepicker #pickerLocataire startView="year" [startAt]="startDate"></mat-datepicker>
                 </mat-form-field>
               </td>
               <td>
@@ -204,19 +210,19 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Téléphone fixe</mat-label>
-                  <input matInput formControlName="telephoneFixe">
+                  <input matInput formControlName="telephoneFixe" (keypress)="numberOnly($event)" required>
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Téléphone professionel</mat-label>
-                  <input matInput formControlName="telephoneProfessionel">
+                  <input matInput formControlName="telephoneProfessionel" (keypress)="numberOnly($event)" required>
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
-                  <mat-label>Portable</mat-label>
-                  <input matInput formControlName="portable">
+                  <mat-label>Téléphone portable</mat-label>
+                  <input matInput formControlName="portable" (keypress)="numberOnly($event)" required>
                 </mat-form-field>
               </td>
               <td>
@@ -274,7 +280,7 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Charges</mat-label>
-                  <input matInput formControlName="charges">
+                  <input matInput formControlName="charges" (keypress)="numberOnly($event)">
                 </mat-form-field>
               </td>
             </tr>
@@ -341,7 +347,7 @@
               </td>
               <td>
                 <mat-form-field appearance="fill">
-                  <mat-label>Adresse légale (Si differente)</mat-label>
+                  <mat-label>Adresse légale (si differente)</mat-label>
                   <input matInput formControlName="adresseSiDifferente">
                 </mat-form-field>
               </td>
@@ -350,7 +356,7 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>NPA/Localité</mat-label>
-                  <input matInput formControlName="NPALocalite">
+                  <input matInput formControlName="NPALocalite" (keypress)="numberOnly($event)">
                 </mat-form-field>
               </td>
               <td>
@@ -378,8 +384,10 @@
             <tr>
               <td>
                 <mat-form-field appearance="fill">
-                  <mat-label>Date naissance</mat-label>
-                  <input matInput formControlName="dateDeNaissance">
+                  <mat-label>Date de naissance</mat-label>
+                  <input matInput formControlName="dateDeNaissance" [matDatepicker]="pickerCoTitulaire" required>
+                  <mat-datepicker-toggle matSuffix [for]="pickerCoTitulaire"></mat-datepicker-toggle>
+                  <mat-datepicker #pickerCoTitulaire startView="year" [startAt]="startDate"></mat-datepicker>
                 </mat-form-field>
               </td>
               <td>
@@ -396,19 +404,19 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Téléphone fixe</mat-label>
-                  <input matInput formControlName="telephoneFixe">
+                  <input matInput formControlName="telephoneFixe" (keypress)="numberOnly($event)">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Téléphone professionel</mat-label>
-                  <input matInput formControlName="telephoneProfessionel">
+                  <input matInput formControlName="telephoneProfessionel" (keypress)="numberOnly($event)">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
-                  <mat-label>Portable</mat-label>
-                  <input matInput formControlName="portable">
+                  <mat-label>Téléphone portable</mat-label>
+                  <input matInput formControlName="portable" (keypress)="numberOnly($event)">
                 </mat-form-field>
               </td>
               <td>
@@ -437,7 +445,9 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Depuis</mat-label>
-                  <input matInput formControlName="depuis">
+                  <input matInput formControlName="depuis" [matDatepicker]="pickerDepuis" required>
+                  <mat-datepicker-toggle matSuffix [for]="pickerDepuis"></mat-datepicker-toggle>
+                  <mat-datepicker #pickerDepuis startView="year" [startAt]="startDate"></mat-datepicker>
                 </mat-form-field>
               </td>
             </tr>
@@ -448,7 +458,7 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Revenue mensuel</mat-label>
-                  <input matInput formControlName="revenueMensuel">
+                  <input matInput formControlName="revenueMensuel" (keypress)="numberOnly($event)">
                 </mat-form-field>
               </td>
               <td>
@@ -460,13 +470,13 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Loyer actuelle</mat-label>
-                  <input matInput formControlName="loyerActuelle">
+                  <input matInput formControlName="loyerActuelle" (keypress)="numberOnly($event)">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Charges</mat-label>
-                  <input matInput formControlName="charges">
+                  <input matInput formControlName="charges" (keypress)="numberOnly($event)">
                 </mat-form-field>
               </td>
             </tr>
@@ -512,6 +522,7 @@
     <!-- More details -->
 
     <mat-step [stepControl]="fourthFormGroup" [completed]="fourthFormGroup.valid">
+
       <form [formGroup]="fourthFormGroup">
         <ng-template matStepLabel>Plus de details</ng-template>
         <div class="other-details">
@@ -531,10 +542,8 @@
                   <mat-radio-button value="no">Non</mat-radio-button>
                 </mat-radio-group>
               </td>
-              <td>&nbsp;</td>
             </tr>
           </table>
-
 
           <table cellspacing="0">
             <tr>
@@ -547,13 +556,13 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Personne(adultes) qui habiteront l’appartement</mat-label>
-                  <input matInput formControlName="occupantsAdultes">
+                  <input matInput formControlName="occupantsAdultes" (keypress)="numberOnly($event)">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Les enfants qui habiteront l’appartement</mat-label>
-                  <input matInput formControlName="occupantsEnfants">
+                  <input matInput formControlName="occupantsEnfants" (keypress)="numberOnly($event)">
                 </mat-form-field>
               </td>
             </tr>
@@ -573,7 +582,6 @@
                   <input matInput formControlName="siAnimaux">
                 </mat-form-field>
               </td>
-              <td>&nbsp;</td>
             </tr>
             <tr>
               <td>
@@ -585,7 +593,7 @@
               </td>
               <td>
                 <mat-form-field appearance="fill">
-                  <mat-label>Numéro(s) plaques</mat-label>
+                  <mat-label>Numéro(s) de plaques</mat-label>
                   <input matInput formControlName="noPlaques">
                 </mat-form-field>
               </td>
@@ -605,6 +613,8 @@
                 </mat-form-field>
               </td>
             </tr>
+          </table>
+          <table cellpadding="0">
             <tr>
               <td>
                 <label>Votre contrat de bail actuel a-t-il déjà été résilié</label>
@@ -633,12 +643,28 @@
               </td>
             </tr>
           </table>
-
-
+          <div class="image-uploader">
+            <div class="file_form" >
+                <label for="file_upload" class="file_upload">
+                  <i class="fa fa-cloud-upload"></i> upload files
+                </label>
+                <input type="file" (change)="onSelectFile($event)" name="file" id="file_upload" />
+              <button>Save</button>
+            </div>
+            <div *ngIf="images?.length > 0">
+              <div class="added_files" >
+                <div *ngFor="let image of images;" class="added_file">
+                  <img src="{{image.src}}"/>
+                  <span class="removeImg" (click)="removeImage(image)">x</span>
+                </div>
+              </div>
+            </div>
+          </div>
           <mat-checkbox formControlName="tosAgreement">
             I have read and agreed <a href="">Terms & conditions</a> for this agreement
           </mat-checkbox>
         </div>
+
         <div>
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button (click)="stepper.reset()">Reset</button>
