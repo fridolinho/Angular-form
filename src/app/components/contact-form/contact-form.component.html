@@ -1,0 +1,680 @@
+<div class="client-form">
+  <mat-horizontal-stepper #stepper [linear]="true">
+
+    <!-- real estate details -->
+    <mat-step [stepControl]="firstFormGroup" [completed]="firstFormGroup.valid">
+      <form [formGroup]="firstFormGroup" autocomplete="on">
+        <ng-template matStepLabel>Details d' immobilier</ng-template>
+        <div class="asset-id">
+          <table cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Adresse</mat-label>
+                  <input matInput formControlName="adresse" required>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>NPA/Localite</mat-label>
+                  <input matInput formControlName="localite" (keypress)="numberOnly($event)" type="number" required>
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+
+          <table cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Piece(s)</mat-label>
+                  <input matInput formControlName="piece" (keypress)="numberOnly($event)" type="number" required>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Etage</mat-label>
+                  <input matInput formControlName="etage" (keypress)="numberOnly($event)" type="number" required>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Precedent location</mat-label>
+                  <input matInput formControlName="precedentLoc" required>
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+
+          <table cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Loyer net</mat-label>
+                  <span matPrefix> CHF &nbsp;</span>
+                  <input matInput formControlName="loyerNet" (keypress)="numberOnly($event)" type="number"required>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Charges</mat-label>
+                  <input matInput formControlName="charges" (keypress)="numberOnly($event)" type="number" required>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Reference objet</mat-label>
+                  <input matInput formControlName="referenceObjet" required>
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+
+          <table cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Parking</mat-label>
+                  <mat-select formControlName="parking" required>
+                    <mat-option value="parking_ext">Parking EXT</mat-option>
+                    <mat-option value="parking_couv">Parking COUV</mat-option>
+                    <mat-option value="garage">Garage</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Charges</mat-label>
+                  <span matPrefix> CHF &nbsp;</span>
+                  <input matInput formControlName="chfCharges" (keypress)="numberOnly($event)" type="number" required>
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+
+          <table cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Date d' ammenagement souhaitée</mat-label>
+                  <input matInput formControlName="dateDemmenagementSouhaitee" [matDatepicker]="pickerAmmenagement" required>
+                  <mat-datepicker-toggle matSuffix [for]="pickerAmmenagement"></mat-datepicker-toggle>
+                  <mat-datepicker #pickerAmmenagement startView="year" [startAt]="startDate"></mat-datepicker>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Date de visite</mat-label>
+                  <input matInput formControlName="dateDeVisite" [matDatepicker]="pickervisite" required>
+                  <mat-datepicker-toggle matSuffix [for]="pickervisite"></mat-datepicker-toggle>
+                  <mat-datepicker #pickervisite startView="year" [startAt]="startDate"></mat-datepicker>
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div>
+          <button mat-button matStepperNext [disabled]="!firstFormGroup.valid">Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <!-- real estate details ends here -->
+
+    <!-- Tenant details -->
+    <mat-step [stepControl]="secondFormGroup" [completed]="secondFormGroup.valid">
+      <form [formGroup]="secondFormGroup" autocomplete="on">
+        <ng-template matStepLabel>Details du locataire</ng-template>
+        <div class="locataire">
+          <h2>LOCATAIRE</h2>
+          <mat-radio-group aria-label="Select an option" formControlName="locataire">
+            <mat-radio-button value="male">Monsieur</mat-radio-button>
+            <mat-radio-button value="female">Madame</mat-radio-button>
+          </mat-radio-group>
+          <br />
+          <table cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Nom</mat-label>
+                  <input matInput formControlName="nom">
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Prénom</mat-label>
+                  <input matInput formControlName="prenom">
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Adresse actuelle</mat-label>
+                  <input matInput formControlName="adresseActuelle">
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Adresse légale (si differente)</mat-label>
+                  <input formControlName="adresseLegale" matInput>
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>NPA/Localité</mat-label>
+                  <input matInput formControlName="NPALocalite" (keypress)=" numberOnly($event)" type="number" required />
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Nationalité</mat-label>
+                  <input matInput formControlName="nationalite">
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Pérmis</mat-label>
+                  <input matInput formControlName="permis">
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Lieu d’origine</mat-label>
+                  <input matInput formControlName="lieuOrigine">
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+
+          <table cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Date de naissance</mat-label>
+                  <input matInput formControlName="dateDeNaissance" [matDatepicker]="pickerLocataire" required>
+                  <mat-datepicker-toggle matSuffix [for]="pickerLocataire"></mat-datepicker-toggle>
+                  <mat-datepicker #pickerLocataire startView="year" [startAt]="startDate"></mat-datepicker>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Etat civil</mat-label>
+                  <input matInput formControlName="etatCivil">
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+
+          <table cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Téléphone fixe</mat-label>
+                  <input matInput formControlName="telephoneFixe" (keypress)="numberOnly($event)" required>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Téléphone professionel</mat-label>
+                  <input matInput formControlName="telephoneProfessionel" (keypress)="numberOnly($event)" required>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Téléphone portable</mat-label>
+                  <input matInput formControlName="portable" (keypress)="numberOnly($event)" required>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>E-mail</mat-label>
+                  <input matInput formControlName="email">
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+
+          <table cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Profession</mat-label>
+                  <input matInput formControlName="profession">
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Employeur</mat-label>
+                  <input matInput formControlName="employeur">
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Depuis</mat-label>
+                  <input matInput formControlName="depuis" [matDatepicker]="pickerLocataireDepuis" required>
+                  <mat-datepicker-toggle matSuffix [for]="pickerLocataireDepuis"></mat-datepicker-toggle>
+                  <mat-datepicker #pickerLocataireDepuis startView="year" [startAt]="startDate"></mat-datepicker>
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+
+          <table cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Revenue mensuel</mat-label>
+                  <input matInput formControlName="revenueMensuel" (keypress)="numberOnly($event)" type="number" required>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Gérance actuelle</mat-label>
+                  <input matInput formControlName="geranceActuelle">
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Loyer actuelle</mat-label>
+                  <input matInput formControlName="loyerActuelle" (keypress)="numberOnly($event)" type="number" required>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Charges</mat-label>
+                  <input matInput formControlName="charges" (keypress)="numberOnly($event)" type="number" required>
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+          <table cellspacing="0">
+            <tr>
+              <td>
+                <label>Avez-vous des poursuites à votre encontre</label>
+                <mat-radio-group aria-label="Select an option" formControlName="poursuites">
+                  <mat-radio-button value="male">Oui</mat-radio-button>
+                  <mat-radio-button value="female">Non</mat-radio-button>
+                </mat-radio-group>
+              </td>
+              <td>
+                <label>Etes-vous au bénéfice d'une mesure de protection de l’adulte</label>
+                <mat-radio-group aria-label="Select an option" formControlName="protection">
+                  <mat-radio-button value="male">Oui</mat-radio-button>
+                  <mat-radio-button value="female">Non</mat-radio-button>
+                </mat-radio-group>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext [disabled]="!secondFormGroup.valid">Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- tenant details ends here -->
+
+    <!-- co-owner details -->
+
+    <mat-step [stepControl]="thirdFormGroup" [completed]="thirdFormGroup.valid">
+      <form [formGroup]="thirdFormGroup" autocomplete="on">
+        <ng-template matStepLabel>Details du co-titulaire</ng-template>
+        <div class="co_titulaire">
+          <h2>CO-TITULAIRE</h2>
+          <mat-radio-group aria-label="Select an option" formControlName="coTitulaire">
+            <mat-radio-button value="male">Monsieur</mat-radio-button>
+            <mat-radio-button value="female">Madame</mat-radio-button>
+          </mat-radio-group>
+          <br />
+          <table cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Nom</mat-label>
+                  <input matInput formControlName="nom">
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Prénom</mat-label>
+                  <input matInput formControlName="prenom">
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Adresse actuelle</mat-label>
+                  <input matInput formControlName="adresseActuelle">
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Adresse légale (si differente)</mat-label>
+                  <input matInput formControlName="adresseSiDifferente">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>NPA/Localité</mat-label>
+                  <input matInput formControlName="NPALocalite" (keypress)="numberOnly($event)" type="number" required>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Nationalité</mat-label>
+                  <input matInput formControlName="nationalite">
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Pérmis</mat-label>
+                  <input matInput formControlName="permis">
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Lieu d’origine</mat-label>
+                  <input matInput formControlName="lieuDorigine">
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+
+          <table cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Date de naissance</mat-label>
+                  <input matInput formControlName="dateDeNaissance" [matDatepicker]="pickerCoTitulaire" required>
+                  <mat-datepicker-toggle matSuffix [for]="pickerCoTitulaire"></mat-datepicker-toggle>
+                  <mat-datepicker #pickerCoTitulaire startView="year" [startAt]="startDate"></mat-datepicker>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Etat civil</mat-label>
+                  <input matInput formControlName="etatCivil" required>
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+
+          <table cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Téléphone fixe</mat-label>
+                  <input matInput formControlName="telephoneFixe" (keypress)="numberOnly($event)" required>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Téléphone professionel</mat-label>
+                  <input matInput formControlName="telephoneProfessionel" (keypress)="numberOnly($event)" required>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Téléphone portable</mat-label>
+                  <input matInput formControlName="portable" (keypress)="numberOnly($event)" required>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>E-mail</mat-label>
+                  <input matInput formControlName="email">
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+
+          <table cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Profession</mat-label>
+                  <input matInput formControlName="profession">
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Employeur</mat-label>
+                  <input matInput formControlName="employeur">
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Depuis</mat-label>
+                  <input matInput formControlName="depuis" [matDatepicker]="pickerCoTitulaireDepuis" required>
+                  <mat-datepicker-toggle matSuffix [for]="pickerCoTitulaireDepuis"></mat-datepicker-toggle>
+                  <mat-datepicker #pickerCoTitulaireDepuis startView="year" [startAt]="startDate"></mat-datepicker>
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+
+          <table cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Revenue mensuel</mat-label>
+                  <input matInput formControlName="revenueMensuel" (keypress)="numberOnly($event)" type="number">
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Gérance actuelle</mat-label>
+                  <input matInput formControlName="geranceActuelle">
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Loyer actuelle</mat-label>
+                  <input matInput formControlName="loyerActuelle" (keypress)="numberOnly($event)" type="number">
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Charges</mat-label>
+                  <input matInput formControlName="charges" (keypress)="numberOnly($event)" type="number">
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+          <table cellspacing="0">
+            <tr>
+              <td>
+                <label>Avez-vous des poursuites à votre encontre</label>
+                <mat-radio-group aria-label="Select an option" formControlName="poursuites">
+                  <mat-radio-button value="male">Oui</mat-radio-button>
+                  <mat-radio-button value="female">Non</mat-radio-button>
+                </mat-radio-group>
+              </td>
+              <td>
+                <label>Etes-vous au bénéfice d'une mesure de protection de l’adulte</label>
+                <mat-radio-group aria-label="Select an option" formControlName="protection">
+                  <mat-radio-button value="male">Oui</mat-radio-button>
+                  <mat-radio-button value="female">Non</mat-radio-button>
+                </mat-radio-group>
+              </td>
+            </tr>
+          </table>
+          <table cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Si oui, coordonnées du tuteur/curateur</mat-label>
+                  <input matInput formControlName="siTuteur">
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </form>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext [disabled]="!thirdFormGroup.valid">Next</button>
+      </div>
+    </mat-step>
+
+    <!-- co-owner details ends here -->
+
+    <!-- More details -->
+
+    <mat-step [stepControl]="fourthFormGroup" [completed]="fourthFormGroup.valid">
+
+      <form [formGroup]="fourthFormGroup" autocomplete="on">
+        <ng-template matStepLabel>Plus de details</ng-template>
+        <div class="other-details">
+          <table  cellpadding="0">
+            <tr>
+              <td>
+                <label>Logement</label>
+                <mat-radio-group aria-label="Select an option" formControlName="logement">
+                  <mat-radio-button value="principale">Principale</mat-radio-button>
+                  <mat-radio-button value="secondaire">Secondaire</mat-radio-button>
+                </mat-radio-group>
+              </td>
+              <td>
+                <label>Logement occupé par le titulaire/co-titulaire</label>
+                <mat-radio-group aria-label="Select an option" formControlName="siOccupéParTitulaireOuCoTitulaire">
+                  <mat-radio-button value="yes">Oui</mat-radio-button>
+                  <mat-radio-button value="no">Non</mat-radio-button>
+                </mat-radio-group>
+              </td>
+            </tr>
+          </table>
+
+          <table cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Noms du titulaire/co-titulaire</mat-label>
+                  <input matInput formControlName="nomsDuTitulaireOuCoTitulaure">
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Personne(adultes) qui habiteront l’appartement</mat-label>
+                  <input matInput formControlName="occupantsAdultes" (keypress)="numberOnly($event)" type="number">
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Les enfants qui habiteront l’appartement</mat-label>
+                  <input matInput formControlName="occupantsEnfants" (keypress)="numberOnly($event)" type="number">
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+          <table cellspading="0">
+            <tr>
+              <td>
+                <label>Animaux</label>
+                <mat-radio-group aria-label="Select an option" formControlName="animaux">
+                  <mat-radio-button value="yes">Oui</mat-radio-button>
+                  <mat-radio-button value="no">Non</mat-radio-button>
+                </mat-radio-group>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>le(s)quel(s)</mat-label>
+                  <input matInput formControlName="siAnimaux">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label>Véhicule(s)</label>
+                  <mat-radio-group aria-label="Select an option" formControlName="vehicules">
+                    <mat-radio-button value="yes">Oui</mat-radio-button>
+                    <mat-radio-button value="no">Non</mat-radio-button>
+                  </mat-radio-group>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Numéro(s) de plaques</mat-label>
+                  <input matInput formControlName="noPlaques">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label>Jouez-vous d’un instrument de musique</label>
+                <mat-radio-group aria-label="Select an option" formControlName="siInstruments">
+                  <mat-radio-button value="yes">Oui</mat-radio-button>
+                  <mat-radio-button value="no">Non</mat-radio-button>
+                </mat-radio-group>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>le(s)quel(s)</mat-label>
+                  <input matInput formControlName="instruments">
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+          <table cellpadding="0">
+            <tr>
+              <td>
+                <label>Votre contrat de bail actuel a-t-il déjà été résilié</label>
+                <mat-radio-group aria-label="Select an option" formControlName="siBailRésilié">
+                  <mat-radio-button value="yes">Oui</mat-radio-button>
+                  <mat-radio-button value="no">Non</mat-radio-button>
+                </mat-radio-group>
+              </td>
+              <td>
+                <label>Par</label>
+                <mat-radio-group aria-label="Select an option" formControlName="résilièPar">
+                  <mat-radio-button value="locataire">le locataire</mat-radio-button>
+                  <mat-radio-button value="bailleur">le bailleur</mat-radio-button>
+                </mat-radio-group>
+              </td>
+            </tr>
+          </table>
+
+          <table cellpadding="0">
+            <tr>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Motif du déménagement</mat-label>
+                  <input matInput formControlName="motifDuDéménagement">
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+          <div class="image-uploader">
+            <div class="file_form" >
+              <label for="file_upload" class="file_upload">
+                <i class="fa fa-cloud-upload"></i> upload files
+              </label>
+              <input type="file" (change)="onSelectFile($event)" name="file" id="file_upload" />
+              <button (click)="uploadImg()">Save</button>
+            </div>
+            <div *ngIf="images?.length > 0">
+              <div class="added_files" >
+                <div *ngFor="let image of images;" class="added_file">
+                  <img src="{{image.src}}"/>
+                  <span class="removeImg" (click)="removeImage(image)">x</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <mat-checkbox formControlName="tosAgreement">
+            I have read and agreed <a href="">Terms & conditions</a> for this agreement
+          </mat-checkbox>
+        </div>
+
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+          <button mat-button [disabled]="!fourthFormGroup.valid" (click)="submitForm()">Save</button>
+        </div>
+      </form>
+    </mat-step>
+  </mat-horizontal-stepper>
+<!-- more details ends here -->
+
+</div>

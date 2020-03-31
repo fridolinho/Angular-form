@@ -1,0 +1,17 @@
+<div class="image-uploader">
+  <div class="file_form" >
+    <label for="file_upload" class="file_upload">
+      <i class="fa fa-cloud-upload"></i> upload files
+    </label>
+    <input type="file" (change)="onSelectFile($event)" name="file" id="file_upload" />
+    <button *ngIf="images.length > 0" (click)="uploadImg()">Save</button>
+  </div>
+  <div *ngIf="images?.length > 0">
+    <div class="added_files" >
+      <div *ngFor="let image of images;" class="added_file">
+        <img src="{{image.src}}"/>
+        <span class="removeImg" (click)="removeImage(image)">x</span>
+      </div>
+    </div>
+  </div>
+</div>
