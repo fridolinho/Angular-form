@@ -24,6 +24,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import {AngularFirestore} from '@angular/fire/firestore';
+import { UploadComponent } from './components/upload/upload.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import {AngularFirestore} from '@angular/fire/firestore';
     ViewUsersComponent,
     HeaderComponent,
     TermsComponent,
-    ContactFormComponent
+    ContactFormComponent,
+    UploadComponent
   ],
   imports: [
     BrowserModule,

@@ -157,12 +157,15 @@ export class ContactFormComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]); // read file as data url
       reader.onload = (event) => { // called once readAsDataURL is completed
         this.images.push({src: event.target.result});
-        console.log(this.images);
       };
     }
   }
 
   removeImage(image: any) {
     this.images = this.images.filter(item => item.src !== image.src);
+  }
+
+  uploadImg() {
+    console.log(this.images);
   }
 }
