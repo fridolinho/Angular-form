@@ -5,13 +5,13 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    apiKey: 'AIzaSyAnZc2pyxKJ9xtvtaygPrp7pu6_pY860Qw',
-    authDomain: 'rn-shop-app-e431a.firebaseapp.com',
-    databaseURL: 'https://rn-shop-app-e431a.firebaseio.com',
-    projectId: 'rn-shop-app-e431a',
-    storageBucket: 'rn-shop-app-e431a.appspot.com',
-    messagingSenderId: '506573517864',
-    appId: '1:506573517864:web:e59cf05bb8119e8b6bb11d'
+    apiKey: 'AIzaSyDPEFtWBW14vqp8PH-bGj5uWhy2SMkhY8E',
+    authDomain: 'rt-calender.firebaseapp.com',
+    databaseURL: 'https://rt-calender.firebaseio.com',
+    projectId: 'rt-calender',
+    storageBucket: 'rt-calender.appspot.com',
+    messagingSenderId: '913437347778',
+    appId: '1:913437347778:web:36d3239728eb7b91'
   }
 };
 

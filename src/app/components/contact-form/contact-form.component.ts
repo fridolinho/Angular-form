@@ -156,14 +156,14 @@ export class ContactFormComponent implements OnInit {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
       const file = event.target.files[0];
-      const filePath = `image-${Date.now}`;
+      const filePath = `order-image-${Date.now()}`;
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
       reader.onload = (event) => { // called once readAsDataURL is completed
+        this.images.push({src: event.target.result});
         const task = this.storage.upload(filePath, file);
         task.then(async (snapshot) => {
           const src = await snapshot.ref.getDownloadURL();
-          this.images.push({ src });
         }).catch((error) => {
           console.error(error);
         });
@@ -173,9 +173,5 @@ export class ContactFormComponent implements OnInit {
 
   removeImage(image: any) {
     this.images = this.images.filter(item => item.src !== image.src);
-  }
-
-  uploadImg() {
-    console.log(this.images);
   }
 }
