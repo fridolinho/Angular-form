@@ -3,7 +3,8 @@ import { OrderService } from '../../shared/services/order.service';
 import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { Observable } from 'rxjs';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { async } from '@angular/core/testing';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -37,7 +38,8 @@ export class ContactFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     db: AngularFireDatabase,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private storage: AngularFireStorage
   ) {}
 
   ngOnInit(): void {
@@ -153,10 +155,18 @@ export class ContactFormComponent implements OnInit {
   onSelectFile(event) {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
+      const file = event.target.files[0];
+      const filePath = `image-${Date.now}`;
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
       reader.onload = (event) => { // called once readAsDataURL is completed
-        this.images.push({src: event.target.result});
+        const task = this.storage.upload(filePath, file);
+        task.then(async (snapshot) => {
+          const src = await snapshot.ref.getDownloadURL();
+          this.images.push({ src });
+        }).catch((error) => {
+          console.error(error);
+        });
       };
     }
   }
