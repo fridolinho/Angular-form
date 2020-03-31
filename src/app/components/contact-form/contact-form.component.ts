@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { Observable } from 'rxjs';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -19,6 +21,7 @@ export class ContactFormComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   fourthFormGroup: FormGroup;
+  firebaseDb: AngularFireDatabase;
 
   textFormControl =
     new FormControl('', [
@@ -29,7 +32,9 @@ export class ContactFormComponent implements OnInit {
 
   matcher = new MyErrorStateMatcher();
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, db: AngularFireDatabase) {
+    this.firebaseDb = db;
+  }
 
   ngOnInit(): void {
     this.firstFormGroup = this.fb.group({
@@ -46,6 +51,7 @@ export class ContactFormComponent implements OnInit {
       dateDemmenagementSouhaitee: this.fb.control('', [Validators.required]),
       dateDeVisite: this.fb.control('', [Validators.required]),
     });
+
     this.secondFormGroup = this.fb.group({
       locataire: this.fb.control('', [Validators.required]),
       nom: this.fb.control('', [Validators.required]),
@@ -99,6 +105,7 @@ export class ContactFormComponent implements OnInit {
       protection: this.fb.control('', [Validators.required]),
       siTuteur: this.fb.control('', [Validators.required]),
     });
+
     this.fourthFormGroup = this.fb.group({
       logement: this.fb.control('', [Validators.required]),
       siOccupéParTitulaireOuCoTitulaire: this.fb.control('', [Validators.required]),
@@ -120,13 +127,15 @@ export class ContactFormComponent implements OnInit {
 
   submitForm() {
     const formData = {
-      firstForm: this.firstFormGroup.value,
-      secondForm: this.secondFormGroup.value,
-      thirdForm: this.thirdFormGroup.value,
-      fourhForm: this.fourthFormGroup.value
+      immobilier: this.firstFormGroup.value,
+      locateur: this.secondFormGroup.value,
+      co_locataire: this.thirdFormGroup.value,
+      plus_details: this.fourthFormGroup.value
     };
 
-    console.log(formData);
+
+    const clientForm = this.firebaseDb.object('order');
+    clientForm.set(formData);
   }
 
 }

@@ -18,6 +18,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { ContactFormComponent } from './components/contact-form/contact-form.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatCheckboxModule,
     MatButtonModule,
     MatStepperModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule
   ],
   providers: [],
   bootstrap: [AppComponent]
