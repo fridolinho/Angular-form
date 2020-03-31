@@ -75,7 +75,7 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Parking</mat-label>
-                  <mat-select formControlName="siDisponible" required>
+                  <mat-select formControlName="parking" required>
                     <mat-option value="parking_ext">Parking EXT</mat-option>
                     <mat-option value="parking_couv">Parking COUV</mat-option>
                     <mat-option value="garage">Garage</mat-option>
@@ -97,17 +97,17 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Date d' ammenagement souhaitée</mat-label>
-                  <input matInput formControlName="dateDemmenagementSouhaitee" [matDatepicker]="picker" required>
-                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                  <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+                  <input matInput formControlName="dateDemmenagementSouhaitee" [matDatepicker]="pickerAmmenagement" required>
+                  <mat-datepicker-toggle matSuffix [for]="pickerAmmenagement"></mat-datepicker-toggle>
+                  <mat-datepicker #pickerAmmenagement startView="year" [startAt]="startDate"></mat-datepicker>
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Date de visite</mat-label>
-                  <input matInput formControlName="dateDeVisite" [matDatepicker]="visite" required>
-                  <mat-datepicker-toggle matSuffix [for]="visite"></mat-datepicker-toggle>
-                  <mat-datepicker #visite startView="year" [startAt]="startDate"></mat-datepicker>
+                  <input matInput formControlName="dateDeVisite" [matDatepicker]="pickervisite" required>
+                  <mat-datepicker-toggle matSuffix [for]="pickervisite"></mat-datepicker-toggle>
+                  <mat-datepicker #pickervisite startView="year" [startAt]="startDate"></mat-datepicker>
                 </mat-form-field>
               </td>
             </tr>
@@ -162,7 +162,7 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>NPA/Localité</mat-label>
-                  <input matInput formControlName="NPALocalite (keypress)="numberOnly($event)" required>
+                  <input matInput formControlName="NPALocalite" (keypress)=" numberOnly($event)" required />
                 </mat-form-field>
               </td>
               <td>
@@ -250,8 +250,10 @@
               </td>
               <td>
                 <mat-form-field appearance="fill">
-                  <mat-label>Depuis</mat-label>
                   <input matInput formControlName="depuis">
+                  <input matInput formControlName="depuis" [matDatepicker]="pickerLocataireDepuis" required>
+                  <mat-datepicker-toggle matSuffix [for]="pickerLocataireDepuis"></mat-datepicker-toggle>
+                  <mat-datepicker #pickerLocataireDepuis startView="year" [startAt]="startDate"></mat-datepicker>
                 </mat-form-field>
               </td>
             </tr>
@@ -445,9 +447,9 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Depuis</mat-label>
-                  <input matInput formControlName="depuis" [matDatepicker]="pickerDepuis" required>
-                  <mat-datepicker-toggle matSuffix [for]="pickerDepuis"></mat-datepicker-toggle>
-                  <mat-datepicker #pickerDepuis startView="year" [startAt]="startDate"></mat-datepicker>
+                  <input matInput formControlName="depuis" [matDatepicker]="pickerCoTitulaireDepuis" required>
+                  <mat-datepicker-toggle matSuffix [for]="pickerCoTitulaireDepuis"></mat-datepicker-toggle>
+                  <mat-datepicker #pickerCoTitulaireDepuis startView="year" [startAt]="startDate"></mat-datepicker>
                 </mat-form-field>
               </td>
             </tr>

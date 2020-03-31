@@ -49,7 +49,7 @@ export class ContactFormComponent implements OnInit {
       loyerNet: this.fb.control('', [Validators.required]),
       charges: this.fb.control('', [Validators.required]),
       referenceObjet: this.fb.control('', [Validators.required]),
-      siDisponible: this.fb.control('', [Validators.required]),
+      parking: this.fb.control('', [Validators.required]),
       chfCharges: this.fb.control('', [Validators.required]),
       dateDemmenagementSouhaitee: this.fb.control('', [Validators.required]),
       dateDeVisite: this.fb.control('', [Validators.required]),
@@ -131,11 +131,12 @@ export class ContactFormComponent implements OnInit {
   submitForm() {
     const formData = {
       immobilier: this.firstFormGroup.value,
-      locateur: this.secondFormGroup.value,
+      locataire: this.secondFormGroup.value,
       co_locataire: this.thirdFormGroup.value,
       plus_details: this.fourthFormGroup.value
     };
 
+    console.log(formData);
 
     const clientForm = this.firebaseDb.object('order');
     clientForm.set(formData);
