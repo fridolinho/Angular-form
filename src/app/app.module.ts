@@ -23,6 +23,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import {AngularFirestore} from '@angular/fire/firestore';
 
 
 @NgModule({
@@ -53,7 +54,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule
   ],
-  providers: [MatDatepickerModule],
+  providers: [MatDatepickerModule, AngularFirestore],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

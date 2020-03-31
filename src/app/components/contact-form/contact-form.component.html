@@ -3,7 +3,7 @@
 
     <!-- real estate details -->
     <mat-step [stepControl]="firstFormGroup" [completed]="firstFormGroup.valid">
-      <form [formGroup]="firstFormGroup">
+      <form [formGroup]="firstFormGroup" autocomplete="on">
         <ng-template matStepLabel>Details d' immobilier</ng-template>
         <div class="asset-id">
           <table cellspacing="0">
@@ -17,7 +17,7 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>NPA/Localite</mat-label>
-                  <input matInput formControlName="localite" (keypress)="numberOnly($event)" type="text" required>
+                  <input matInput formControlName="localite" (keypress)="numberOnly($event)" type="number" required>
                 </mat-form-field>
               </td>
             </tr>
@@ -28,13 +28,13 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Piece(s)</mat-label>
-                  <input matInput formControlName="piece" (keypress)="numberOnly($event)" required>
+                  <input matInput formControlName="piece" (keypress)="numberOnly($event)" type="number" required>
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Etage</mat-label>
-                  <input matInput formControlName="etage" (keypress)="numberOnly($event)" required>
+                  <input matInput formControlName="etage" (keypress)="numberOnly($event)" type="number" required>
                 </mat-form-field>
               </td>
               <td>
@@ -52,13 +52,13 @@
                 <mat-form-field appearance="fill">
                   <mat-label>Loyer net</mat-label>
                   <span matPrefix> CHF &nbsp;</span>
-                  <input matInput formControlName="loyerNet" (keypress)="numberOnly($event)" required>
+                  <input matInput formControlName="loyerNet" (keypress)="numberOnly($event)" type="number"required>
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Charges</mat-label>
-                  <input matInput formControlName="charges" (keypress)="numberOnly($event)" required>
+                  <input matInput formControlName="charges" (keypress)="numberOnly($event)" type="number" required>
                 </mat-form-field>
               </td>
               <td>
@@ -86,7 +86,7 @@
                 <mat-form-field appearance="fill">
                   <mat-label>Charges</mat-label>
                   <span matPrefix> CHF &nbsp;</span>
-                  <input matInput formControlName="chfCharges" (keypress)="numberOnly($event)" required>
+                  <input matInput formControlName="chfCharges" (keypress)="numberOnly($event)" type="number" required>
                 </mat-form-field>
               </td>
             </tr>
@@ -122,7 +122,7 @@
 
     <!-- Tenant details -->
     <mat-step [stepControl]="secondFormGroup" [completed]="secondFormGroup.valid">
-      <form [formGroup]="secondFormGroup">
+      <form [formGroup]="secondFormGroup" autocomplete="on">
         <ng-template matStepLabel>Details du locataire</ng-template>
         <div class="locataire">
           <h2>LOCATAIRE</h2>
@@ -162,7 +162,7 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>NPA/Localité</mat-label>
-                  <input matInput formControlName="NPALocalite" (keypress)=" numberOnly($event)" required />
+                  <input matInput formControlName="NPALocalite" (keypress)=" numberOnly($event)" type="number" required />
                 </mat-form-field>
               </td>
               <td>
@@ -250,7 +250,7 @@
               </td>
               <td>
                 <mat-form-field appearance="fill">
-                  <input matInput formControlName="depuis">
+                  <mat-label>Depuis</mat-label>
                   <input matInput formControlName="depuis" [matDatepicker]="pickerLocataireDepuis" required>
                   <mat-datepicker-toggle matSuffix [for]="pickerLocataireDepuis"></mat-datepicker-toggle>
                   <mat-datepicker #pickerLocataireDepuis startView="year" [startAt]="startDate"></mat-datepicker>
@@ -264,7 +264,7 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Revenue mensuel</mat-label>
-                  <input matInput formControlName="revenueMensuel">
+                  <input matInput formControlName="revenueMensuel" (keypress)="numberOnly($event)" type="number" required>
                 </mat-form-field>
               </td>
               <td>
@@ -276,13 +276,13 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Loyer actuelle</mat-label>
-                  <input matInput formControlName="loyerActuelle">
+                  <input matInput formControlName="loyerActuelle" (keypress)="numberOnly($event)" type="number" required>
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Charges</mat-label>
-                  <input matInput formControlName="charges" (keypress)="numberOnly($event)">
+                  <input matInput formControlName="charges" (keypress)="numberOnly($event)" type="number" required>
                 </mat-form-field>
               </td>
             </tr>
@@ -318,7 +318,7 @@
     <!-- co-owner details -->
 
     <mat-step [stepControl]="thirdFormGroup" [completed]="thirdFormGroup.valid">
-      <form [formGroup]="thirdFormGroup">
+      <form [formGroup]="thirdFormGroup" autocomplete="on">
         <ng-template matStepLabel>Details du co-titulaire</ng-template>
         <div class="co_titulaire">
           <h2>CO-TITULAIRE</h2>
@@ -358,7 +358,7 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>NPA/Localité</mat-label>
-                  <input matInput formControlName="NPALocalite" (keypress)="numberOnly($event)">
+                  <input matInput formControlName="NPALocalite" (keypress)="numberOnly($event)" type="number" required>
                 </mat-form-field>
               </td>
               <td>
@@ -395,7 +395,7 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Etat civil</mat-label>
-                  <input matInput formControlName="etatCivil">
+                  <input matInput formControlName="etatCivil" required>
                 </mat-form-field>
               </td>
             </tr>
@@ -406,19 +406,19 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Téléphone fixe</mat-label>
-                  <input matInput formControlName="telephoneFixe" (keypress)="numberOnly($event)">
+                  <input matInput formControlName="telephoneFixe" (keypress)="numberOnly($event)" required>
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Téléphone professionel</mat-label>
-                  <input matInput formControlName="telephoneProfessionel" (keypress)="numberOnly($event)">
+                  <input matInput formControlName="telephoneProfessionel" (keypress)="numberOnly($event)" required>
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Téléphone portable</mat-label>
-                  <input matInput formControlName="portable" (keypress)="numberOnly($event)">
+                  <input matInput formControlName="portable" (keypress)="numberOnly($event)" required>
                 </mat-form-field>
               </td>
               <td>
@@ -460,7 +460,7 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Revenue mensuel</mat-label>
-                  <input matInput formControlName="revenueMensuel" (keypress)="numberOnly($event)">
+                  <input matInput formControlName="revenueMensuel" (keypress)="numberOnly($event)" type="number">
                 </mat-form-field>
               </td>
               <td>
@@ -472,13 +472,13 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Loyer actuelle</mat-label>
-                  <input matInput formControlName="loyerActuelle" (keypress)="numberOnly($event)">
+                  <input matInput formControlName="loyerActuelle" (keypress)="numberOnly($event)" type="number">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Charges</mat-label>
-                  <input matInput formControlName="charges" (keypress)="numberOnly($event)">
+                  <input matInput formControlName="charges" (keypress)="numberOnly($event)" type="number">
                 </mat-form-field>
               </td>
             </tr>
@@ -525,7 +525,7 @@
 
     <mat-step [stepControl]="fourthFormGroup" [completed]="fourthFormGroup.valid">
 
-      <form [formGroup]="fourthFormGroup">
+      <form [formGroup]="fourthFormGroup" autocomplete="on">
         <ng-template matStepLabel>Plus de details</ng-template>
         <div class="other-details">
           <table  cellpadding="0">
@@ -558,13 +558,13 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Personne(adultes) qui habiteront l’appartement</mat-label>
-                  <input matInput formControlName="occupantsAdultes" (keypress)="numberOnly($event)">
+                  <input matInput formControlName="occupantsAdultes" (keypress)="numberOnly($event)" type="number">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Les enfants qui habiteront l’appartement</mat-label>
-                  <input matInput formControlName="occupantsEnfants" (keypress)="numberOnly($event)">
+                  <input matInput formControlName="occupantsEnfants" (keypress)="numberOnly($event)" type="number">
                 </mat-form-field>
               </td>
             </tr>

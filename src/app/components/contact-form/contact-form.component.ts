@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OrderService } from '../../shared/services/order.service';
 import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { AngularFireDatabase } from '@angular/fire/database';
@@ -21,8 +22,6 @@ export class ContactFormComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   fourthFormGroup: FormGroup;
-  fifthFormGroup: FormGroup;
-  firebaseDb: AngularFireDatabase;
 
   textFormControl =
     new FormControl('', [
@@ -35,22 +34,24 @@ export class ContactFormComponent implements OnInit {
   images = [];
   startDate = new Date(2020, 0, 1);
 
-  constructor(private fb: FormBuilder, db: AngularFireDatabase) {
-    this.firebaseDb = db;
-  }
+  constructor(
+    private fb: FormBuilder,
+    db: AngularFireDatabase,
+    private orderService: OrderService
+  ) {}
 
   ngOnInit(): void {
     this.firstFormGroup = this.fb.group({
       adresse: this.fb.control('', [Validators.required]),
-      localite: this.fb.control('', [Validators.required]),
-      piece: this.fb.control('', [Validators.required]),
-      etage: this.fb.control('', [Validators.required]),
+      localite: this.fb.control(null, [Validators.required]),
+      piece: this.fb.control(null, [Validators.required]),
+      etage: this.fb.control(null, [Validators.required]),
       precedentLoc: this.fb.control('', [Validators.required]),
-      loyerNet: this.fb.control('', [Validators.required]),
-      charges: this.fb.control('', [Validators.required]),
+      loyerNet: this.fb.control(null, [Validators.required]),
+      charges: this.fb.control(null, [Validators.required]),
       referenceObjet: this.fb.control('', [Validators.required]),
       parking: this.fb.control('', [Validators.required]),
-      chfCharges: this.fb.control('', [Validators.required]),
+      chfCharges: this.fb.control(null, [Validators.required]),
       dateDemmenagementSouhaitee: this.fb.control('', [Validators.required]),
       dateDeVisite: this.fb.control('', [Validators.required]),
     });
@@ -61,49 +62,50 @@ export class ContactFormComponent implements OnInit {
       prenom: this.fb.control('', [Validators.required]),
       adresseActuelle: this.fb.control('', [Validators.required]),
       adresseLegale: this.fb.control(''),
-      NPALocalite: this.fb.control('', [Validators.required]),
+      NPALocalite: this.fb.control(null, [Validators.required]),
       nationalite: this.fb.control('', [Validators.required]),
       permis: this.fb.control('', [Validators.required]),
       lieuOrigine: this.fb.control('', [Validators.required]),
       dateDeNaissance: this.fb.control('', [Validators.required]),
       etatCivil: this.fb.control('', [Validators.required]),
-      telephoneFixe: this.fb.control('', [Validators.required]),
+      telephoneFixe: this.fb.control(null, [Validators.required]),
       telephoneProfessionel: this.fb.control('', [Validators.required]),
-      portable: this.fb.control('', [Validators.required]),
+      portable: this.fb.control(null, [Validators.required]),
       email: this.fb.control('', [Validators.required, Validators.email]),
       profession: this.fb.control('', [Validators.required]),
       employeur: this.fb.control('', [Validators.required]),
       depuis: this.fb.control('', [Validators.required]),
-      revenueMensuel: this.fb.control('', [Validators.required]),
+      revenueMensuel: this.fb.control(null, [Validators.required]),
       geranceActuelle: this.fb.control('', [Validators.required]),
-      loyerActuelle: this.fb.control('', [Validators.required]),
-      charges: this.fb.control('', [Validators.required]),
+      loyerActuelle: this.fb.control(null, [Validators.required]),
+      charges: this.fb.control(null, [Validators.required]),
       poursuites: this.fb.control('', [Validators.required]),
       protection: this.fb.control('', [Validators.required]),
     });
+
     this.thirdFormGroup = this.fb.group({
       coTitulaire: this.fb.control('', [Validators.required]),
       nom: this.fb.control('', [Validators.required]),
       prenom: this.fb.control('', [Validators.required]),
       adresseActuelle: this.fb.control('', [Validators.required]),
       adresseSiDifferente: this.fb.control(''),
-      NPALocalite: this.fb.control('', [Validators.required]),
+      NPALocalite: this.fb.control(null, [Validators.required]),
       nationalite: this.fb.control('', [Validators.required]),
       permis: this.fb.control('', [Validators.required]),
       lieuDorigine: this.fb.control('', [Validators.required]),
       dateDeNaissance: this.fb.control('', [Validators.required]),
       etatCivil: this.fb.control('', [Validators.required]),
-      telephoneFixe: this.fb.control('', [Validators.required]),
-      telephoneProfessionel: this.fb.control('', [Validators.required]),
-      portable: this.fb.control('', [Validators.required]),
+      telephoneFixe: this.fb.control(null, [Validators.required]),
+      telephoneProfessionel: this.fb.control(null, [Validators.required]),
+      portable: this.fb.control(null, [Validators.required]),
       email: this.fb.control('', [Validators.required, Validators.email]),
       profession: this.fb.control('', [Validators.required]),
       employeur: this.fb.control('', [Validators.required]),
       depuis: this.fb.control('', [Validators.required]),
-      revenueMensuel: this.fb.control('', [Validators.required]),
+      revenueMensuel: this.fb.control(null, [Validators.required]),
       geranceActuelle: this.fb.control('', [Validators.required]),
-      loyerActuelle: this.fb.control('', [Validators.required]),
-      charges: this.fb.control('', [Validators.required]),
+      loyerActuelle: this.fb.control(null, [Validators.required]),
+      charges: this.fb.control(null, [Validators.required]),
       poursuites: this.fb.control('', [Validators.required]),
       protection: this.fb.control('', [Validators.required]),
       siTuteur: this.fb.control('', [Validators.required]),
@@ -113,8 +115,8 @@ export class ContactFormComponent implements OnInit {
       logement: this.fb.control('', [Validators.required]),
       siOccupéParTitulaireOuCoTitulaire: this.fb.control('', [Validators.required]),
       nomsDuTitulaireOuCoTitulaure: this.fb.control('', [Validators.required]),
-      occupantsAdultes: this.fb.control('', [Validators.required]),
-      occupantsEnfants: this.fb.control('', [Validators.required]),
+      occupantsAdultes: this.fb.control(null, [Validators.required]),
+      occupantsEnfants: this.fb.control(null, [Validators.required]),
       animaux: this.fb.control('', [Validators.required]),
       siAnimaux: this.fb.control('', [Validators.required]),
       vehicules: this.fb.control('', [Validators.required]),
@@ -132,14 +134,12 @@ export class ContactFormComponent implements OnInit {
     const formData = {
       immobilier: this.firstFormGroup.value,
       locataire: this.secondFormGroup.value,
-      co_locataire: this.thirdFormGroup.value,
-      plus_details: this.fourthFormGroup.value
+      coTitulaire: this.thirdFormGroup.value,
+      plusDetails: this.fourthFormGroup.value
     };
 
     console.log(formData);
-
-    const clientForm = this.firebaseDb.object('order');
-    clientForm.set(formData);
+    this.orderService.SendOrder(formData);
   }
 
   numberOnly(event) {
