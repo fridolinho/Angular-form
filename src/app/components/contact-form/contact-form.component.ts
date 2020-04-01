@@ -36,8 +36,7 @@ export class ContactFormComponent implements OnInit {
   localfiles = [];
   files = [];
   input: HTMLElement;
-  filename: string;
-  attachement: {filename: string, src: string, type: string }[] = [];
+  attachement: {src: string, type: string }[] = [];
 
 
   constructor(
@@ -162,15 +161,14 @@ export class ContactFormComponent implements OnInit {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
       const file = event.target.files[0];
-      const filename = this.filename;
       const filePath = `file-${Date.now()}`;
       reader.readAsDataURL(event.target.files[0]); // read file as data url
       reader.onload = (event) => { // called once readAsDataURL is completed
-        this.localfiles.push({filename, src: event.target.result, name: file.name, type: file.type});
+        this.localfiles.push({src: event.target.result, name: file.name, type: file.type});
         const task = this.storage.upload(filePath, file);
         task.then(async (snapshot) => {
-          // const src = await snapshot.ref.getDownloadURL();
-          // this.files.push({filename, src, name: file.name});
+          const src = await snapshot.ref.getDownloadURL();
+          this.files.push({src, name: file.name});
         }).catch((error) => {
           console.error(error);
         });
@@ -186,5 +184,9 @@ export class ContactFormComponent implements OnInit {
   clickInput() {
     this.input = document.getElementById('file_upload');
     this.input.click();
+  }
+
+  sendFilename(event: Event) {
+    console.log(event);
   }
 }

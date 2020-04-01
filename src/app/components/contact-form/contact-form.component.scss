@@ -110,9 +110,13 @@
 
   .file_form {
     position: relative;
+    margin-top: 10px;
+    mat-form-field {
+      margin-right: 20px;
+    }
     form {
       display: inline-block;
-  
+
       .file_upload {
         border: 1px solid #ccc;
         display: inline-block;
@@ -134,7 +138,7 @@
       outline: none;
     }
   }
-  
+
   .added_files {
     margin-top: 20px;
     .added_file {
@@ -162,7 +166,7 @@
       }
     }
   }
-  
+
 }
 
 @media (max-width: 901px) {
