@@ -9,6 +9,8 @@ import { AngularFireStorage } from '@angular/fire/storage';
 export class ViewUsersComponent implements OnInit {
 
   images = [];
+  files = [];
+  input: HTMLElement;
   constructor(
     private storage: AngularFireStorage
   ) { }
@@ -27,6 +29,7 @@ export class ViewUsersComponent implements OnInit {
         const task = this.storage.upload(filePath, file);
         task.then(async (snapshot) => {
           const src = await snapshot.ref.getDownloadURL();
+          this.files.push({filename: 'image', src});
         }).catch((error) => {
           console.error(error);
         });
@@ -42,4 +45,8 @@ export class ViewUsersComponent implements OnInit {
     console.log(this.images);
   }
 
+  clickInput() {
+    this.input = document.getElementById('file_upload');
+    this.input.click();
+  }
 }

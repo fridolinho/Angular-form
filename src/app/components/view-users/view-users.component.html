@@ -1,9 +1,19 @@
 <div class="image-uploader">
   <div class="file_form" >
+    <mat-form-field>
+      <mat-label>Attachement</mat-label>
+      <mat-select>
+        <mat-option value="identite">Copie de la pièce d’identité où permis de séjour</mat-option>
+        <mat-option value="attestation de domicile">Attestation de domicile</mat-option>
+        <mat-option value="attestation de l’Office des poursuites">Attestation ORIGINALE de l’Office des poursuites datant de moins de 3 mois</mat-option>
+        <mat-option value="fiche de salaire">Fiches de salaire / dernière taxation définitive d’impôt pour les indépendants</mat-option>
+      </mat-select>
+    </mat-form-field>
+
     <label for="file_upload" class="file_upload">
-      <i class="fa fa-cloud-upload"></i> upload files
+      <button (click)="clickInput()" class="fa fa-cloud-upload">upload files</button>
     </label>
-    <input type="file" (change)="onSelectFile($event)" name="file" id="file_upload" />
+    <input type="file" (change)="onSelectFile($event)" name="file" id="file_upload" hidden/>
   </div>
   <div *ngIf="images?.length > 0">
     <div class="added_files" >

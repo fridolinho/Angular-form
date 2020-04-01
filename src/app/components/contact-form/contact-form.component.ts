@@ -34,6 +34,7 @@ export class ContactFormComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
   images = [];
   startDate = new Date(2020, 0, 1);
+  attachement: {filename: string, src: string }[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -137,7 +138,8 @@ export class ContactFormComponent implements OnInit {
       immobilier: this.firstFormGroup.value,
       locataire: this.secondFormGroup.value,
       coTitulaire: this.thirdFormGroup.value,
-      plusDetails: this.fourthFormGroup.value
+      plusDetails: this.fourthFormGroup.value,
+      attachement: this.attachement
     };
 
     console.log(formData);
@@ -164,6 +166,7 @@ export class ContactFormComponent implements OnInit {
         const task = this.storage.upload(filePath, file);
         task.then(async (snapshot) => {
           const src = await snapshot.ref.getDownloadURL();
+          this.attachement.push({filename: '', src});
         }).catch((error) => {
           console.error(error);
         });
