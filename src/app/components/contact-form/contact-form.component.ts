@@ -32,9 +32,13 @@ export class ContactFormComponent implements OnInit {
     );
 
   matcher = new MyErrorStateMatcher();
-  images = [];
   startDate = new Date(2020, 0, 1);
-  attachement: {filename: string, src: string }[] = [];
+  localfiles = [];
+  files = [];
+  input: HTMLElement;
+  filename: string;
+  attachement: {filename: string, src: string, type: string }[] = [];
+
 
   constructor(
     private fb: FormBuilder,
@@ -158,15 +162,15 @@ export class ContactFormComponent implements OnInit {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
       const file = event.target.files[0];
-      const filePath = `order-image-${Date.now()}`;
-
+      const filename = this.filename;
+      const filePath = `file-${Date.now()}`;
       reader.readAsDataURL(event.target.files[0]); // read file as data url
       reader.onload = (event) => { // called once readAsDataURL is completed
-        this.images.push({src: event.target.result});
+        this.localfiles.push({filename, src: event.target.result, name: file.name, type: file.type});
         const task = this.storage.upload(filePath, file);
         task.then(async (snapshot) => {
-          const src = await snapshot.ref.getDownloadURL();
-          this.attachement.push({filename: '', src});
+          // const src = await snapshot.ref.getDownloadURL();
+          // this.files.push({filename, src, name: file.name});
         }).catch((error) => {
           console.error(error);
         });
@@ -174,7 +178,13 @@ export class ContactFormComponent implements OnInit {
     }
   }
 
-  removeImage(image: any) {
-    this.images = this.images.filter(item => item.src !== image.src);
+  removeFile(file: any) {
+    console.log(file);
+    this.localfiles = this.localfiles.filter(item => item.name !== file);
+  }
+
+  clickInput() {
+    this.input = document.getElementById('file_upload');
+    this.input.click();
   }
 }

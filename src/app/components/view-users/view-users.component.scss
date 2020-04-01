@@ -1,7 +1,8 @@
 .file_form {
   position: relative;
-  mat-select-panel {
-
+  margin-top: 10px;
+  mat-form-field {
+    margin-right: 20px;
   }
   form {
     display: inline-block;

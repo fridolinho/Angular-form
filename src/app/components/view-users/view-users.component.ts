@@ -8,9 +8,10 @@ import { AngularFireStorage } from '@angular/fire/storage';
 })
 export class ViewUsersComponent implements OnInit {
 
-  images = [];
+  localfiles = [];
   files = [];
   input: HTMLElement;
+  filename: string;
   constructor(
     private storage: AngularFireStorage
   ) { }
@@ -22,14 +23,15 @@ export class ViewUsersComponent implements OnInit {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
       const file = event.target.files[0];
-      const filePath = `image-${Date.now()}`;
+      const filename = this.filename;
+      const filePath = `file-${Date.now()}`;
       reader.readAsDataURL(event.target.files[0]); // read file as data url
       reader.onload = (event) => { // called once readAsDataURL is completed
-        this.images.push({src: event.target.result});
+        this.localfiles.push({filename, src: event.target.result, type: file.type, name: file.name});
         const task = this.storage.upload(filePath, file);
         task.then(async (snapshot) => {
-          const src = await snapshot.ref.getDownloadURL();
-          this.files.push({filename: 'image', src});
+          // const src = await snapshot.ref.getDownloadURL();
+          // this.files.push({filename, src, name: file.name});
         }).catch((error) => {
           console.error(error);
         });
@@ -37,12 +39,9 @@ export class ViewUsersComponent implements OnInit {
     }
   }
 
-  removeImage(image: any) {
-    this.images = this.images.filter(item => item.src !== image.src);
-  }
-
-  uploadImg() {
-    console.log(this.images);
+  removeFile(file: any) {
+    console.log(file);
+    this.localfiles = this.localfiles.filter(item => item.name !== file);
   }
 
   clickInput() {
