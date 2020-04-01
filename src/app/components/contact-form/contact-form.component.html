@@ -75,7 +75,7 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Parking</mat-label>
-                  <mat-select formControlName="parking" required>
+                  <mat-select formControlName="parking">
                     <mat-option value="parking_ext">Parking EXT</mat-option>
                     <mat-option value="parking_couv">Parking COUV</mat-option>
                     <mat-option value="garage">Garage</mat-option>
@@ -86,7 +86,7 @@
                 <mat-form-field appearance="fill">
                   <mat-label>Charges</mat-label>
                   <span matPrefix> CHF &nbsp;</span>
-                  <input matInput formControlName="chfCharges" (keypress)="numberOnly($event)" type="number" required>
+                  <input matInput formControlName="chfCharges" (keypress)="numberOnly($event)" type="number">
                 </mat-form-field>
               </td>
             </tr>
@@ -126,7 +126,7 @@
         <ng-template matStepLabel>Details du locataire</ng-template>
         <div class="locataire">
           <h2>LOCATAIRE</h2>
-          <mat-radio-group aria-label="Select an option" formControlName="locataire">
+          <mat-radio-group aria-label="Select an option" formControlName="locataire" required>
             <mat-radio-button value="male">Monsieur</mat-radio-button>
             <mat-radio-button value="female">Madame</mat-radio-button>
           </mat-radio-group>
@@ -136,13 +136,13 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Nom</mat-label>
-                  <input matInput formControlName="nom">
+                  <input matInput formControlName="nom" required>
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Prénom</mat-label>
-                  <input matInput formControlName="prenom">
+                  <input matInput formControlName="prenom" required>
                 </mat-form-field>
               </td>
               <td>
@@ -168,7 +168,7 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Nationalité</mat-label>
-                  <input matInput formControlName="nationalite">
+                  <input matInput formControlName="nationalite" required>
                 </mat-form-field>
               </td>
               <td>
@@ -300,14 +300,14 @@
             <tr>
               <td>
                 <label>Avez-vous des poursuites à votre encontre</label>
-                <mat-radio-group aria-label="Select an option" formControlName="poursuites">
+                <mat-radio-group aria-label="Select an option" formControlName="poursuites" required>
                   <mat-radio-button value="male">Oui</mat-radio-button>
                   <mat-radio-button value="female">Non</mat-radio-button>
                 </mat-radio-group>
               </td>
               <td>
                 <label>Etes-vous au bénéfice d'une mesure de protection de l’adulte</label>
-                <mat-radio-group aria-label="Select an option" formControlName="protection">
+                <mat-radio-group aria-label="Select an option" formControlName="protection" required>
                   <mat-radio-button value="male">Oui</mat-radio-button>
                   <mat-radio-button value="female">Non</mat-radio-button>
                 </mat-radio-group>
@@ -418,7 +418,7 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>E-mail</mat-label>
-                  <input matInput formControlName="email" required>
+                  <input matInput formControlName="email">
                 </mat-form-field>
               </td>
             </tr>
@@ -437,7 +437,7 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Etat civil</mat-label>
-                  <select matNativeControl formControlName="etatCivil" required>
+                  <select matNativeControl formControlName="etatCivil">
                     <option value="célibataire">Célibataire</option>
                     <option value="marrier">Marrier</option>
                     <option value="divorcé">Divorcé</option>
@@ -665,10 +665,15 @@
               <div class="added_files" >
                 <table cellspacing="0">
                   <tr *ngFor="let file of localfiles;">
-                    <td><mat-icon>attach_file</mat-icon></td>
-                    <td>({{file.filename}})</td>
-                    <td>{{file.name}}</td>
-                    <td><mat-icon (click)="removeFile(file.name)">delete</mat-icon></td>
+                    <td>
+                      <mat-icon>attach_file</mat-icon>
+                    </td>
+                    <td>
+                      {{file.name}}
+                    <td>
+                    <td>
+                      <mat-icon (click)="removeFile(file.name)">delete</mat-icon>
+                    </td>
                   </tr>
                 </table>
               </div>
