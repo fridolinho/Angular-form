@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
@@ -24,8 +24,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import {AngularFirestore} from '@angular/fire/firestore';
-import { UploadComponent } from './components/upload/upload.component';
+
 
 
 @NgModule({
@@ -34,8 +33,7 @@ import { UploadComponent } from './components/upload/upload.component';
     ViewUsersComponent,
     HeaderComponent,
     TermsComponent,
-    ContactFormComponent,
-    UploadComponent
+    ContactFormComponent
   ],
   imports: [
     BrowserModule,
@@ -55,11 +53,11 @@ import { UploadComponent } from './components/upload/upload.component';
     MatDatepickerModule,
     MatNativeDateModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireDatabaseModule,
+    AngularFirestoreModule,
     AngularFireStorageModule,
     FormsModule
   ],
-  providers: [MatDatepickerModule, AngularFirestore],
+  providers: [MatDatepickerModule],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

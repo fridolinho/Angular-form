@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {AngularFirestore} from '@angular/fire/firestore';
+import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
 import { Order } from '../models/order.model';
 
 @Injectable({
@@ -7,15 +7,20 @@ import { Order } from '../models/order.model';
 })
 export class OrderService {
 
-  constructor(private firestore: AngularFirestore) { }
+  private orderRef: AngularFirestoreCollection<any>;
+  constructor(private firestore: AngularFirestore) { 
+    this.orderRef = this.firestore.collection<Order>('order') 
+  }
 
-  SendOrder(formData: Order) {
+  async SendOrder(formData: Order) {
     if (formData) {
-      return this.firestore.collection('order').add(formData).then(function() {
+      try {
+        await this.orderRef.add(formData);
         console.log('Document successfully added!');
-      }).catch(function(error) {
+      }
+      catch (error) {
         console.error('Error adding document: ', error);
-      });
+      }
     }
   }
 }

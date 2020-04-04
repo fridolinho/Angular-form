@@ -41,7 +41,6 @@ export class ContactFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    db: AngularFireDatabase,
     private orderService: OrderService,
     private storage: AngularFireStorage
   ) {}
