@@ -22,3 +22,9 @@ export class Locataire {
   poursuites: string;
   protection: string;
 }
+
+
+export class CoTitulaire extends Locataire {
+  coTitulaire: string;
+  siTuteur: string;
+}
