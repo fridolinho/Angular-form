@@ -8,18 +8,16 @@ import { Order } from '../models/order.model';
 export class OrderService {
 
   private orderRef: AngularFirestoreCollection<any>;
-  constructor(private firestore: AngularFirestore) { 
-    this.orderRef = this.firestore.collection<Order>('order') 
+  constructor(private firestore: AngularFirestore) {
+    this.orderRef = this.firestore.collection<Order>('order');
   }
 
   async SendOrder(formData: Order) {
     if (formData) {
       try {
         await this.orderRef.add(formData);
-        console.log('Document successfully added!');
-      }
-      catch (error) {
-        console.error('Error adding document: ', error);
+      } catch (error) {
+        return error;
       }
     }
   }

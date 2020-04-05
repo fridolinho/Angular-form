@@ -1,16 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { OnInit, Component } from '@angular/core';
 import { OrderService } from '../../shared/services/order.service';
 import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
-import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { async } from '@angular/core/testing';
 
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
+export enum Documenttype {
+  'Identite' = 'Pièce d’identité où permis de séjour',
+  'OfficeDesPoursuites' = 'Attestation ORIGINALE de l’Office des poursuites',
+  'AttestationDomicile' = 'Attestation de domicile',
+  'FicheSalaire' = 'Fiches de salaire / dernière taxation définitive d’impôt'
 }
 
 @Component({
@@ -24,20 +22,18 @@ export class ContactFormComponent implements OnInit {
   thirdFormGroup: FormGroup;
   fourthFormGroup: FormGroup;
 
-  textFormControl =
-    new FormControl('', [
-        Validators.required,
-        Validators.email,
-      ]
-    );
-
-  matcher = new MyErrorStateMatcher();
   startDate = new Date(2020, 0, 1);
   localfiles = [];
-  filename: string
+  filename: string;
   input: HTMLElement;
   attachement: {filename: string, src: string, name: string, type: string }[] = [];
-
+  parkingTypes = [
+    'Parking exterieur',
+    'Parking interne',
+    'Garage'
+  ];
+  public fileTypes = Object.values(Documenttype);
+  plaque = '';
 
   constructor(
     private fb: FormBuilder,
@@ -67,7 +63,7 @@ export class ContactFormComponent implements OnInit {
       prenom: this.fb.control('', [Validators.required]),
       adresseActuelle: this.fb.control('', [Validators.required]),
       adresseLegale: this.fb.control(''),
-      NPALocalite: this.fb.control(null, [Validators.required]),
+      npa: this.fb.control(null, [Validators.required]),
       nationalite: this.fb.control('', [Validators.required]),
       permis: this.fb.control('', []),
       lieuOrigine: this.fb.control('', [Validators.required]),
@@ -94,7 +90,7 @@ export class ContactFormComponent implements OnInit {
       prenom: this.fb.control('', []),
       adresseActuelle: this.fb.control('', []),
       adresseSiDifferente: this.fb.control(''),
-      NPALocalite: this.fb.control(null, []),
+      npa: this.fb.control(null, []),
       nationalite: this.fb.control('', []),
       permis: this.fb.control('', []),
       lieuDorigine: this.fb.control('', []),
@@ -118,7 +114,7 @@ export class ContactFormComponent implements OnInit {
 
     this.fourthFormGroup = this.fb.group({
       logement: this.fb.control('', [Validators.required]),
-      siOccupéParTitulaireOuCoTitulaire: this.fb.control('', [Validators.required]),
+      siOccupeParTitulaireOuCoTitulaire: this.fb.control('', [Validators.required]),
       nomsDuTitulaireOuCoTitulaure: this.fb.control('', []),
       occupantsAdultes: this.fb.control(null, [Validators.required]),
       occupantsEnfants: this.fb.control(null, []),
@@ -128,14 +124,25 @@ export class ContactFormComponent implements OnInit {
       noPlaques: this.fb.control('', []),
       siInstruments: this.fb.control('', []),
       instruments: this.fb.control('', []),
-      siBailRésilié: this.fb.control('', [Validators.required]),
-      résilièPar: this.fb.control('', [Validators.required]),
-      motifDuDéménagement: this.fb.control('', [Validators.required]),
+      siBailResilie: this.fb.control('', [Validators.required]),
+      resiliePar: this.fb.control('', [Validators.required]),
+      motifDuDemenagement: this.fb.control('', [Validators.required]),
       tosAgreement: this.fb.control('', [Validators.required]),
     });
   }
 
   submitForm() {
+    this.localfiles.map(singlefile => {
+      const filePath = `file-${Date.now()}`;
+      const ImgUpload = this.storage.upload(filePath, singlefile.file);
+      ImgUpload.then(async (snapshot) => {
+        const src = await snapshot.ref.getDownloadURL();
+        this.attachement.push({filename: singlefile.filename, src, name: singlefile.name, type: singlefile.type});
+      }).catch((error) => {
+        console.error(error);
+      });
+    });
+
     const formData = {
       immobilier: this.firstFormGroup.value,
       locataire: this.secondFormGroup.value,
@@ -144,16 +151,11 @@ export class ContactFormComponent implements OnInit {
       attachement: this.attachement
     };
 
-    console.log(formData);
     this.orderService.SendOrder(formData);
   }
 
-  numberOnly(event) {
-    const charCode = (event.which) ? event.which : event.keyCode;
-    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-      return false;
-    }
-    return true;
+  toUppercase() {
+     return this.plaque = this.plaque.toUpperCase();
   }
 
   clickInput() {
@@ -165,25 +167,15 @@ export class ContactFormComponent implements OnInit {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
       const file = event.target.files[0];
-      const filePath = `file-${Date.now()}`;
       const filename = this.filename;
       reader.readAsDataURL(event.target.files[0]); // read file as data url
       reader.onload = (event) => { // called once readAsDataURL is completed
-        this.localfiles.push({filename, src: event.target.result, name: file.name, type: file.type});
-        const task = this.storage.upload(filePath, file);
-        task.then(async (snapshot) => {
-          const src = await snapshot.ref.getDownloadURL();
-          this.attachement.push({filename, src, name: file.name, type: file.type});
-        }).catch((error) => {
-          console.error(error);
-        });
+        this.localfiles.push({filename, src: event.target.result, name: file.name, type: file.type, file});
       };
     }
   }
 
   removeFile(file: any) {
-    console.log(file);
     this.localfiles = this.localfiles.filter(item => item.name !== file);
-    this.attachement = this.attachement.filter(item => item.name !== file);
   }
 }
