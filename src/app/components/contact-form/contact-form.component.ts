@@ -32,6 +32,7 @@ export class ContactFormComponent implements OnInit {
     'Parking interne',
     'Garage'
   ];
+  permisType = ['A', 'B', 'C', 'D', 'E', 'F'];
   public fileTypes = Object.values(Documenttype);
   plaque = '';
 
@@ -137,7 +138,9 @@ export class ContactFormComponent implements OnInit {
       const ImgUpload = this.storage.upload(filePath, singlefile.file);
       ImgUpload.then(async (snapshot) => {
         const src = await snapshot.ref.getDownloadURL();
-        this.attachement.push({filename: singlefile.filename, src, name: singlefile.name, type: singlefile.type});
+        if (src) {
+          this.attachement.push({filename: singlefile.filename, src, name: singlefile.name, type: singlefile.type});
+        }
       }).catch((error) => {
         console.error(error);
       });
@@ -155,7 +158,9 @@ export class ContactFormComponent implements OnInit {
   }
 
   toUppercase() {
-     return this.plaque = this.plaque.toUpperCase();
+    const data = this.fourthFormGroup.value;
+    const upperData = data.noPlaques.toUpperCase();
+    this.firstFormGroup.patchValue({noPlaques: upperData});
   }
 
   clickInput() {
