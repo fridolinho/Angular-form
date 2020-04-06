@@ -380,12 +380,7 @@
                 <mat-form-field>
                   <mat-label>Pérmis</mat-label>
                   <mat-select matNativeControl formControlName="permis">
-                    <mat-option value="a">A</mat-option>
-                    <mat-option value="b">B</mat-option>
-                    <mat-option value="c">C</mat-option>
-                    <mat-option value="d">D</mat-option>
-                    <mat-option value="e">E</mat-option>
-                    <mat-option value="f">F</mat-option>
+                    <mat-option *ngFor = "let permit of permisType" [value]="permit">A</mat-option>
                   </mat-select>
                 </mat-form-field>
               </td>
@@ -607,7 +602,7 @@
               <td>
                 <mat-form-field>
                   <mat-label>Numéro(s) de plaques</mat-label>
-                  <input matInput formControlName="noPlaques" [(ngModel)]="plaque" (keyup)="toUppercase()">
+                  <input matInput formControlName="noPlaques" (keyup)="toUppercase()">
                 </mat-form-field>
               </td>
             </tr>
