@@ -1,8 +1,9 @@
 import { OnInit, Component } from '@angular/core';
 import { OrderService } from '../../shared/services/order.service';
-import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { async } from '@angular/core/testing';
+import {finalize} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 
 export enum Documenttype {
   'Identite' = 'Pièce d’identité où permis de séjour',
@@ -34,8 +35,7 @@ export class ContactFormComponent implements OnInit {
   ];
   permisType = ['A', 'B', 'C', 'D', 'E', 'F'];
   public fileTypes = Object.values(Documenttype);
-  plaque = '';
-
+  downloadURL: Observable <string>
   constructor(
     private fb: FormBuilder,
     private orderService: OrderService,
@@ -135,15 +135,18 @@ export class ContactFormComponent implements OnInit {
   submitForm() {
     this.localfiles.map(singlefile => {
       const filePath = `file-${Date.now()}`;
-      const ImgUpload = this.storage.upload(filePath, singlefile.file);
-      ImgUpload.then(async (snapshot) => {
-        const src = await snapshot.ref.getDownloadURL();
-        if (src) {
-          this.attachement.push({filename: singlefile.filename, src, name: singlefile.name, type: singlefile.type});
-        }
-      }).catch((error) => {
-        console.error(error);
-      });
+      const imgUpload = this.storage.upload(filePath, singlefile.file);
+      const ref = this.storage.ref(filePath);
+
+      imgUpload.snapshotChanges().pipe(
+        finalize(async () => {
+          this.downloadURL = ref.getDownloadURL();
+          await this.downloadURL.subscribe((url) => (
+            this.attachement.push({filename: singlefile.filename, src: url, name: singlefile.name, type: singlefile.type})
+          ));
+        })
+      )
+        .subscribe();
     });
 
     const formData = {
