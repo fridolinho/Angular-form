@@ -24,8 +24,10 @@ import { MatStepperModule } from '@angular/material/stepper';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-
-
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -35,28 +37,32 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     TermsComponent,
     ContactFormComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    MatTabsModule,
-    BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatOptionModule,
-    MatSelectModule,
-    MatInputModule,
-    MatRadioModule,
-    MatCheckboxModule,
-    MatButtonModule,
-    MatStepperModule,
-    ReactiveFormsModule,
-    MatIconModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule,
-    AngularFireStorageModule,
-    FormsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        MatTabsModule,
+        BrowserAnimationsModule,
+        MatFormFieldModule,
+        MatOptionModule,
+        MatSelectModule,
+        MatInputModule,
+        MatRadioModule,
+        MatCheckboxModule,
+        MatButtonModule,
+        MatStepperModule,
+        ReactiveFormsModule,
+        MatIconModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatProgressSpinnerModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFirestoreModule,
+        AngularFireStorageModule,
+        FormsModule,
+        MatTableModule
+    ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent]
 })

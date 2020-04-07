@@ -1,9 +1,9 @@
 import { OnInit, Component } from '@angular/core';
 import { OrderService } from '../../shared/services/order.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { AngularFireStorage } from '@angular/fire/storage';
-import {finalize} from 'rxjs/operators';
-import {Observable} from 'rxjs';
+import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
+import { finalize } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 export enum Documenttype {
   'Identite' = 'Pièce d’identité où permis de séjour',
@@ -35,7 +35,9 @@ export class ContactFormComponent implements OnInit {
   ];
   permisType = ['A', 'B', 'C', 'D', 'E', 'F'];
   public fileTypes = Object.values(Documenttype);
-  downloadURL: Observable <string>
+  downloadURL;
+  snapshot: Observable<firebase.storage.UploadTaskSnapshot | undefined>;
+  uploadTask: AngularFireUploadTask;
   constructor(
     private fb: FormBuilder,
     private orderService: OrderService,
@@ -116,7 +118,7 @@ export class ContactFormComponent implements OnInit {
     this.fourthFormGroup = this.fb.group({
       logement: this.fb.control('', [Validators.required]),
       siOccupeParTitulaireOuCoTitulaire: this.fb.control('', [Validators.required]),
-      nomsDuTitulaireOuCoTitulaure: this.fb.control('', []),
+      nomsDuTitulaireOuCoTitulaire: this.fb.control('', [Validators.required]),
       occupantsAdultes: this.fb.control(null, [Validators.required]),
       occupantsEnfants: this.fb.control(null, []),
       animaux: this.fb.control('', []),
@@ -133,31 +135,25 @@ export class ContactFormComponent implements OnInit {
   }
 
   submitForm() {
-    this.localfiles.map(singlefile => {
-      const filePath = `file-${Date.now()}`;
-      const imgUpload = this.storage.upload(filePath, singlefile.file);
-      const ref = this.storage.ref(filePath);
+    const length  = this.localfiles.length;
+    this.localfiles.map( async (singlefile, i) => {
+      const filePath = `${singlefile.name}-${Date.now()}`;
+      const uploadTask = await this.storage.upload(filePath, singlefile.file);
+      const url = await uploadTask.ref.getDownloadURL();
+      delete singlefile.file;
+      this.attachement.push({...singlefile, src: url});
+      if (length === i + 1) {
+        const currentData = {
+          immobilier: this.firstFormGroup.value,
+          locataire: this.secondFormGroup.value,
+          coTitulaire: this.thirdFormGroup.value,
+          plusDetails: this.fourthFormGroup.value,
+          attachement: this.attachement
+        };
 
-      imgUpload.snapshotChanges().pipe(
-        finalize(async () => {
-          this.downloadURL = ref.getDownloadURL();
-          await this.downloadURL.subscribe((url) => (
-            this.attachement.push({filename: singlefile.filename, src: url, name: singlefile.name, type: singlefile.type})
-          ));
-        })
-      )
-        .subscribe();
+        this.orderService.SendOrder(currentData);
+      }
     });
-
-    const formData = {
-      immobilier: this.firstFormGroup.value,
-      locataire: this.secondFormGroup.value,
-      coTitulaire: this.thirdFormGroup.value,
-      plusDetails: this.fourthFormGroup.value,
-      attachement: this.attachement
-    };
-
-    this.orderService.SendOrder(formData);
   }
 
   toUppercase() {

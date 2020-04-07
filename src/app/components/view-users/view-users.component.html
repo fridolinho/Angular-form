@@ -1,1 +1,34 @@
-<p>View orders</p>
+<div class="order-table-container">
+  <table class="order-table" mat-table [dataSource]="orders">
+    <ng-container matColumnDef="nom">
+      <mat-header-cell *matHeaderCellDef>Nom</mat-header-cell>
+      <mat-cell *matCellDef="let order">{{order.locataire.nom}} {{order.locataire.prenom}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+      <mat-cell *matCellDef="let order">{{order.locataire.email}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="adresse">
+      <mat-header-cell *matHeaderCellDef>Adresse</mat-header-cell>
+      <mat-cell *matCellDef="let order">{{order.immobilier.adresse}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="supprimer">
+      <mat-header-cell *matHeaderCellDef>Supprimer</mat-header-cell>
+      <mat-cell *matCellDef="let order">
+        <mat-icon
+          class="delete-button"
+          fontSet="fas"
+          fontIcon="fa-trash"
+          color="accent"
+          (click)="onDeleteRow(order)"></mat-icon>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </table>
+</div>

@@ -1,0 +1,14 @@
+.order-table-container {
+  z-index: 1;
+  width: 80%;
+  margin: 20px auto;
+
+  .order-table {
+    width: 100%;
+  }
+
+  .delete-button {
+    font-size: 20px;
+    cursor: pointer;
+  }
+}
