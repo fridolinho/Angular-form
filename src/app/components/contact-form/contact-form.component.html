@@ -17,7 +17,7 @@
               <td>
                 <mat-form-field>
                   <mat-label>NPA/Localite</mat-label>
-                  <input matInput formControlName="localite" type="number" required>
+                  <input matInput formControlName="localite" type="number" min="0" required>
                 </mat-form-field>
               </td>
             </tr>
@@ -28,13 +28,13 @@
               <td>
                 <mat-form-field>
                   <mat-label>Piece(s)</mat-label>
-                  <input matInput formControlName="piece" type="number" required>
+                  <input matInput formControlName="piece" type="number" min="0" required>
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field>
                   <mat-label>Etage</mat-label>
-                  <input matInput formControlName="etage" type="number" required>
+                  <input matInput formControlName="etage" type="number" min="0" required>
                 </mat-form-field>
               </td>
               <td>
@@ -52,13 +52,13 @@
                 <mat-form-field>
                   <mat-label>Loyer net</mat-label>
                   <span matPrefix> CHF &nbsp;</span>
-                  <input matInput formControlName="loyerNet" type="number"required>
+                  <input matInput formControlName="loyerNet" type="number" min="0" required>
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field>
                   <mat-label>Charges</mat-label>
-                  <input matInput formControlName="charges" type="number" required>
+                  <input matInput formControlName="charges" type="number" min="0" required>
                 </mat-form-field>
               </td>
               <td>
@@ -86,7 +86,7 @@
                 <mat-form-field>
                   <mat-label>Charges</mat-label>
                   <span matPrefix> CHF &nbsp;</span>
-                  <input matInput formControlName="chfCharges" type="number">
+                  <input matInput formControlName="chfCharges" type="number" min="0" >
                 </mat-form-field>
               </td>
             </tr>
@@ -162,7 +162,7 @@
               <td>
                 <mat-form-field>
                   <mat-label>NPA/Localité</mat-label>
-                  <input matInput formControlName="npa" type="number" required />
+                  <input matInput formControlName="npa" type="number" min="0" required />
                 </mat-form-field>
               </td>
               <td>
@@ -273,7 +273,7 @@
               <td>
                 <mat-form-field>
                   <mat-label>Revenue mensuel</mat-label>
-                  <input matInput formControlName="revenueMensuel" type="number" required>
+                  <input matInput formControlName="revenueMensuel" type="number" min="0" required>
                 </mat-form-field>
               </td>
               <td>
@@ -285,13 +285,13 @@
               <td>
                 <mat-form-field>
                   <mat-label>Loyer actuelle</mat-label>
-                  <input matInput formControlName="loyerActuelle" type="number" required>
+                  <input matInput formControlName="loyerActuelle" type="number" min="0" required>
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field>
                   <mat-label>Charges</mat-label>
-                  <input matInput formControlName="charges" type="number" required>
+                  <input matInput formControlName="charges" type="number" min="0" required>
                 </mat-form-field>
               </td>
             </tr>
@@ -367,7 +367,7 @@
               <td>
                 <mat-form-field>
                   <mat-label>NPA/Localité</mat-label>
-                  <input matInput formControlName="npa" type="number">
+                  <input matInput formControlName="npa" type="number" min="0">
                 </mat-form-field>
               </td>
               <td>
@@ -473,7 +473,7 @@
               <td>
                 <mat-form-field>
                   <mat-label>Revenue mensuel</mat-label>
-                  <input matInput formControlName="revenueMensuel" type="number">
+                  <input matInput formControlName="revenueMensuel" type="number" min="0">
                 </mat-form-field>
               </td>
               <td>
@@ -485,13 +485,13 @@
               <td>
                 <mat-form-field>
                   <mat-label>Loyer actuelle</mat-label>
-                  <input matInput formControlName="loyerActuelle" type="number">
+                  <input matInput formControlName="loyerActuelle" type="number" min="0">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field>
                   <mat-label>Charges</mat-label>
-                  <input matInput formControlName="charges" type="number">
+                  <input matInput formControlName="charges" type="number" min="0">
                 </mat-form-field>
               </td>
             </tr>
@@ -577,7 +577,7 @@
               <td>
                 <mat-form-field>
                   <mat-label>Les enfants qui habiteront l’appartement</mat-label>
-                  <input matInput formControlName="occupantsEnfants" type="number">
+                  <input matInput formControlName="occupantsEnfants" type="number" min="0">
                 </mat-form-field>
               </td>
             </tr>
