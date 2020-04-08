@@ -21,13 +21,14 @@ import { TermsComponent } from './components/terms/terms.component';
 import { MatButtonModule } from '@angular/material/button';
 import { ContactFormComponent } from './components/contact-form/contact-form.component';
 import { MatStepperModule } from '@angular/material/stepper';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import {MatTableModule} from '@angular/material/table';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatSortModule} from '@angular/material/sort';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
       AngularFirestoreModule,
       AngularFireStorageModule,
       FormsModule,
-      MatTableModule
+      MatTableModule,
+      MatTooltipModule
     ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent]

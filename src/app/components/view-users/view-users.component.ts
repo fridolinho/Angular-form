@@ -24,7 +24,7 @@ export class ViewUsersComponent implements OnInit {
   async getAllOrders() {
     this.orderService.orders.subscribe((allOrders) => {
       allOrders.map( data => {
-        const currentOrders = [];
+        const currentOrders = this.orders;
         const singleorder = data.payload.doc.data();
         singleorder.id = data.payload.doc.id;
         currentOrders.push(singleorder);
@@ -37,4 +37,7 @@ export class ViewUsersComponent implements OnInit {
     this.orderService.deleteOrder(reference);
   }
 
+  extendDetails(id) {
+    document.getElementById(id);
+  }
 }

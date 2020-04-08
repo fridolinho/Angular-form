@@ -5,10 +5,25 @@
 
   .order-table {
     width: 100%;
-  }
-
-  .delete-button {
-    font-size: 20px;
-    cursor: pointer;
+    border: 1px solid #919191;
+    border-collapse: collapse;
+    th, td {
+      text-align: center;
+      color: #082535;
+      cursor: auto;
+    }
+    .delete {
+      color: #ff2f6b;
+    }
+    .open {
+      color: green;
+    }
+    mat-icon {
+      cursor: pointer;
+    }
+    .view_order {
+      width: 100%;
+      border: 1px solid #919191;
+    }
   }
 }
