@@ -8,18 +8,19 @@ import { Observable } from 'rxjs';
 })
 export class OrderService {
 
-  private orderRef: AngularFirestoreCollection<any>;
-  orders: Observable<Order[]>;
+  private orderCollection: AngularFirestoreCollection<any>;
+  orders: any;
+
   constructor(private firestore: AngularFirestore) {
-    this.orderRef = this.firestore.collection<Order>('order');
-    this.orders = this.orderRef.valueChanges();
+    this.orderCollection = this.firestore.collection<Order>('order');
+    this.orders = this.orderCollection.snapshotChanges();
   }
 
-  async SendOrder(formData: any) {
+  async SendOrder(formData: Order) {
     console.log(formData);
     if (formData) {
       try {
-        await this.orderRef.add(formData);
+        await this.orderCollection.add(formData);
         console.log('success');
       } catch (error) {
         console.log(error);
@@ -28,6 +29,7 @@ export class OrderService {
   }
 
   deleteOrder(id: string) {
-    this.firestore.collection('order').doc(id).delete();
+    return this.firestore.collection('order').doc(id).delete();
+
   }
 }

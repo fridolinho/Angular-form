@@ -1,18 +1,18 @@
 <div class="order-table-container">
   <table class="order-table" mat-table [dataSource]="orders">
     <ng-container matColumnDef="nom">
-      <mat-header-cell *matHeaderCellDef>Nom</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Nom du client</mat-header-cell>
       <mat-cell *matCellDef="let order">{{order.locataire.nom}} {{order.locataire.prenom}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="email">
-      <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
-      <mat-cell *matCellDef="let order">{{order.locataire.email}}</mat-cell>
+    <ng-container matColumnDef="reference">
+      <mat-header-cell *matHeaderCellDef>Reference objet</mat-header-cell>
+      <mat-cell *matCellDef="let order">{{order.immobilier.referenceObjet}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="adresse">
-      <mat-header-cell *matHeaderCellDef>Adresse</mat-header-cell>
-      <mat-cell *matCellDef="let order">{{order.immobilier.adresse}}</mat-cell>
+    <ng-container matColumnDef="amenagement">
+      <mat-header-cell *matHeaderCellDef>Amenagement souhaite</mat-header-cell>
+      <mat-cell *matCellDef="let order">{{order.immobilier.dateDemmenagementSouhaitee.toDate('M', 'D', 'Y')}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="supprimer">
@@ -23,7 +23,7 @@
           fontSet="fas"
           fontIcon="fa-trash"
           color="accent"
-          (click)="onDeleteRow(order)"></mat-icon>
+          (click)="onDeleteRow(order.id)"></mat-icon>
       </mat-cell>
     </ng-container>
 
@@ -31,4 +31,10 @@
 
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
   </table>
+</div>
+
+<div>
+  <ul>
+    <li *ngFor="let order of orders">{{order.immobilier.nom}}</li>
+  </ul>
 </div>

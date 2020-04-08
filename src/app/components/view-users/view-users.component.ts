@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from 'src/app/shared/services/order.service';
 import { Order } from 'src/app/shared/models/order.model';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-view-users',
@@ -8,21 +9,30 @@ import { Order } from 'src/app/shared/models/order.model';
   styleUrls: ['./view-users.component.scss']
 })
 export class ViewUsersComponent implements OnInit {
-  orders: Order[];
-  displayedColumns = ['nom', 'email', 'adresse', 'supprimer'];
+  displayedColumns = ['nom', 'reference', 'amenagement', 'supprimer'];
+  orders: any[] = [];
 
   constructor(
     private orderService: OrderService
   ) {}
 
   ngOnInit(): void {
-    this.orderService.orders.subscribe((orders) => {
-      this.orders = orders;
+    this.getAllOrders();
+  }
+
+  async getAllOrders() {
+    this.orderService.orders.subscribe((allOrders) => {
+      allOrders.map( data => {
+        const currentOrders = [];
+        const singleorder = data.payload.doc.data();
+        singleorder.id = data.payload.doc.id;
+        currentOrders.push(singleorder);
+        this.orders = currentOrders;
+      });
     });
   }
 
-  onDeleteRow(order) {
-    console.log(order);
-    this.orderService.deleteOrder(order.id);
+  onDeleteRow(reference) {
+    this.orderService.deleteOrder(reference);
   }
 }
