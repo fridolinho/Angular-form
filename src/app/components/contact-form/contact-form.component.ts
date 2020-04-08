@@ -1,9 +1,15 @@
 import { OnInit, Component } from '@angular/core';
 import { OrderService } from '../../shared/services/order.service';
+<<<<<<< HEAD
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+=======
+import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { async } from '@angular/core/testing';
+>>>>>>> 3668f408d23edcfdaf25aef4404019ea9a60fc3b
 
 export enum Documenttype {
   'Identite' = 'Pièce d’identité où permis de séjour',
@@ -38,6 +44,7 @@ export class ContactFormComponent implements OnInit {
   downloadURL;
   snapshot: Observable<firebase.storage.UploadTaskSnapshot | undefined>;
   uploadTask: AngularFireUploadTask;
+
   constructor(
     private fb: FormBuilder,
     private orderService: OrderService,

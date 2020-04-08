@@ -9,6 +9,7 @@ import {Observable} from 'rxjs';
   styleUrls: ['./view-users.component.scss']
 })
 export class ViewUsersComponent implements OnInit {
+
   displayedColumns = ['nom', 'reference', 'amenagement', 'supprimer'];
   orders: any[] = [];
 
@@ -35,4 +36,5 @@ export class ViewUsersComponent implements OnInit {
   onDeleteRow(reference) {
     this.orderService.deleteOrder(reference);
   }
+
 }
