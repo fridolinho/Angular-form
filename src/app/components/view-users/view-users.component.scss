@@ -21,7 +21,12 @@
     mat-icon {
       cursor: pointer;
     }
-    .view_order {
+    .order_details {
+      display: none;
+      width: 100%;
+      border: 1px solid #919191;
+    }
+    .order_details_show {
       width: 100%;
       border: 1px solid #919191;
     }

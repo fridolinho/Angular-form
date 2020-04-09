@@ -1,36 +1,4 @@
 <div class="order-table-container">
-<!--  <table class="order-table" mat-table [dataSource]="orders">-->
-<!--    <ng-container matColumnDef="nom">-->
-<!--      <mat-header-cell *matHeaderCellDef>Nom du client</mat-header-cell>-->
-<!--      <mat-cell  (click)="extendDetails()" *matCellDef="let order">{{order.locataire.nom}} {{order.locataire.prenom}}</mat-cell>-->
-<!--    </ng-container>-->
-
-<!--    <ng-container matColumnDef="reference">-->
-<!--      <mat-header-cell *matHeaderCellDef>Reference objet</mat-header-cell>-->
-<!--      <mat-cell  (click)="extendDetails()" *matCellDef="let order">{{order.immobilier.referenceObjet}}</mat-cell>-->
-<!--    </ng-container>-->
-
-<!--    <ng-container matColumnDef="amenagement">-->
-<!--      <mat-header-cell *matHeaderCellDef>Amenagement souhaite</mat-header-cell>-->
-<!--      <mat-cell  (click)="extendDetails()" *matCellDef="let order">{{order.immobilier.dateDemmenagementSouhaitee.toDate('M', 'D', 'Y')}}</mat-cell>-->
-<!--    </ng-container>-->
-
-<!--    <ng-container matColumnDef="supprimer">-->
-<!--      <mat-header-cell *matHeaderCellDef>Supprimer</mat-header-cell>-->
-<!--      <mat-cell *matCellDef="let order">-->
-<!--        <mat-icon-->
-<!--          class="delete-button"-->
-<!--          fontSet="fas"-->
-<!--          fontIcon="fa-trash"-->
-<!--          color="accent"-->
-<!--          (click)="onDeleteRow(order.id)"></mat-icon>-->
-<!--      </mat-cell>-->
-<!--    </ng-container>-->
-
-<!--    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>-->
-
-<!--    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>-->
-<!--  </table>-->
   <table class="order-table" border="1">
     <thead>
       <th>Nom du client</th>
@@ -44,11 +12,23 @@
           <td>{{order.locataire.nom}} {{order.locataire.prenom}}</td>
           <td>{{order.immobilier.referenceObjet}}</td>
           <td>{{order.immobilier.dateDemmenagementSouhaitee.toDate('M', 'D', 'Y')}}</td>
-          <td><mat-icon class="open" matTooltip="click to open" matTooltipPosition="left">open_in_new</mat-icon></td>
+          <td><mat-icon class="open" matTooltip="click to open" matTooltipPosition="left" (click)="showDetails(order.id)" #{{order.id}}>open_in_new</mat-icon></td>
           <td><mat-icon class="delete" matTooltip="delete order" matTooltipPosition="right">close</mat-icon></td>
         </tr>
-        <tr class="view-order" id="{{order.id}}">
-          <td colspan="5">text</td>
+        <tr class="order_details" id="{{order.id}}">
+          <td colspan="5">
+            <mat-tab-group>
+              <mat-tab label="Immobilier">
+                details d' immobilier
+              </mat-tab>
+              <mat-tab label="Locataire">
+                details du locataire
+              </mat-tab>
+              <mat-tab label="Attachement">
+                fichiers attacher
+              </mat-tab>
+            </mat-tab-group>
+          </td>
         </tr>
       </ng-container>
     </tbody>

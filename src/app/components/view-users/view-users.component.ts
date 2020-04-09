@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { OrderService } from 'src/app/shared/services/order.service';
 import { Order } from 'src/app/shared/models/order.model';
 import {Observable} from 'rxjs';
@@ -9,13 +9,14 @@ import {Observable} from 'rxjs';
   styleUrls: ['./view-users.component.scss']
 })
 export class ViewUsersComponent implements OnInit {
-
-  displayedColumns = ['nom', 'reference', 'amenagement', 'supprimer'];
-  orders: any[] = [];
+  private elementId: string;
 
   constructor(
     private orderService: OrderService
   ) {}
+
+  displayedColumns = ['nom', 'reference', 'amenagement', 'supprimer'];
+  orders: any[] = [];
 
   ngOnInit(): void {
     this.getAllOrders();
@@ -37,7 +38,14 @@ export class ViewUsersComponent implements OnInit {
     this.orderService.deleteOrder(reference);
   }
 
-  extendDetails(id) {
-    document.getElementById(id);
+  showDetails(id: string): void {
+    const element = document.getElementById(id);
+    if (element.classList.contains('order_details')) {
+      element.classList.remove('order_details');
+      element.classList.add('order_details_show');
+    } else {
+      element.classList.add('order_details');
+      element.classList.remove('order_details_show');
+    }
   }
 }

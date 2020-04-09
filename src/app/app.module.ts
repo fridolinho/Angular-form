@@ -13,7 +13,13 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatOptionModule, MatNativeDateModule } from '@angular/material/core';
+import {
+  MatOptionModule,
+  MatNativeDateModule,
+  DateAdapter,
+  MAT_DATE_LOCALE,
+  MAT_DATE_FORMATS
+} from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -29,6 +35,20 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MomentDateModule, MomentDateAdapter } from '@angular/material-moment-adapter';
+
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'DD/MM/YYYY',
+  },
+  display: {
+    dateInput: 'DD/MM/YYYY',
+    monthYearLabel: 'MM YYYY',
+    dateA11yLabel: 'DD/MM/YYYY',
+    monthYearA11yLabel: 'MM YYYY',
+  },
+};
+
 
 @NgModule({
   declarations: [
@@ -38,34 +58,50 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     TermsComponent,
     ContactFormComponent
   ],
-    imports: [
-      BrowserModule,
-      AppRoutingModule,
-      MatTabsModule,
-      BrowserAnimationsModule,
-      MatFormFieldModule,
-      MatOptionModule,
-      MatSelectModule,
-      MatInputModule,
-      MatRadioModule,
-      MatCheckboxModule,
-      MatButtonModule,
-      MatStepperModule,
-      ReactiveFormsModule,
-      MatIconModule,
-      MatDatepickerModule,
-      MatNativeDateModule,
-      MatPaginatorModule,
-      MatSortModule,
-      MatProgressSpinnerModule,
-      AngularFireModule.initializeApp(environment.firebaseConfig),
-      AngularFirestoreModule,
-      AngularFireStorageModule,
-      FormsModule,
-      MatTableModule,
-      MatTooltipModule
-    ],
-  providers: [MatDatepickerModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    MatTabsModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatInputModule,
+    MatRadioModule,
+    MatCheckboxModule,
+    MatButtonModule,
+    MatStepperModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatProgressSpinnerModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireStorageModule,
+    FormsModule,
+    MatTableModule,
+    MatTooltipModule,
+    MomentDateModule,
+  ],
+  providers: [
+    MatDatepickerModule,
+    {
+      provide: MAT_DATE_LOCALE,
+      useValue: 'en-GB'
+    }, {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE]
+    }, {
+      provide: MAT_DATE_FORMATS,
+      useValue: MY_FORMATS
+    }
+  ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule {}
+
