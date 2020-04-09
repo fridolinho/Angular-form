@@ -15,21 +15,6 @@
           <td><mat-icon class="open" matTooltip="click to open" matTooltipPosition="left" (click)="showDetails(order.id)" #{{order.id}}>open_in_new</mat-icon></td>
           <td><mat-icon class="delete" matTooltip="delete order" matTooltipPosition="right">close</mat-icon></td>
         </tr>
-        <tr class="order_details" id="{{order.id}}">
-          <td colspan="5">
-            <mat-tab-group>
-              <mat-tab label="Immobilier">
-                details d' immobilier
-              </mat-tab>
-              <mat-tab label="Locataire">
-                details du locataire
-              </mat-tab>
-              <mat-tab label="Attachement">
-                fichiers attacher
-              </mat-tab>
-            </mat-tab-group>
-          </td>
-        </tr>
       </ng-container>
     </tbody>
   </table>

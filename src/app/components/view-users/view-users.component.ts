@@ -1,18 +1,20 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { OrderService } from 'src/app/shared/services/order.service';
-import { Order } from 'src/app/shared/models/order.model';
-import {Observable} from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { SingleOrderComponent } from './single-order/single-order.component';
 
 @Component({
   selector: 'app-view-users',
   templateUrl: './view-users.component.html',
   styleUrls: ['./view-users.component.scss']
 })
+
 export class ViewUsersComponent implements OnInit {
   private elementId: string;
 
   constructor(
-    private orderService: OrderService
+    private orderService: OrderService,
+    public dialog: MatDialog
   ) {}
 
   displayedColumns = ['nom', 'reference', 'amenagement', 'supprimer'];
@@ -39,13 +41,13 @@ export class ViewUsersComponent implements OnInit {
   }
 
   showDetails(id: string): void {
-    const element = document.getElementById(id);
-    if (element.classList.contains('order_details')) {
-      element.classList.remove('order_details');
-      element.classList.add('order_details_show');
-    } else {
-      element.classList.add('order_details');
-      element.classList.remove('order_details_show');
-    }
+    const singleOrder = this.orders.find(order => order.id === id);
+    const dialogRef = this.dialog.open(SingleOrderComponent, {
+      data: singleOrder,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 }

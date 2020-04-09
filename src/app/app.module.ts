@@ -36,6 +36,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MomentDateModule, MomentDateAdapter } from '@angular/material-moment-adapter';
+import { SingleOrderComponent } from './components/view-users/single-order/single-order.component';
 
 export const MY_FORMATS = {
   parse: {
@@ -56,7 +57,8 @@ export const MY_FORMATS = {
     ViewUsersComponent,
     HeaderComponent,
     TermsComponent,
-    ContactFormComponent
+    ContactFormComponent,
+    SingleOrderComponent
   ],
   imports: [
     BrowserModule,

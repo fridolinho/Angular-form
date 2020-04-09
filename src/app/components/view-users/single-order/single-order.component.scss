@@ -1,0 +1,21 @@
+.single_table {
+  padding-top: 20px;
+  max-width: 100%;
+  tr {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-bottom: 10px;
+    td {
+      height: 20px;
+      padding: 5px 10px;
+      border-bottom: 1px solid #919191;
+      margin-right: 10px;
+      span {
+        display: inline-block;
+        font-weight: bold;
+        padding-right: 20px;
+      }
+    }
+  }
+}
