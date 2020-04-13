@@ -16,8 +16,14 @@
               </td>
               <td>
                 <mat-form-field>
-                  <mat-label>NPA/Localite</mat-label>
-                  <input matInput formControlName="localite" type="number" min="0" required>
+                  <mat-label>NPA</mat-label>
+                  <input matInput formControlName="npa" type="number" min="0" required>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field>
+                  <mat-label>Localite</mat-label>
+                  <input matInput formControlName="localite" type="string" required>
                 </mat-form-field>
               </td>
             </tr>
@@ -126,7 +132,7 @@
         <ng-template matStepLabel>Details du locataire</ng-template>
         <div class="locataire">
           <h2>LOCATAIRE</h2>
-          <mat-radio-group aria-label="Select an option" formControlName="locataire" required>
+          <mat-radio-group aria-label="Select an option" formControlName="genre" required>
             <mat-radio-button value="male">Monsieur</mat-radio-button>
             <mat-radio-button value="female">Madame</mat-radio-button>
           </mat-radio-group>
@@ -161,8 +167,14 @@
             <tr>
               <td>
                 <mat-form-field>
-                  <mat-label>NPA/Localité</mat-label>
+                  <mat-label>NPA</mat-label>
                   <input matInput formControlName="npa" type="number" min="0" required />
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field>
+                  <mat-label>Localité</mat-label>
+                  <input matInput formControlName="localite" type="string" required />
                 </mat-form-field>
               </td>
               <td>
@@ -301,15 +313,15 @@
               <td>
                 <label>Avez-vous des poursuites à votre encontre</label>
                 <mat-radio-group aria-label="Select an option" formControlName="poursuites" required>
-                  <mat-radio-button value="male">Oui</mat-radio-button>
-                  <mat-radio-button value="female">Non</mat-radio-button>
+                  <mat-radio-button value="oui">Oui</mat-radio-button>
+                  <mat-radio-button value="non">Non</mat-radio-button>
                 </mat-radio-group>
               </td>
               <td>
                 <label>Etes-vous au bénéfice d'une mesure de protection de l’adulte</label>
                 <mat-radio-group aria-label="Select an option" formControlName="protection" required>
-                  <mat-radio-button value="male">Oui</mat-radio-button>
-                  <mat-radio-button value="female">Non</mat-radio-button>
+                  <mat-radio-button value="oui">Oui</mat-radio-button>
+                  <mat-radio-button value="non">Non</mat-radio-button>
                 </mat-radio-group>
               </td>
             </tr>
@@ -366,8 +378,14 @@
             <tr>
               <td>
                 <mat-form-field>
-                  <mat-label>NPA/Localité</mat-label>
+                  <mat-label>NPA</mat-label>
                   <input matInput formControlName="npa" type="number" min="0">
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field>
+                  <mat-label>Localité</mat-label>
+                  <input matInput formControlName="localite" type="string">
                 </mat-form-field>
               </td>
               <td>
@@ -686,7 +704,7 @@
                       {{file.name}}
                     <td>
                     <td>
-                      <mat-icon (click)="removeFile(file.name)">close</mat-icon>
+                      <mat-icon class="remove" (click)="removeFile(file.name)">close</mat-icon>
                     </td>
                   </tr>
                 </table>
