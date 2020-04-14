@@ -688,7 +688,7 @@
               <label for="file_upload" class="file_upload">
                 <button (click)="clickInput()">attacher le fichier</button>
               </label>
-              <input type="file" (change)="onSelectFile($event)" name="file" id="file_upload" hidden/>
+              <input type="file" (change)="onSelectFile($event)" name="file" id="file_upload" accept=".docx, .doc, .pdf" hidden/>
             </div>
             <div *ngIf="localfiles?.length > 0">
               <div class="added_files" >
