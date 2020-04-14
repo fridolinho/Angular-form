@@ -1,45 +1,53 @@
-import { Component, OnInit } from '@angular/core';
-import { AngularFireStorage } from '@angular/fire/storage';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import { OrderService } from 'src/app/shared/services/order.service';
+import { MatDialog } from '@angular/material/dialog';
+import { SingleOrderComponent } from './single-order/single-order.component';
 
 @Component({
   selector: 'app-view-users',
   templateUrl: './view-users.component.html',
   styleUrls: ['./view-users.component.scss']
 })
-export class ViewUsersComponent implements OnInit {
 
-  images = [];
+export class ViewUsersComponent implements OnInit {
+  private elementId: string;
+
   constructor(
-    private storage: AngularFireStorage
-  ) { }
+    private orderService: OrderService,
+    public dialog: MatDialog
+  ) {}
+
+  displayedColumns = ['nom', 'reference', 'amenagement', 'supprimer'];
+  orders: any[] = [];
 
   ngOnInit(): void {
+    this.getAllOrders();
   }
 
-  onSelectFile(event) {
-    if (event.target.files && event.target.files[0]) {
-      const reader = new FileReader();
-      const file = event.target.files[0];
-      const filePath = `image-${Date.now()}`;
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        this.images.push({src: event.target.result});
-        const task = this.storage.upload(filePath, file);
-        task.then(async (snapshot) => {
-          const src = await snapshot.ref.getDownloadURL();
-        }).catch((error) => {
-          console.error(error);
-        });
-      };
-    }
+  async getAllOrders() {
+    this.orderService.orders.subscribe((allOrders) => {
+      allOrders.map( data => {
+        const currentOrders = this.orders;
+        const singleorder = data.payload.doc.data();
+        singleorder.id = data.payload.doc.id;
+        currentOrders.push(singleorder);
+        this.orders = currentOrders;
+      });
+    });
   }
 
-  removeImage(image: any) {
-    this.images = this.images.filter(item => item.src !== image.src);
+  onDeleteRow(reference) {
+    this.orderService.deleteOrder(reference);
   }
 
-  uploadImg() {
-    console.log(this.images);
-  }
+  showDetails(id: string): void {
+    const singleOrder = this.orders.find(order => order.id === id);
+    const dialogRef = this.dialog.open(SingleOrderComponent, {
+      data: singleOrder,
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
 }

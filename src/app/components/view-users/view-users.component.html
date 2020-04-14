@@ -1,15 +1,21 @@
-<div class="image-uploader">
-  <div class="file_form" >
-    <label for="file_upload" class="file_upload">
-      <i class="fa fa-cloud-upload"></i> upload files
-    </label>
-    <input type="file" (change)="onSelectFile($event)" name="file" id="file_upload" />
-  </div>
-  <div *ngIf="images?.length > 0">
-    <div class="added_files" >
-      <div *ngFor="let image of images;" class="added_file">
-        <img src="{{image.src}}"/>
-      </div>
-    </div>
-  </div>
+<div class="order-table-container">
+  <table class="order-table" border="1">
+    <thead>
+      <th>Nom du client</th>
+      <th>Reference objet</th>
+      <th>Date d' amenagement souhaite</th>
+      <th colspan="2">Actions</th>
+    </thead>
+    <tbody>
+      <ng-container  *ngFor="let order of orders">
+        <tr>
+          <td>{{order.locataire.nom}} {{order.locataire.prenom}}</td>
+          <td>{{order.immobilier.referenceObjet}}</td>
+          <td>{{order.immobilier.dateDemmenagementSouhaitee.toDate('M', 'D', 'Y')}}</td>
+          <td><mat-icon class="open" matTooltip="click to open" matTooltipPosition="left" (click)="showDetails(order.id)" #{{order.id}}>open_in_new</mat-icon></td>
+          <td><mat-icon class="delete" matTooltip="delete order" matTooltipPosition="right">close</mat-icon></td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
 </div>

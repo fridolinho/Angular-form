@@ -1,21 +1,35 @@
 import { Injectable } from '@angular/core';
-import {AngularFirestore} from '@angular/fire/firestore';
+import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
 import { Order } from '../models/order.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
 
-  constructor(private firestore: AngularFirestore) { }
+  private orderCollection: AngularFirestoreCollection<any>;
+  orders: any;
 
-  SendOrder(formData: Order) {
+  constructor(private firestore: AngularFirestore) {
+    this.orderCollection = this.firestore.collection<Order>('order');
+    this.orders = this.orderCollection.snapshotChanges();
+  }
+
+  async SendOrder(formData: Order) {
+    console.log(formData);
     if (formData) {
-      return this.firestore.collection('order').add(formData).then(function() {
-        console.log('Document successfully added!');
-      }).catch(function(error) {
-        console.error('Error adding document: ', error);
-      });
+      try {
+        await this.orderCollection.add(formData);
+        console.log('success');
+      } catch (error) {
+        console.log(error);
+      }
     }
+  }
+
+  deleteOrder(id: string) {
+    return this.firestore.collection('order').doc(id).delete();
+
   }
 }

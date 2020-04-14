@@ -1,54 +1,34 @@
-.file_form {
-  position: relative;
-  form {
-    display: inline-block;
+.order-table-container {
+  z-index: 1;
+  width: 80%;
+  margin: 20px auto;
 
-    .file_upload {
-      border: 1px solid #ccc;
-      display: inline-block;
-      padding: 6px 12px;
+  .order-table {
+    width: 100%;
+    border: 1px solid #919191;
+    border-collapse: collapse;
+    th, td {
+      text-align: center;
+      color: #082535;
+      cursor: auto;
+    }
+    .delete {
+      color: #ff2f6b;
+    }
+    .open {
+      color: green;
+    }
+    mat-icon {
       cursor: pointer;
-      font-size: 14px;
     }
-  }
-  button {
-    border: 1px solid #ccc;
-    display: inline-block;
-    padding: 6px 12px;
-    cursor: pointer;
-    background-color: white;
-    font-size: 14px;
-    top:0;
-    bottom:0;
-    left: 100px;
-    outline: none;
-  }
-}
-
-.added_files {
-  margin-top: 20px;
-  .added_file {
-    position: relative;
-    display: inline-block;
-    img {
-      width: 150px;
-      height: 150px;
-      margin-right: 10px;
+    .order_details {
+      display: none;
+      width: 100%;
+      border: 1px solid #919191;
     }
-    .removeImg {
-      visibility: hidden;
-      width: 20px;
-      color: red;
-      position: absolute;
-      right: 20px;
-      font-size: 20px;
-      font-weight: bold;
-    }
-  }
-  .added_file:hover {
-    .removeImg {
-      visibility: visible;
-      cursor: pointer;
+    .order_details_show {
+      width: 100%;
+      border: 1px solid #919191;
     }
   }
 }
