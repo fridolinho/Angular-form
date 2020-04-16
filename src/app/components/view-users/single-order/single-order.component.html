@@ -3,138 +3,149 @@
     <mat-tab label="Immobilier">
       <table class="single_table">
         <tr>
-          <td style = "flex-grow: 1"><span>Adresse:</span>{{data.immobilier.adresse}}</td>
-          <td style = "flex-grow: 1"><span>NPA localite:</span>{{data.immobilier.localite}}</td>
+          <td colspan="2"><span>Adresse:</span>{{data.immobilier.adresse}}</td>
+          <td colspan="2"><span>NPA localite:</span>{{data.immobilier.localite}}</td>
         </tr>
         <tr>
-          <td style="flex-grow: 1"><span>Pieces:</span>{{data.immobilier.piece}}</td>
-          <td style="flex-grow: 1"><span>Etage:</span>{{data.immobilier.etage}}</td>
-          <td style="flex-grow: 1"><span>Precedent locataire:</span>{{data.immobilier.precedentLoc}}</td>
+          <td colspan="2"><span>Precedent locataire:</span>{{data.immobilier.precedentLoc}}</td>
+          <td colspan="2"><span>Reference objet:</span>{{data.immobilier.referenceObjet}}</td>
         </tr>
         <tr>
-          <td style="flex-grow: 1"><span>Loyer:</span>{{data.immobilier.loyerNet}}</td>
-          <td style="flex-grow: 1"><span>Charges:</span>{{data.immobilier.charges}}</td>
-          <td style="flex-grow: 1"><span>Reference objet:</span>{{data.immobilier.referenceObjet}}</td>
+          <td><span>Pieces:</span>{{data.immobilier.piece}}</td>
+          <td><span>Etage:</span>{{data.immobilier.etage}}</td>
+          <td><span>Loyer:</span>{{data.immobilier.loyerNet}}</td>
+          <td><span>Charges:</span>{{data.immobilier.charges}}</td>
         </tr>
         <tr>
-          <td style="flex-grow: 1"><span>Parking:</span>{{data.immobilier.parking}}</td>
-          <td style="flex-grow: 1"><span>Charges:</span>{{data.immobilier.chfCharges}}</td>
+          <td colspan="2"><span>Parking:</span>{{data.immobilier.parking}}</td>
+          <td colspan="2"><span>Charges:</span>{{data.immobilier.chfCharges}}</td>
         </tr>
         <tr>
-          <td style="flex-grow: 1"><span>Date d'ammenagement souhaitee:</span>{{data.immobilier.dateDemmenagementSouhaitee}}</td>
-          <td style="flex-grow: 1"><span>Date de visite</span>{{data.immobilier.dateDeVisite}}</td>
+          <td colspan="2">
+            <span>Date d' ammenagement:</span>
+            {{ this.dateDamenagement }}
+          </td>
+          <td>
+            <span>Date de visite</span>
+            {{this.dateDeVisite}}
+          </td>
         </tr>
       </table>
     </mat-tab>
     <mat-tab label="Locataire">
       <table class="single_table">
         <tr>
-          <td style="flex-grow: 1">
+          <td>
             <span>Genre</span>
             {{data.locataire.locataire}}
           </td>
-          <td style="flex-grow: 1">
+        </tr>
+        <tr>
+          <td colspan="2">
             <span>Nom:</span>
-            {{data.locataire.nom}}</td>
-          <td style="flex-grow: 1">
+            {{data.locataire.nom}}
+          </td>
+          <td colspan="2">
             <span>Prenom:</span>
             {{data.locataire.prenom}}
           </td>
         </tr>
         <tr>
-          <td style="flex-grow: 1">
-            <span>Adresse:</span>
+          <td>
+            <span>Adresse actuelle:</span>
             {{data.locataire.adresseActuelle}}
           </td>
-          <td style="flex-grow: 1">
+          <td>
             <span>Adresse legale:</span>
             {{data.locataire.adresseLegale}}
           </td>
-          <td style="flex-grow: 1">
-            <span>npa:</span>
+          <td>
+            <span>NPA:</span>
             {{data.locataire.npa}}
           </td>
+          <td>
+            <span>Localite:</span>
+            {{data.locataire.localite}}
+          </td>
         </tr>
         <tr>
-          <td style="flex-grow: 1">
-            <span>nationalite:</span>
+          <td>
+            <span>Nationalite:</span>
             {{data.locataire.nationalite}}
           </td>
-          <td style="flex-grow: 1">
-            <span>lieuOrigine:</span>
+          <td>
+            <span>Lieu d' origine:</span>
             {{data.locataire.lieuOrigine}}
           </td>
-          <td style="flex-grow: 1">
-            <span>dateDeNessaince:</span>
-            {{data.locataire.dateDeNaissance}}
+          <td>
+            <span>Date de naissaince:</span>
+            {{this.dateDeNaissaince}}
           </td>
-        </tr>
-        <tr>
-          <td style="flex-grow: 1">
-            <span>permis:</span>
-            {{data.locataire.permisType}}
-          </td>
-          <td style="flex-grow: 1">
-            <span>etatcivil:</span>
+          <td>
+            <span>Etat civil:</span>
             {{data.locataire.etatCivil}}
           </td>
-          <td style="flex-grow: 1">
-            <span>email:</span>
-            {{data.locataire.email}}
-          </td>
         </tr>
         <tr>
-          <td style="flex-grow: 1">
-            <span>Telephone Fixe:</span>
+          <td>
+            <span>Email:</span>
+            {{data.locataire.email}}
+          </td>
+          <td>
+            <span>Telephone fixe:</span>
             {{data.locataire.telephoneFixe}}
           </td>
-          <td style="flex-grow: 1">
-            <span>Telephone Professionel:</span>
+          <td>
+            <span>Telephone professionel:</span>
             {{data.locataire.telephoneProfessionel}}
           </td>
-          <td style="flex-grow: 1">
+          <td>
             <span>Portable:</span>
             {{data.locataire.portable}}
           </td>
         </tr>
         <tr>
-          <td style="flex-grow: 1">
+          <td>
+            <span>permis:</span>
+            {{data.locataire.permisType}}
+          </td>
+          <td>
             <span>Profession:</span>
             {{data.locataire.profession}}
           </td>
-          <td style="flex-grow: 1">
+          <td>
             <span>Employeur:</span>
             {{data.locataire.employeur}}
           </td>
-          <td style="flex-grow: 1">
+          <td>
             <span>Depuis:</span>
             {{data.locataire.depuis}}
           </td>
         </tr>
         <tr>
-          <td style="flex-grow: 1">
-            <span>Revenue Mensuel:</span>
+          <td>
+            <span>Revenue mensuel:</span>
             {{data.locataire.revenueMensuel}}
           </td>
-          <td style="flex-grow: 1">
-            <span>Gerance Actuelle:</span>
+          <td>
+            <span>Gerance actuelle:</span>
             {{data.locataire.geranceActuelle}}
           </td>
-          <td style="flex-grow: 1">
-            <span>Loyer Actuelle:</span>
+          <td>
+            <span>Loyer actuelle:</span>
             {{data.locataire.loyerActuelle}}
           </td>
-          <td style="flex-grow: 1">
+          <td>
             <span>Charges:</span>
             {{data.locataire.charges}}
           </td>
         </tr>
         <tr>
-          <td style="flex-grow: 1">
+          <td>
             <span>Poursuites:</span>
             {{data.locataire.poursuites}}
           </td>
-          <td style="flex-grow: 1">
+          <td>
             <span>Protection:</span>
             {{data.locataire.protection}}
           </td>
@@ -144,119 +155,123 @@
     <mat-tab label="Co-titulaire">
       <table class="single_table">
         <tr>
-          <td style="flex-grow: 1">
-            <span>Locataire:</span>
+          <td>
+            <span>Genre:</span>
             {{data.coTitulaire.locataire}}
           </td>
-          <td style="flex-grow: 1">
+        </tr>
+        <tr>
+          <td>
             <span>Nom:</span>
             {{data.coTitulaire.nom}}</td>
-          <td style="flex-grow: 1">
+          <td>
             <span>Prenom:</span>
             {{data.coTitulaire.prenom}}
           </td>
         </tr>
         <tr>
-          <td style="flex-grow: 1">
-          <span>Adresse Actuelle:</span>
+          <td>
+          <span>Adresse actuelle:</span>
           {{data.coTitulaire.adresseActuelle}}
           </td>
-          <td style="flex-grow: 1">
-            <span>Adresse Legale:</span>
+          <td>
+            <span>Adresse legale:</span>
             {{data.coTitulaire.adresseSiDifferente}}
           </td>
-          <td style="flex-grow: 1">
-            <span>NPA Localite:</span>
+          <td>
+            <span>NPA :</span>
             {{data.coTitulaire.npa}}
+          </td>
+          <td>
+            <span>Localite:</span>
+            {{data.coTitulaire.localite}}
           </td>
         </tr>
         <tr>
-          <td style="flex-grow: 1">
+          <td>
             <span>Nationalite:</span>
             {{data.coTitulaire.nationalite}}
           </td>
-          <td style="flex-grow: 1">
-            <span>Lieu D'origine:</span>
+          <td>
+            <span>Lieu d'origine:</span>
             {{data.coTitulaire.lieuDorigine}}
           </td>
-          <td style="flex-grow: 1">
-            <span>Date De Naissance:</span>
-            {{data.coTitulaire.dateDeNaissance}}
+          <td>
+            <span>Date ne naissance:</span>
+            {{this.dateDeNaissanceCo}}
           </td>
-        </tr>
-        <tr>
-          <td style="flex-grow: 1">
-            <span>Permis:</span>
-            {{data.coTitulaire.permis}}
-          </td>
-          <td style="flex-grow: 1">
-            <span>Etat Civil:</span>
+          <td>
+            <span>Etat civil:</span>
             {{data.coTitulaire.etatCivil}}
           </td>
         </tr>
         <tr>
-          <td style="flex-grow: 1">
-            <span>Telephone Fixe:</span>
+          <td>
+            <span>Email:</span>
+            {{data.coTitulaire.email}}
+          </td>
+          <td>
+            <span>Telephone fixe:</span>
             {{data.coTitulaire.telephoneFixe}}
           </td>
-          <td style="flex-grow: 1">
-            <span>Telephone Professionel:</span>
+          <td>
+            <span>Telephone professionel:</span>
             {{data.coTitulaire.telephoneProfessionel}}
           </td>
-          <td style="flex-grow: 1">
+          <td>
             <span>Portable:</span>
             {{data.coTitulaire.portable}}
           </td>
         </tr>
         <tr>
-          <td style="flex-grow: 1">
-            <span>Email:</span>
-            {{data.coTitulaire.email}}
+          <td>
+            <span>Permis:</span>
+            {{data.coTitulaire.permis}}
           </td>
-        </tr>
-        <tr>
-          <td style="flex-grow: 1">
+          <td>
             <span>Profession:</span>
             {{data.coTitulaire.profession}}
           </td>
-          <td style="flex-grow: 1">
+          <td>
             <span>Employeur:</span>
             {{data.coTitulaire.employeur}}
           </td>
-          <td style="flex-grow: 1">
+          <td>
             <span>Depuis:</span>
             {{data.coTitulaire.depuis}}
           </td>
         </tr>
         <tr>
-          <td style="flex-grow: 1">
-            <span>Revenue Mensuel:</span>
+          <td>
+            <span>Revenue mensuel:</span>
             {{data.coTitulaire.revenueMensuel}}
           </td>
-          <td style="flex-grow: 1">
-            <span>Gerance Actuelle:</span>
+          <td>
+            <span>Gerance actuelle:</span>
             {{data.coTitulaire.geranceActuelle}}
           </td>
-          <td style="flex-grow: 1">
-            <span>loyer Actuelle:</span>
+          <td>
+            <span>loyer actuelle:</span>
             {{data.coTitulaire.loyerActuelle}}
           </td>
-          <td style="flex-grow: 1">
+          <td>
             <span>Charges:</span>
             {{data.coTitulaire.poursuites}}
           </td>
         </tr>
         <tr>
-          <td style="flex-grow: 1">
+          <td>
             <span>Poursuites:</span>
             {{data.coTitulaire.poursuites}}
           </td>
-          <td style="flex-grow: 1">
+          <td>
             <span>Protection:</span>
             {{data.coTitulaire.protection}}
           </td>
-          <td style="flex-grow: 1">
-            <span>SiTuteur:</span>
+        </tr>
+        <tr>
+          <td>
+            <span>Si tuteur:</span>
             {{data.coTitulaire.siTuteur}}
           </td>
         </tr>
@@ -265,87 +280,74 @@
     <mat-tab label="Plus de details">
       <table class="single_table">
         <tr>
-          <td style="flex-grow: 1">
+          <td>
             <span>Logement:</span>
             {{data.plusDetails.logement}}
           </td>
-          <td style="flex-grow: 1">
-          <span>Si Occuper Par Titulaire Ou CoTitulaire:</span>
-          {{data.plusDetails.siOccupeParTitulaireOuCoTitulaire}}
+          <td>
+          <span>Noms du titulaire:</span>
+          {{data.plusDetails.nomsDuTitulaireOuCoTitulaire}}
           </td>
         </tr>
         <tr>
-          <td style="flex-grow: 1">
-          <span>Noms du Titulaire Ou CoTitulaire:</span>
-          {{data.plusDetails.nomsDuTitulaireOuCoTitulaire}}
-          </td>
-          <td style="flex-grow: 1">
-          <span>Occupants Adultes:</span>
+          <td>
+          <span>Occupants adultes:</span>
           {{data.plusDetails.occupantsAdultes}}
           </td>
-          <td style="flex-grow: 1">
-          <span>Occupants Enfants:</span>
+          <td>
+          <span>Occupants enfants:</span>
           {{data.plusDetails.occupantsEnfants}}
           </td>
         </tr>
         <tr>
-          <td style="flex-grow: 1">
-          <span>Animaux:</span>
+          <td>
+          <span>Liste des animaux:</span>
           {{data.plusDetails.animaux}}
           </td>
-          <td style="flex-grow: 1">
-          <span>Vehicules:</span>
-          {{data.plusDetails.vehicules}}
-          </td>
-          <td style="flex-grow: 1">
-          <span>No Plaques:</span>
-          {{data.plusDetails.noPlaques}}
-          </td>
-          <td style="flex-grow: 1">
-          <span>Si Instruments:</span>
-          {{data.plusDetails.siInstruments}}
-          </td>
-          <td style="flex-grow: 1">
-          <span>Instruments:</span>
-          {{data.plusDetails.instruments}}
+          <td>
+            <span>Instruments:</span>
+            {{data.plusDetails.instruments}}
           </td>
         </tr>
         <tr>
-          <td style="flex-grow: 1">
-          <span>SiBailResilie:</span>
+          <td>
+          <span>Plaques du vehicule:</span>
+          {{data.plusDetails.noPlaques}}
+          </td>
+        </tr>
+        <tr>
+          <td>
+          <span> Contrat de bail actuel résilié:</span>
           {{data.plusDetails.siBailResilie}}
           </td>
-          <td style="flex-grow: 1">
+          <td>
           <span>Resilie par:</span>
           {{data.plusDetails.resiliePar}}
           </td>
         </tr>
         <tr>
-          <td style="flex-grow: 1">
-          <span>Motif Du Demenagement:</span>
-          {{data.plusDetails.motifDuDemenagement}}</td>
-          <td style="flex-grow: 1">
-          <span>Tos Agreement:</span>
-          {{data.plusDetails.tosAgreement}}
+          <td>
+          <span>Motif du demenagement:</span>
+          {{data.plusDetails.motifDuDemenagement}}
           </td>
         </tr>
       </table>
     </mat-tab>
     <mat-tab label="Fichiers">
-        <table cellspacing="0" class="files">
+        <table class="files">
         <tr *ngFor="let file of data.attachement;">
-          <td style="flex-grow: 1">
-            {{file.filename}}
-          </td>
-          <td style="flex-grow: 1">
-            {{file.name}}
-          <td style="flex-grow: 1">
-
-          <td style="flex-grow: 1">
-            <mat-icon><a href="{{file.src}}" download>get_app</a></mat-icon>
+          <td>{{file.filename}}</td>
+          <td>{{file.name}}</td>
+          <td>
+            <a href="{{file.src}}">
+              <mat-icon>get_app</mat-icon>
+            </a>
           </td>
         </tr>
-        </table>
+      </table>
     </mat-tab>
   </mat-tab-group>
 </div>
+
+
+<!--  <mat-icon><a href="{{file.src}}" download>get_app</a></mat-icon>-->

@@ -44,6 +44,7 @@ export class ViewUsersComponent implements OnInit {
     const singleOrder = this.orders.find(order => order.id === id);
     const dialogRef = this.dialog.open(SingleOrderComponent, {
       data: singleOrder,
+      minHeight: '200px'
     });
 
     dialogRef.afterClosed().subscribe(result => {

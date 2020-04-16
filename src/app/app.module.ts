@@ -13,6 +13,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { DatePipe } from '@angular/common';
 import {
   MatOptionModule,
   MatNativeDateModule,
@@ -90,6 +91,7 @@ export const MY_FORMATS = {
   ],
   providers: [
     MatDatepickerModule,
+    DatePipe,
     {
       provide: MAT_DATE_LOCALE,
       useValue: 'en-GB'
