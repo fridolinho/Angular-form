@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
 import { Order } from '../models/order.model';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +16,9 @@ export class OrderService {
   }
 
   async SendOrder(formData: Order) {
-    console.log(formData);
     if (formData) {
       try {
+        console.log(formData);
         await this.orderCollection.add(formData);
         console.log('success');
       } catch (error) {

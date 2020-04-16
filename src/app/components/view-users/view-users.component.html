@@ -1,0 +1,46 @@
+<div class="order-table-container">
+  <mat-list class="header">
+  <div fxLayout="row wrap" class="bk-light">
+    <mat-list-item  fxFlex="25%" class="extend">
+      <h2>Nom du client</h2>
+    </mat-list-item>
+    <mat-list-item fxFlex="25%">
+      <h2>Reference objet</h2>
+    </mat-list-item>
+    <mat-list-item fxFlex="25%">
+      <h2>Date d' ammenagement</h2>
+    </mat-list-item>
+    <mat-list-item fxFlex="10%">
+      <h2>Actions</h2>
+    </mat-list-item>
+  </div>
+  <div class="mb-1">
+    <mat-list>
+      <div fxLayout="row wrap"   fxLayoutAlign="space-between" class="bk-ligh" *ngFor="let order of orders">
+          <mat-list-item fxFlex="2 1 25%" fxFlex.lt-md="2 1 300px" class="extend">
+            {{order.locataire.nom}} {{order.locataire.prenom}}
+          </mat-list-item>
+
+        <mat-list-item fxFlex="2 1 25%" fxFlex.lt-md="2 1 300px" class="extend">
+          {{order.immobilier.referenceObjet}}
+        </mat-list-item>
+
+        <mat-list-item fxFlex="2 1 25%" fxFlex.lt-md="2 1 300px" class="extend">
+          {{order.immobilier.dateDemmenagementSouhaitee}}
+        </mat-list-item>
+
+        <mat-list-item fxFlex="2 1 25%" fxFlex.lt-md="2 1 300px" class="extend">
+          <mat-icon class="open"
+                    matTooltip="click to open"
+                    matTooltipPosition="left"
+                    (click)="showDetails(order.id)"
+                    #{{order.id}}>
+            open_in_new
+          </mat-icon>
+          <mat-icon class="delete" matTooltip="delete order" matTooltipPosition="right">close</mat-icon>
+        </mat-list-item>
+      </div>
+    </mat-list>
+  </div>
+  </mat-list>
+</div>

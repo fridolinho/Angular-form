@@ -1,7 +1,9 @@
-import { OnInit, Component } from '@angular/core';
+import {OnInit, Component, ViewChild} from '@angular/core';
 import { OrderService } from '../../shared/services/order.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { MatRadioChange } from '@angular/material/radio';
+import { ToastContainerDirective, ToastrService } from 'ngx-toastr';
 
 
 
@@ -19,6 +21,7 @@ export enum Documenttype {
 })
 export class ContactFormComponent implements OnInit {
 
+  @ViewChild(ToastContainerDirective, {static: true}) toastContainer: ToastContainerDirective;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
@@ -39,20 +42,26 @@ export class ContactFormComponent implements OnInit {
   public fileTypes = Object.values(Documenttype);
   maxDate: Date;
   todayDate: Date;
+  showTuteur = false;
+  coLocatiare = false;
+  disableSelect = false;
 
   constructor(
     private fb: FormBuilder,
     private orderService: OrderService,
-    private storage: AngularFireStorage
+    private storage: AngularFireStorage,
+    private toastr: ToastrService
   ) {
     const currentYear = new Date().getFullYear();
     const currentMonth = new Date().getMonth();
     const currentDate = new Date().getDate();
     this.maxDate = new Date(currentYear + 1, 11, 31);
-    this.todayDate = new Date(currentYear, currentMonth + 1, currentDate);
+    this.todayDate = new Date(currentYear, currentMonth, currentDate);
   }
 
   ngOnInit(): void {
+    this.toastr.overlayContainer = this.toastContainer;
+
     this.firstFormGroup = this.fb.group({
       adresse: this.fb.control('Swiss', [Validators.required]),
       npa: this.fb.control(123, [Validators.required]),
@@ -65,8 +74,8 @@ export class ContactFormComponent implements OnInit {
       referenceObjet: this.fb.control('ID003/2017', [Validators.required]),
       parking: this.fb.control('Parking exterieur', []),
       chfCharges: this.fb.control(120, [Validators.min(0)]),
-      dateDemmenagementSouhaitee: this.fb.control('11586800962', [Validators.required]),
-      dateDeVisite: this.fb.control('1586800962', [Validators.required]),
+      dateDemmenagementSouhaitee: this.fb.control('', [Validators.required]),
+      dateDeVisite: this.fb.control('', [Validators.required]),
     });
 
     this.secondFormGroup = this.fb.group({
@@ -95,6 +104,7 @@ export class ContactFormComponent implements OnInit {
       charges: this.fb.control(240, [Validators.min(0), Validators.required]),
       poursuites: this.fb.control('oui', [Validators.required]),
       protection: this.fb.control('non', [Validators.required]),
+      siTuteur: this.fb.control('', []),
     });
 
     this.thirdFormGroup = this.fb.group({
@@ -123,13 +133,12 @@ export class ContactFormComponent implements OnInit {
       charges: this.fb.control(null, [Validators.min(0)]),
       poursuites: this.fb.control('', []),
       protection: this.fb.control('', []),
-      siTuteur: this.fb.control('', []),
     });
 
     this.fourthFormGroup = this.fb.group({
       logement: this.fb.control('', [Validators.required]),
-      siOccupeParTitulaireOuCoTitulaire: this.fb.control('locataire', [Validators.required]),
-      nomsDuTitulaireOuCoTitulaire: this.fb.control('Niyonsaba Fridolin', [Validators.required]),
+      siOccupeParTitulaireOuCoTitulaire: this.fb.control('', [Validators.required]),
+      nomsDuTitulaireOuCoTitulaire: this.fb.control('', [Validators.required]),
       occupantsAdultes: this.fb.control(2, [Validators.min(0), Validators.required]),
       occupantsEnfants: this.fb.control(null, [Validators.min(0)]),
       animaux: this.fb.control('', []),
@@ -146,14 +155,35 @@ export class ContactFormComponent implements OnInit {
   }
 
   submitForm() {
+    const invalidControl = document.getElementsByClassName('ng-invalid');
+    if (invalidControl.length > 0) {
+      this.toastr. error('Invalid form!');
+      return;
+    }
     const length  = this.localfiles.length;
     this.localfiles.map( async (singlefile, i) => {
       const filePath = `${singlefile.name}-${Date.now()}`;
       const uploadTask = await this.storage.upload(filePath, singlefile.file);
       const url = await uploadTask.ref.getDownloadURL();
+      if (!url) {
+        this.toastr. error('Network error!');
+        return;
+      }
       delete singlefile.file;
       this.attachement.push({...singlefile, src: url});
       if (length === i + 1) {
+        this.firstFormGroup.patchValue({dateDemmenagementSouhaitee: this.firstFormGroup.value.dateDemmenagementSouhaitee.valueOf()});
+        this.firstFormGroup.patchValue({dateDeVisite: this.firstFormGroup.value.dateDeVisite.valueOf()});
+        this.secondFormGroup.patchValue({dateDeNaissance: this.secondFormGroup.value.dateDeNaissance.valueOf()});
+        if (this.secondFormGroup.value.depuis !== '') {
+          this.secondFormGroup.patchValue({depuis: this.secondFormGroup.value.depuis.valueOf()});
+        }
+        if (this.thirdFormGroup.value.dateDeVisite !== '') {
+          this.thirdFormGroup.patchValue({dateDeNaissance: this.thirdFormGroup.value.dateDeNaissance.valueOf()});
+        }
+        if (this.thirdFormGroup.value.depuis !== '') {
+          this.thirdFormGroup.patchValue({depuis: this.thirdFormGroup.value.depuis.valueOf()});
+        }
         const currentData = {
           immobilier: this.firstFormGroup.value,
           locataire: this.secondFormGroup.value,
@@ -161,8 +191,13 @@ export class ContactFormComponent implements OnInit {
           plusDetails: this.fourthFormGroup.value,
           attachement: this.attachement
         };
-
-        this.orderService.SendOrder(currentData);
+        console.log(currentData);
+        try {
+          this.orderService.SendOrder(currentData);
+          this.toastr. success('Succesfull submitted!');
+        } catch (error) {
+          this.toastr. error( error);
+        }
       }
     });
   }
@@ -192,5 +227,29 @@ export class ContactFormComponent implements OnInit {
 
   removeFile(file: any) {
     this.localfiles = this.localfiles.filter(item => item.name !== file);
+  }
+
+  showTuteurInput() {
+     this.showTuteur = !this.showTuteur;
+  }
+
+  showColocataireTab() {
+   this.coLocatiare = !this.coLocatiare;
+  }
+
+  checkCountry(event) {
+    if (event.target.value.toLowerCase() === 'suisse') {
+      this.disableSelect = true;
+    }
+  }
+
+  updateOccupant(event) {
+    const titulaire = this.thirdFormGroup.value.nom + ' ' + this.thirdFormGroup.value.prenom;
+    const locataire = this.secondFormGroup.value.nom + ' ' + this.secondFormGroup.value.prenom;
+    if (event.value === 'oui') {
+      this.fourthFormGroup.patchValue({nomsDuTitulaireOuCoTitulaire: locataire});
+    } else {
+      this.fourthFormGroup.patchValue({nomsDuTitulaireOuCoTitulaire: titulaire});
+    }
   }
 }

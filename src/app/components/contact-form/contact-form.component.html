@@ -11,36 +11,33 @@
               <td>
                 <mat-form-field>
                   <mat-label>Adresse</mat-label>
-                  <input matInput formControlName="adresse" required>
+                  <input matInput formControlName="adresse">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field>
                   <mat-label>NPA</mat-label>
-                  <input matInput formControlName="npa" type="number" min="0" required>
+                  <input matInput formControlName="npa" type="number" min="0">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field>
                   <mat-label>Localite</mat-label>
-                  <input matInput formControlName="localite" type="string" required>
+                  <input matInput formControlName="localite" type="string">
                 </mat-form-field>
               </td>
             </tr>
-          </table>
-
-          <table cellspacing="0">
             <tr>
               <td>
                 <mat-form-field>
                   <mat-label>Piece(s)</mat-label>
-                  <input matInput formControlName="piece" type="number" min="0" required>
+                  <input matInput formControlName="piece" type="number" min="0">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field>
                   <mat-label>Etage</mat-label>
-                  <input matInput formControlName="etage" type="number" min="0" required>
+                  <input matInput formControlName="etage" type="number" min="0">
                 </mat-form-field>
               </td>
               <td>
@@ -50,34 +47,28 @@
                 </mat-form-field>
               </td>
             </tr>
-          </table>
-
-          <table cellspacing="0">
             <tr>
               <td>
                 <mat-form-field>
                   <mat-label>Loyer net</mat-label>
                   <span matPrefix> CHF &nbsp;</span>
-                  <input matInput formControlName="loyerNet" type="number" min="0" required>
+                  <input matInput formControlName="loyerNet" type="number" min="0">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field>
                   <mat-label>Charges</mat-label>
                   <span matPrefix> CHF &nbsp;</span>
-                  <input matInput formControlName="charges" type="number" min="0" required>
+                  <input matInput formControlName="charges" type="number" min="0">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field>
                   <mat-label>Reference objet</mat-label>
-                  <input matInput formControlName="referenceObjet" required>
+                  <input matInput formControlName="referenceObjet">
                 </mat-form-field>
               </td>
             </tr>
-          </table>
-
-          <table cellspacing="0">
             <tr>
               <td>
                 <mat-form-field>
@@ -97,14 +88,11 @@
                 </mat-form-field>
               </td>
             </tr>
-          </table>
-
-          <table cellspacing="0">
             <tr>
               <td>
                 <mat-form-field>
                   <mat-label>Date d' ammenagement souhaitée</mat-label>
-                  <input matInput formControlName="dateDemmenagementSouhaitee" [matDatepicker]="pickerAmmenagement" [min] = "todayDate"  [max] = "maxDate" required>
+                  <input matInput formControlName="dateDemmenagementSouhaitee" [matDatepicker]="pickerAmmenagement" [min] = "todayDate"  [max] = "maxDate">
                   <mat-datepicker-toggle matSuffix [for]="pickerAmmenagement"></mat-datepicker-toggle>
                   <mat-datepicker #pickerAmmenagement startView="year" [startAt]="todayDate"></mat-datepicker>
                 </mat-form-field>
@@ -112,7 +100,7 @@
               <td>
                 <mat-form-field>
                   <mat-label>Date de visite</mat-label>
-                  <input matInput formControlName="dateDeVisite" [matDatepicker]="pickervisite" required>
+                  <input matInput formControlName="dateDeVisite" [matDatepicker]="pickervisite" [min] = "todayDate"  [max] = "maxDate">
                   <mat-datepicker-toggle matSuffix [for]="pickervisite"></mat-datepicker-toggle>
                   <mat-datepicker #pickervisite startView="year" [startAt]="startDate"></mat-datepicker>
                 </mat-form-field>
@@ -133,29 +121,36 @@
         <ng-template matStepLabel>Details du locataire</ng-template>
         <div class="locataire">
           <h2>LOCATAIRE</h2>
-          <mat-radio-group aria-label="Select an option" formControlName="genre" required>
-            <mat-radio-button value="male">Monsieur</mat-radio-button>
-            <mat-radio-button value="female">Madame</mat-radio-button>
-          </mat-radio-group>
           <br />
           <table cellspacing="0">
             <tr>
               <td>
+                <mat-radio-group aria-label="Select an option" formControlName="genre">
+                  <mat-radio-button value="male">Monsieur</mat-radio-button>
+                  <mat-radio-button value="female">Madame</mat-radio-button>
+                </mat-radio-group>
+              </td>
+              <td>
+                <mat-checkbox id="CoLocataire" (change)="showColocataireTab()">Tu as un co-locataire</mat-checkbox>
+              </td>
+            </tr>
+            <tr>
+              <td>
                 <mat-form-field>
                   <mat-label>Nom</mat-label>
-                  <input matInput formControlName="nom" required>
+                  <input matInput formControlName="nom">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field>
                   <mat-label>Prénom</mat-label>
-                  <input matInput formControlName="prenom" required>
+                  <input matInput formControlName="prenom">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field>
                   <mat-label>Adresse actuelle</mat-label>
-                  <input matInput formControlName="adresseActuelle" required>
+                  <input matInput formControlName="adresseActuelle">
                 </mat-form-field>
               </td>
               <td>
@@ -169,25 +164,25 @@
               <td>
                 <mat-form-field>
                   <mat-label>NPA</mat-label>
-                  <input matInput formControlName="npa" type="number" min="0" required />
+                  <input matInput formControlName="npa" type="number" min="0" />
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field>
                   <mat-label>Localité</mat-label>
-                  <input matInput formControlName="localite" type="string" required />
+                  <input matInput formControlName="localite" type="string" />
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field>
                   <mat-label>Nationalité</mat-label>
-                  <input matInput formControlName="nationalite" required>
+                  <input matInput formControlName="nationalite" (keyup)=checkCountry($event)>
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field>
                   <mat-label>Pérmis</mat-label>
-                  <mat-select matNativeControl formControlName="permis">
+                  <mat-select matNativeControl formControlName="permis" [disabled]="disableSelect">
                     <mat-option value="a">A</mat-option>
                     <mat-option value="b">B</mat-option>
                     <mat-option value="c">C</mat-option>
@@ -200,7 +195,7 @@
               <td>
                 <mat-form-field>
                   <mat-label>Lieu d’origine</mat-label>
-                  <input matInput formControlName="lieuOrigine" required>
+                  <input matInput formControlName="lieuOrigine">
                 </mat-form-field>
               </td>
             </tr>
@@ -220,24 +215,21 @@
               <td>
                 <mat-form-field>
                   <mat-label>Téléphone portable</mat-label>
-                  <input matInput formControlName="portable" required>
+                  <input matInput formControlName="portable">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field>
                   <mat-label>E-mail</mat-label>
-                  <input matInput formControlName="email" required>
+                  <input matInput formControlName="email">
                 </mat-form-field>
               </td>
             </tr>
-          </table>
-
-          <table cellspacing="0">
             <tr>
               <td>
                 <mat-form-field>
                   <mat-label>Date de naissance</mat-label>
-                  <input matInput formControlName="dateDeNaissance" [matDatepicker]="pickerLocataire" required>
+                  <input matInput formControlName="dateDeNaissance" [matDatepicker]="pickerLocataire">
                   <mat-datepicker-toggle matSuffix [for]="pickerLocataire"></mat-datepicker-toggle>
                   <mat-datepicker #pickerLocataire startView="year" [startAt]="startDate"></mat-datepicker>
                 </mat-form-field>
@@ -245,7 +237,7 @@
               <td>
                 <mat-form-field>
                   <mat-label>Etat civil</mat-label>
-                  <mat-select matNativeControl formControlName="etatCivil" required>
+                  <mat-select matNativeControl formControlName="etatCivil">
                     <mat-option value="celibataire">Célibataire</mat-option>
                     <mat-option value="marrier">Marié</mat-option>
                     <mat-option value="divorce">Divorcé</mat-option>
@@ -254,14 +246,11 @@
                 </mat-form-field>
               </td>
             </tr>
-          </table>
-
-          <table cellspacing="0">
             <tr>
               <td>
                 <mat-form-field>
                   <mat-label>Profession</mat-label>
-                  <input matInput formControlName="profession" required>
+                  <input matInput formControlName="profession">
                 </mat-form-field>
               </td>
               <td>
@@ -279,54 +268,57 @@
                 </mat-form-field>
               </td>
             </tr>
-          </table>
-
-          <table cellspacing="0">
             <tr>
               <td>
                 <mat-form-field>
                   <mat-label>Revenue mensuel</mat-label>
                   <span matPrefix> CHF &nbsp;</span>
-                  <input matInput formControlName="revenueMensuel" type="number" min="0" required>
+                  <input matInput formControlName="revenueMensuel" type="number" min="0">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field>
                   <mat-label>Gérance actuelle</mat-label>
-                  <input matInput formControlName="geranceActuelle" required>
+                  <input matInput formControlName="geranceActuelle">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field>
                   <mat-label>Loyer actuelle</mat-label>
                   <span matPrefix> CHF &nbsp;</span>
-                  <input matInput formControlName="loyerActuelle" type="number" min="0" required>
+                  <input matInput formControlName="loyerActuelle" type="number" min="0">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field>
                   <mat-label>Charges</mat-label>
                   <span matPrefix> CHF &nbsp;</span>
-                  <input matInput formControlName="charges" type="number" min="0" required>
+                  <input matInput formControlName="charges" type="number" min="0">
                 </mat-form-field>
               </td>
             </tr>
-          </table>
-          <table cellspacing="0">
             <tr>
               <td>
                 <label>Avez-vous des poursuites à votre encontre</label>
-                <mat-radio-group aria-label="Select an option" formControlName="poursuites" required>
+                <mat-radio-group aria-label="Select an option" formControlName="poursuites">
                   <mat-radio-button value="oui">Oui</mat-radio-button>
                   <mat-radio-button value="non">Non</mat-radio-button>
                 </mat-radio-group>
               </td>
               <td>
                 <label>Etes-vous au bénéfice d'une mesure de protection de l’adulte</label>
-                <mat-radio-group aria-label="Select an option" formControlName="protection" required>
+                <mat-radio-group aria-label="Select an option" formControlName="protection" (change)="showTuteurInput()">
                   <mat-radio-button value="oui">Oui</mat-radio-button>
-                  <mat-radio-button value="non">Non</mat-radio-button>
+                  <mat-radio-button value="non" selected>Non</mat-radio-button>
                 </mat-radio-group>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <mat-form-field *ngIf="showTuteur">
+                  <mat-label>Si oui, coordonnées du tuteur/curateur</mat-label>
+                  <input matInput formControlName="siTuteur">
+                </mat-form-field>
               </td>
             </tr>
           </table>
@@ -342,7 +334,7 @@
 
     <!-- co-owner details -->
 
-    <mat-step [stepControl]="thirdFormGroup">
+    <mat-step *ngIf="coLocatiare" [stepControl]="thirdFormGroup">
       <form [formGroup]="thirdFormGroup" autocomplete="on">
         <ng-template matStepLabel>Details du co-titulaire</ng-template>
         <div class="co_titulaire">
@@ -439,9 +431,6 @@
                 </mat-form-field>
               </td>
             </tr>
-          </table>
-
-          <table cellspacing="0">
             <tr>
               <td>
                 <mat-form-field>
@@ -463,9 +452,6 @@
                 </mat-form-field>
               </td>
             </tr>
-          </table>
-
-          <table cellspacing="0">
             <tr>
               <td>
                 <mat-form-field>
@@ -488,9 +474,6 @@
                 </mat-form-field>
               </td>
             </tr>
-          </table>
-
-          <table cellspacing="0">
             <tr>
               <td>
                 <mat-form-field>
@@ -520,8 +503,6 @@
                 </mat-form-field>
               </td>
             </tr>
-          </table>
-          <table cellspacing="0">
             <tr>
               <td>
                 <label>Avez-vous des poursuites à votre encontre</label>
@@ -539,22 +520,12 @@
               </td>
             </tr>
           </table>
-          <table cellspacing="0">
-            <tr>
-              <td>
-                <mat-form-field>
-                  <mat-label>Si oui, coordonnées du tuteur/curateur</mat-label>
-                  <input matInput formControlName="siTuteur">
-                </mat-form-field>
-              </td>
-            </tr>
-          </table>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Précédent</button>
+          <button mat-button matStepperNext>Suivant</button>
         </div>
       </form>
-      <div>
-        <button mat-button matStepperPrevious>Précédent</button>
-        <button mat-button matStepperNext>Suivant</button>
-      </div>
     </mat-step>
 
     <!-- co-owner details ends here -->
@@ -577,15 +548,16 @@
               </td>
               <td>
                 <label>Logement occupé par le titulaire/co-titulaire</label>
-                <mat-radio-group aria-label="Select an option" formControlName="siOccupeParTitulaireOuCoTitulaire">
-                  <mat-radio-button value="Oui">Oui</mat-radio-button>
+                <mat-radio-group
+                  aria-label="Select an option"
+                  formControlName="siOccupeParTitulaireOuCoTitulaire"
+                  (change)="updateOccupant($event)"
+                >
+                  <mat-radio-button value="oui">Oui</mat-radio-button>
                   <mat-radio-button value="non">Non</mat-radio-button>
                 </mat-radio-group>
               </td>
             </tr>
-          </table>
-
-          <table cellspacing="0">
             <tr>
               <td>
                 <mat-form-field>
@@ -596,7 +568,7 @@
               <td>
                 <mat-form-field>
                   <mat-label>Personne(adultes) qui habiteront l’appartement</mat-label>
-                  <input matInput formControlName="occupantsAdultes" type="number" required>
+                  <input matInput formControlName="occupantsAdultes" type="number">
                 </mat-form-field>
               </td>
               <td>
@@ -606,8 +578,6 @@
                 </mat-form-field>
               </td>
             </tr>
-          </table>
-          <table cellspading="0">
             <tr>
               <td>
                 <mat-checkbox formControlName="animaux">Animaux</mat-checkbox>
@@ -643,8 +613,6 @@
                 </mat-form-field>
               </td>
             </tr>
-          </table>
-          <table cellpadding="0">
             <tr>
               <td>
                 <label>Votre contrat de bail actuel a-t-il déjà été résilié</label>
@@ -661,9 +629,6 @@
                 </mat-radio-group>
               </td>
             </tr>
-          </table>
-
-          <table cellpadding="0">
             <tr>
               <td>
                 <mat-form-field>
@@ -723,11 +688,11 @@
             J'ai lu et accepté les <a href="#"> Conditions générales </a> de cet accord
           </mat-checkbox>
         </div>
-
+        <div itoastContainer></div>
         <div>
           <button mat-button matStepperPrevious>Précédent</button>
           <button mat-button (click)="stepper.reset()">Effacer</button>
-          <button mat-button (click)="submitForm()">Envoyer</button>
+          <button type="submit" mat-button (click)="submitForm()">Envoyer</button>
         </div>
       </form>
     </mat-step>

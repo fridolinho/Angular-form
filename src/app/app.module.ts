@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { ViewUsersComponent } from './components/view-users/view-users.component';
 import { HeaderComponent } from './components/header/header.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -39,7 +40,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MomentDateModule, MomentDateAdapter } from '@angular/material-moment-adapter';
 import { SingleOrderComponent } from './components/view-users/single-order/single-order.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import {MatListModule} from "@angular/material/list";
+import { MatListModule } from '@angular/material/list';
+import { ToastrModule } from 'ngx-toastr';
 
 export const MY_FORMATS = {
   parse: {
@@ -67,7 +69,12 @@ export const MY_FORMATS = {
     BrowserModule,
     AppRoutingModule,
     MatTabsModule,
+    CommonModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      preventDuplicates: true,
+    }),
     MatFormFieldModule,
     MatOptionModule,
     MatSelectModule,
@@ -99,7 +106,7 @@ export const MY_FORMATS = {
     DatePipe,
     {
       provide: MAT_DATE_LOCALE,
-      useValue: 'en-GB'
+      useValue: 'fr-CH'
     }, {
       provide: DateAdapter,
       useClass: MomentDateAdapter,
