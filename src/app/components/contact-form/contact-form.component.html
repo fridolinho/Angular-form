@@ -46,7 +46,7 @@
               <td>
                 <mat-form-field>
                   <mat-label>Precedent location</mat-label>
-                  <input matInput formControlName="precedentLoc" required>
+                  <input matInput formControlName="precedentLoc">
                 </mat-form-field>
               </td>
             </tr>
@@ -64,6 +64,7 @@
               <td>
                 <mat-form-field>
                   <mat-label>Charges</mat-label>
+                  <span matPrefix> CHF &nbsp;</span>
                   <input matInput formControlName="charges" type="number" min="0" required>
                 </mat-form-field>
               </td>
@@ -103,9 +104,9 @@
               <td>
                 <mat-form-field>
                   <mat-label>Date d' ammenagement souhaitée</mat-label>
-                  <input matInput formControlName="dateDemmenagementSouhaitee" [matDatepicker]="pickerAmmenagement" required>
+                  <input matInput formControlName="dateDemmenagementSouhaitee" [matDatepicker]="pickerAmmenagement" [min] = "todayDate"  [max] = "maxDate" required>
                   <mat-datepicker-toggle matSuffix [for]="pickerAmmenagement"></mat-datepicker-toggle>
-                  <mat-datepicker #pickerAmmenagement startView="year" [startAt]="startDate"></mat-datepicker>
+                  <mat-datepicker #pickerAmmenagement startView="year" [startAt]="todayDate"></mat-datepicker>
                 </mat-form-field>
               </td>
               <td>
@@ -246,7 +247,7 @@
                   <mat-label>Etat civil</mat-label>
                   <mat-select matNativeControl formControlName="etatCivil" required>
                     <mat-option value="celibataire">Célibataire</mat-option>
-                    <mat-option value="marrier">Marrier</mat-option>
+                    <mat-option value="marrier">Marié</mat-option>
                     <mat-option value="divorce">Divorcé</mat-option>
                     <mat-option value="veuf">Veuf</mat-option>
                   </mat-select>
@@ -285,6 +286,7 @@
               <td>
                 <mat-form-field>
                   <mat-label>Revenue mensuel</mat-label>
+                  <span matPrefix> CHF &nbsp;</span>
                   <input matInput formControlName="revenueMensuel" type="number" min="0" required>
                 </mat-form-field>
               </td>
@@ -297,12 +299,14 @@
               <td>
                 <mat-form-field>
                   <mat-label>Loyer actuelle</mat-label>
+                  <span matPrefix> CHF &nbsp;</span>
                   <input matInput formControlName="loyerActuelle" type="number" min="0" required>
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field>
                   <mat-label>Charges</mat-label>
+                  <span matPrefix> CHF &nbsp;</span>
                   <input matInput formControlName="charges" type="number" min="0" required>
                 </mat-form-field>
               </td>
@@ -452,7 +456,7 @@
                   <mat-label>Etat civil</mat-label>
                   <mat-select matNativeControl formControlName="etatCivil">
                     <mat-option value="celibataire">Célibataire</mat-option>
-                    <mat-option value="marrier">Marrier</mat-option>
+                    <mat-option value="marrier">Marié</mat-option>
                     <mat-option value="divorce">Divorcé</mat-option>
                     <mat-option value="veuf">Veuf</mat-option>
                   </mat-select>
@@ -491,6 +495,7 @@
               <td>
                 <mat-form-field>
                   <mat-label>Revenue mensuel</mat-label>
+                  <span matPrefix> CHF &nbsp;</span>
                   <input matInput formControlName="revenueMensuel" type="number" min="0">
                 </mat-form-field>
               </td>
@@ -503,12 +508,14 @@
               <td>
                 <mat-form-field>
                   <mat-label>Loyer actuelle</mat-label>
+                  <span matPrefix> CHF &nbsp;</span>
                   <input matInput formControlName="loyerActuelle" type="number" min="0">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field>
                   <mat-label>Charges</mat-label>
+                  <span matPrefix> CHF &nbsp;</span>
                   <input matInput formControlName="charges" type="number" min="0">
                 </mat-form-field>
               </td>
@@ -688,7 +695,7 @@
               <label for="file_upload" class="file_upload">
                 <button (click)="clickInput()">attacher le fichier</button>
               </label>
-              <input type="file" (change)="onSelectFile($event)" name="file" id="file_upload" accept=".docx, .doc, .pdf" hidden/>
+              <input type="file" (change)="onSelectFile($event)" name="file" id="file_upload" accept="image/*, .docx, .doc, .pdf" hidden/>
             </div>
             <div *ngIf="localfiles?.length > 0">
               <div class="added_files" >

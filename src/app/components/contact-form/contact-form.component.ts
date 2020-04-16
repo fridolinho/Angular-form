@@ -30,18 +30,27 @@ export class ContactFormComponent implements OnInit {
   input: HTMLElement;
   attachement: {filename: string, src: string, name: string, type: string }[] = [];
   parkingTypes = [
+    'No parking',
     'Parking exterieur',
     'Parking interne',
     'Garage'
   ];
   permisType = ['A', 'B', 'C', 'D', 'E', 'F'];
   public fileTypes = Object.values(Documenttype);
+  maxDate: Date;
+  todayDate: Date;
 
   constructor(
     private fb: FormBuilder,
     private orderService: OrderService,
     private storage: AngularFireStorage
-  ) {}
+  ) {
+    const currentYear = new Date().getFullYear();
+    const currentMonth = new Date().getMonth();
+    const currentDate = new Date().getDate();
+    this.maxDate = new Date(currentYear + 1, 11, 31);
+    this.todayDate = new Date(currentYear, currentMonth + 1, currentDate);
+  }
 
   ngOnInit(): void {
     this.firstFormGroup = this.fb.group({
@@ -50,7 +59,7 @@ export class ContactFormComponent implements OnInit {
       localite: this.fb.control('Geneva', [Validators.required]),
       piece: this.fb.control(2, [Validators.required]),
       etage: this.fb.control(3, [Validators.required]),
-      precedentLoc: this.fb.control('Fridolin', [Validators.required]),
+      precedentLoc: this.fb.control('Fridolin', []),
       loyerNet: this.fb.control(2500, [Validators.min(0), Validators.required]),
       charges: this.fb.control(200, [Validators.min(0), Validators.required]),
       referenceObjet: this.fb.control('ID003/2017', [Validators.required]),
@@ -175,7 +184,7 @@ export class ContactFormComponent implements OnInit {
       const file = event.target.files[0];
       const filename = this.filename;
       reader.readAsDataURL(event.target.files[0]); // read file as data url
-      reader.onload = (event) => { // called once readAsDataURL is completed
+      reader.onload = (uploadEvent) => { // called once readAsDataURL is completed
         this.localfiles.push({filename, src: event.target.result, name: file.name, type: file.type, file});
       };
     }
