@@ -36,8 +36,8 @@ export class ViewUsersComponent implements OnInit {
     });
   }
 
-  onDeleteRow(reference) {
-    this.orderService.deleteOrder(reference);
+  deleteOrder(id) {
+    this.orderService.deleteOrder(id);
   }
 
   showDetails(id: string): void {

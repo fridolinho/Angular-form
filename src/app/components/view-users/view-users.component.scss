@@ -1,2 +1,12 @@
 .order-table-container {
+  font-size: 12px;
+  h2 {
+    font-size: 13px;
+  }
+  mat-list-item {
+    font-size: 12px;
+    white-space: nowrap;
+    display: inline-block;
+    overflow: hidden;
+  }
 }
