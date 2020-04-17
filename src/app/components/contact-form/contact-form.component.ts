@@ -155,18 +155,23 @@ export class ContactFormComponent implements OnInit {
   }
 
   submitForm() {
+    const button = document.getElementById('submit-form');
+    button.classList.add('spin');
     const invalidControl = document.getElementsByClassName('ng-invalid');
     if (invalidControl.length > 0) {
-      this.toastr. error('Invalid form!');
+      button.classList.remove('spin');
+      this.toastr. error('Formulaire invalide!');
       return;
     }
+    // document.getElementById('submit-form').classList.add('spin');
     const length  = this.localfiles.length;
     this.localfiles.map( async (singlefile, i) => {
       const filePath = `${singlefile.name}-${Date.now()}`;
       const uploadTask = await this.storage.upload(filePath, singlefile.file);
       const url = await uploadTask.ref.getDownloadURL();
       if (!url) {
-        this.toastr. error('Network error!');
+        button.classList.remove('spin');
+        this.toastr. error('erreur de connexion!');
         return;
       }
       delete singlefile.file;
@@ -194,12 +199,19 @@ export class ContactFormComponent implements OnInit {
         console.log(currentData);
         try {
           this.orderService.SendOrder(currentData);
-          this.toastr. success('Succesfull submitted!');
+          button.classList.remove('spin');
+          this.toastr. success('Succès soumis!');
         } catch (error) {
+          button.classList.remove('spin');
           this.toastr. error( error);
         }
       }
     });
+    setTimeout(() => {
+      button.classList.remove('spin');
+      this.toastr.error('erreur de connexion');
+      return;
+    }, 3000);
   }
 
   toUppercase() {

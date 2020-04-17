@@ -688,11 +688,19 @@
             J'ai lu et accepté les <a href="#"> Conditions générales </a> de cet accord
           </mat-checkbox>
         </div>
-        <div itoastContainer></div>
+        <div toastContainer></div>
         <div>
           <button mat-button matStepperPrevious>Précédent</button>
           <button mat-button (click)="stepper.reset()">Effacer</button>
-          <button type="submit" mat-button (click)="submitForm()">Envoyer</button>
+          <button
+            id="submit-form"
+            type="submit"
+            mat-button
+            (click)="submitForm()"
+          >
+            Envoyer
+            <span class="spinner"></span>
+          </button>
         </div>
       </form>
     </mat-step>
