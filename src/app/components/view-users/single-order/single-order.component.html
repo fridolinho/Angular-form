@@ -23,11 +23,11 @@
         <tr>
           <td colspan="2">
             <span>Date d' ammenagement:</span>
-            {{ data.immobilier.dateDemmenagementSouhaitee.toDate() | date: 'dd-MM-yyyy' }}
+            {{ data.immobilier.dateDemmenagementSouhaitee | date: 'dd-MM-yyyy' }}
           </td>
           <td>
             <span>Date de visite</span>
-            {{data.immobilier.dateDeVisite.toDate() | date: 'dd-MM-yyyy' }}
+            {{data.immobilier.dateDeVisite | date: 'dd-MM-yyyy' }}
           </td>
         </tr>
       </table>
@@ -79,7 +79,7 @@
           </td>
           <td>
             <span>Date de naissaince:</span>
-            {{data.locataire.dateDeNaissance.toDate() | date: 'dd-MM-yyyy'}}
+            {{data.locataire.dateDeNaissance | date: 'dd-MM-yyyy'}}
           </td>
           <td>
             <span>Etat civil:</span>
@@ -198,7 +198,7 @@
           </td>
           <td>
             <span>Date ne naissance:</span>
-            {{(data.coTitulaire.dateDeNaissance) ? (data.coTitulaire.dateDeNaissance.toDate() | date: 'dd-MM-yyyy') : '' }}
+            {{(data.coTitulaire.dateDeNaissance) ? (data.coTitulaire.dateDeNaissance | date: 'dd-MM-yyyy') : '' }}
           </td>
           <td>
             <span>Etat civil:</span>

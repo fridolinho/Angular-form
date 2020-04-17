@@ -11,6 +11,8 @@ import { SingleOrderComponent } from './single-order/single-order.component';
 
 export class ViewUsersComponent implements OnInit {
   private elementId: string;
+  orders: any[] = [];
+  singleOrder: any = {};
 
   constructor(
     private orderService: OrderService,
@@ -18,22 +20,21 @@ export class ViewUsersComponent implements OnInit {
   ) {}
 
   displayedColumns = ['nom', 'reference', 'amenagement', 'supprimer'];
-  orders: any[] = [];
 
   ngOnInit(): void {
     this.getAllOrders();
   }
 
   async getAllOrders() {
-    this.orderService.orders.subscribe((allOrders) => {
-      allOrders.map( data => {
-        const currentOrders = this.orders;
-        const singleorder = data.payload.doc.data();
-        singleorder.id = data.payload.doc.id;
-        currentOrders.push(singleorder);
-        this.orders = currentOrders;
+    this.orderService.getAllOrders().snapshotChanges().subscribe(value => {
+      value.map((data) => {
+        this.singleOrder = data.payload.doc.data();
+        this.singleOrder.id = data.payload.doc.id;
+        this.orders.push(this.singleOrder);
       });
     });
+
+    console.log(this.orders);
   }
 
   deleteOrder(id) {

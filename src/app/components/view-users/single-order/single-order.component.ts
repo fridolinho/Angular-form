@@ -14,6 +14,7 @@ export class SingleOrderComponent implements OnInit {
               ) {}
 
   ngOnInit(): void {
+    console.log(this.data.id);
   }
 
 }
