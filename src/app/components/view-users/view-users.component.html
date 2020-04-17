@@ -18,15 +18,15 @@
   <mat-list>
     <div fxLayout="row wrap" class="bk-ligh" *ngFor="let order of orders">
         <mat-list-item fxFlex="25%">
-          {{order.locataire.nom}} {{order.locataire.prenom}}
+          {{order.data.locataire.nom}} {{order.data.locataire.prenom}}
         </mat-list-item>
 
       <mat-list-item fxFlex="25%">
-        {{order.immobilier.referenceObjet}}
+        {{order.data.immobilier.referenceObjet}}
       </mat-list-item>
 
       <mat-list-item fxFlex="25%" fxShow fxHide.xs>
-        {{order.immobilier.dateDemmenagementSouhaitee}}
+        {{order.data.immobilier.dateDemmenagementSouhaitee}}
       </mat-list-item>
 
       <mat-list-item fxFlex="25%">

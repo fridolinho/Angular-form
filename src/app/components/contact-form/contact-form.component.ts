@@ -45,6 +45,7 @@ export class ContactFormComponent implements OnInit {
   showTuteur = false;
   coLocatiare = false;
   disableSelect = false;
+  showResiliePar = false;
 
   constructor(
     private fb: FormBuilder,
@@ -147,7 +148,7 @@ export class ContactFormComponent implements OnInit {
       noPlaques: this.fb.control('', []),
       siInstruments: this.fb.control('', []),
       instruments: this.fb.control('', []),
-      siBailResilie: this.fb.control('', [Validators.required]),
+      siBailResilie: this.fb.control('', []),
       resiliePar: this.fb.control('', [Validators.required]),
       motifDuDemenagement: this.fb.control('Work reason related', [Validators.required]),
       tosAgreement: this.fb.control('', [Validators.required]),
@@ -252,6 +253,15 @@ export class ContactFormComponent implements OnInit {
       this.fourthFormGroup.patchValue({nomsDuTitulaireOuCoTitulaire: locataire});
     } else {
       this.fourthFormGroup.patchValue({nomsDuTitulaireOuCoTitulaire: titulaire});
+    }
+  }
+
+  showResilier(event) {
+    console.log(event.value);
+    if (event.value === 'oui') {
+      this.showResiliePar = true;
+    } else {
+      this.showResiliePar = false;
     }
   }
 }

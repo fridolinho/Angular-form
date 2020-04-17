@@ -10,31 +10,27 @@ import { SingleOrderComponent } from './single-order/single-order.component';
 })
 
 export class ViewUsersComponent implements OnInit {
-  private elementId: string;
-  orders: any[] = [];
-  singleOrder: any = {};
+  orders;
 
   constructor(
     private orderService: OrderService,
     public dialog: MatDialog
   ) {}
 
-  displayedColumns = ['nom', 'reference', 'amenagement', 'supprimer'];
-
   ngOnInit(): void {
     this.getAllOrders();
   }
 
-  async getAllOrders() {
+  getAllOrders() {
     this.orderService.getAllOrders().snapshotChanges().subscribe(value => {
-      value.map((data) => {
-        this.singleOrder = data.payload.doc.data();
-        this.singleOrder.id = data.payload.doc.id;
-        this.orders.push(this.singleOrder);
+      this.orders = [];
+      value.map(order => {
+        this.orders.push({
+          id: order.payload.doc.id,
+          data: order.payload.doc.data()
+        });
       });
     });
-
-    console.log(this.orders);
   }
 
   deleteOrder(id) {
@@ -45,11 +41,9 @@ export class ViewUsersComponent implements OnInit {
     const singleOrder = this.orders.find(order => order.id === id);
     const dialogRef = this.dialog.open(SingleOrderComponent, {
       data: singleOrder,
-      minHeight: '200px'
+      height: '80%'
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
+    dialogRef.afterClosed().subscribe(result => {});
   }
 }

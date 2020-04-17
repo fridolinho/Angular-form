@@ -13,8 +13,6 @@ export class SingleOrderComponent implements OnInit {
               private datePipe: DatePipe
               ) {}
 
-  ngOnInit(): void {
-    console.log(this.data.id);
-  }
+  ngOnInit(): void {}
 
 }

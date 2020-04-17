@@ -16,17 +16,14 @@ export class OrderService {
   async SendOrder(formData: Order) {
     if (formData) {
       try {
-        console.log(formData);
         await this.firestore.collection('order').add(formData);
-        console.log('success');
       } catch (error) {
-        console.log(error);
+        return error;
       }
     }
   }
 
   deleteOrder(id: string) {
     return this.firestore.collection('order').doc(id).delete();
-
   }
 }

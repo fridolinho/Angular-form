@@ -8,5 +8,8 @@
     white-space: nowrap;
     display: inline-block;
     overflow: hidden;
+    mat-icon {
+      cursor: pointer;
+    }
   }
 }

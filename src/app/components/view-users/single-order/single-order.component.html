@@ -1,33 +1,34 @@
-<div>
+<div class="single-order">
   <mat-tab-group>
     <mat-tab label="Immobilier">
       <table class="single_table">
         <tr>
-          <td colspan="2"><span>Adresse:</span>{{data.immobilier.adresse}}</td>
-          <td colspan="2"><span>NPA localite:</span>{{data.immobilier.localite}}</td>
+          <td colspan="2"><span>Adresse:</span>{{data.data.immobilier.adresse}}</td>
+          <td><span>NPA:</span>{{data.data.immobilier.npa}}</td>
+          <td><span>Localite:</span>{{data.data.immobilier.localite}}</td>
         </tr>
         <tr>
-          <td colspan="2"><span>Precedent locataire:</span>{{data.immobilier.precedentLoc}}</td>
-          <td colspan="2"><span>Reference objet:</span>{{data.immobilier.referenceObjet}}</td>
+          <td colspan="2"><span>Precedent locataire:</span>{{data.data.immobilier.precedentLoc}}</td>
+          <td colspan="2"><span>Référence:</span>{{data.data.immobilier.referenceObjet}}</td>
         </tr>
         <tr>
-          <td><span>Pieces:</span>{{data.immobilier.piece}}</td>
-          <td><span>Etage:</span>{{data.immobilier.etage}}</td>
-          <td><span>Loyer:</span>{{data.immobilier.loyerNet}}</td>
-          <td><span>Charges:</span>{{data.immobilier.charges}}</td>
+          <td><span>Pieces:</span>{{data.data.immobilier.piece}}</td>
+          <td><span>Etage:</span>{{data.data.immobilier.etage}}</td>
+          <td><span>Loyer:</span>{{data.data.immobilier.loyerNet}}</td>
+          <td><span>Charges:</span>{{data.data.immobilier.charges}}</td>
         </tr>
         <tr>
-          <td colspan="2"><span>Parking:</span>{{data.immobilier.parking}}</td>
-          <td colspan="2"><span>Charges:</span>{{data.immobilier.chfCharges}}</td>
+          <td colspan="2"><span>Parking:</span>{{data.data.immobilier.parking}}</td>
+          <td colspan="2"><span>Charges:</span>{{data.data.immobilier.chfCharges}}</td>
         </tr>
         <tr>
           <td colspan="2">
             <span>Date d' ammenagement:</span>
-            {{ data.immobilier.dateDemmenagementSouhaitee | date: 'dd-MM-yyyy' }}
+            {{ data.data.immobilier.dateDemmenagementSouhaitee | date: 'dd-MM-yyyy' }}
           </td>
           <td>
             <span>Date de visite</span>
-            {{data.immobilier.dateDeVisite | date: 'dd-MM-yyyy' }}
+            {{data.data.immobilier.dateDeVisite | date: 'dd-MM-yyyy' }}
           </td>
         </tr>
       </table>
@@ -37,242 +38,242 @@
         <tr>
           <td>
             <span>Genre</span>
-            {{data.locataire.locataire}}
+            {{data.data.locataire.locataire}}
           </td>
         </tr>
         <tr>
           <td colspan="2">
             <span>Nom:</span>
-            {{data.locataire.nom}}
+            {{data.data.locataire.nom}}
           </td>
           <td colspan="2">
             <span>Prenom:</span>
-            {{data.locataire.prenom}}
+            {{data.data.locataire.prenom}}
           </td>
         </tr>
         <tr>
           <td>
             <span>Adresse actuelle:</span>
-            {{data.locataire.adresseActuelle}}
+            {{data.data.locataire.adresseActuelle}}
           </td>
           <td>
             <span>Adresse legale:</span>
-            {{data.locataire.adresseLegale}}
+            {{data.data.locataire.adresseLegale}}
           </td>
           <td>
             <span>NPA:</span>
-            {{data.locataire.npa}}
+            {{data.data.locataire.npa}}
           </td>
           <td>
             <span>Localite:</span>
-            {{data.locataire.localite}}
+            {{data.data.locataire.localite}}
           </td>
         </tr>
         <tr>
           <td>
             <span>Nationalite:</span>
-            {{data.locataire.nationalite}}
+            {{data.data.locataire.nationalite}}
           </td>
           <td>
             <span>Lieu d' origine:</span>
-            {{data.locataire.lieuOrigine}}
+            {{data.data.locataire.lieuOrigine}}
           </td>
           <td>
             <span>Date de naissaince:</span>
-            {{data.locataire.dateDeNaissance | date: 'dd-MM-yyyy'}}
+            {{data.data.locataire.dateDeNaissance | date: 'dd-MM-yyyy'}}
           </td>
           <td>
             <span>Etat civil:</span>
-            {{data.locataire.etatCivil}}
+            {{data.data.locataire.etatCivil}}
           </td>
         </tr>
         <tr>
           <td>
             <span>Email:</span>
-            {{data.locataire.email}}
+            {{data.data.locataire.email}}
           </td>
           <td>
             <span>Telephone fixe:</span>
-            {{data.locataire.telephoneFixe}}
+            {{data.data.locataire.telephoneFixe}}
           </td>
           <td>
             <span>Telephone professionel:</span>
-            {{data.locataire.telephoneProfessionel}}
+            {{data.data.locataire.telephoneProfessionel}}
           </td>
           <td>
             <span>Portable:</span>
-            {{data.locataire.portable}}
+            {{data.data.locataire.portable}}
           </td>
         </tr>
         <tr>
           <td>
             <span>permis:</span>
-            {{data.locataire.permisType}}
+            {{data.data.locataire.permisType}}
           </td>
           <td>
             <span>Profession:</span>
-            {{data.locataire.profession}}
+            {{data.data.locataire.profession}}
           </td>
           <td>
             <span>Employeur:</span>
-            {{data.locataire.employeur}}
+            {{data.data.locataire.employeur}}
           </td>
           <td>
             <span>Depuis:</span>
-            {{data.locataire.depuis | date}}
+            {{data.data.locataire.depuis | date}}
           </td>
         </tr>
         <tr>
           <td>
             <span>Revenue mensuel:</span>
-            {{data.locataire.revenueMensuel}}
+            {{data.data.locataire.revenueMensuel}}
           </td>
           <td>
             <span>Gerance actuelle:</span>
-            {{data.locataire.geranceActuelle}}
+            {{data.data.locataire.geranceActuelle}}
           </td>
           <td>
             <span>Loyer actuelle:</span>
-            {{data.locataire.loyerActuelle}}
+            {{data.data.locataire.loyerActuelle}}
           </td>
           <td>
             <span>Charges:</span>
-            {{data.locataire.charges}}
+            {{data.data.locataire.charges}}
           </td>
         </tr>
         <tr>
           <td>
             <span>Poursuites:</span>
-            {{data.locataire.poursuites}}
+            {{data.data.locataire.poursuites}}
           </td>
           <td>
             <span>Protection:</span>
-            {{data.locataire.protection}}
+            {{data.data.locataire.protection}}
           </td>
         </tr>
       </table>
     </mat-tab>
-    <mat-tab label="Co-titulaire">
+    <mat-tab label="Co-titulaire" *ngIf="data.data.coTitulaire.portable">
       <table class="single_table">
         <tr>
           <td>
             <span>Genre:</span>
-            {{data.coTitulaire.locataire}}
+            {{data.data.coTitulaire.locataire}}
           </td>
         </tr>
         <tr>
           <td>
             <span>Nom:</span>
-            {{data.coTitulaire.nom}}</td>
+            {{data.data.coTitulaire.nom}}</td>
           <td>
             <span>Prenom:</span>
-            {{data.coTitulaire.prenom}}
+            {{data.data.coTitulaire.prenom}}
           </td>
         </tr>
         <tr>
           <td>
           <span>Adresse actuelle:</span>
-          {{data.coTitulaire.adresseActuelle}}
+          {{data.data.coTitulaire.adresseActuelle}}
           </td>
           <td>
             <span>Adresse legale:</span>
-            {{data.coTitulaire.adresseSiDifferente}}
+            {{data.data.coTitulaire.adresseSiDifferente}}
           </td>
           <td>
             <span>NPA :</span>
-            {{data.coTitulaire.npa}}
+            {{data.data.coTitulaire.npa}}
           </td>
           <td>
             <span>Localite:</span>
-            {{data.coTitulaire.localite}}
+            {{data.data.coTitulaire.localite}}
           </td>
         </tr>
         <tr>
           <td>
             <span>Nationalite:</span>
-            {{data.coTitulaire.nationalite}}
+            {{data.data.coTitulaire.nationalite}}
           </td>
           <td>
             <span>Lieu d'origine:</span>
-            {{data.coTitulaire.lieuDorigine}}
+            {{data.data.coTitulaire.lieuDorigine}}
           </td>
           <td>
             <span>Date ne naissance:</span>
-            {{(data.coTitulaire.dateDeNaissance) ? (data.coTitulaire.dateDeNaissance | date: 'dd-MM-yyyy') : '' }}
+            {{(data.data.coTitulaire.dateDeNaissance) ? (data.data.coTitulaire.dateDeNaissance | date: 'dd-MM-yyyy') : '' }}
           </td>
           <td>
             <span>Etat civil:</span>
-            {{data.coTitulaire.etatCivil}}
+            {{data.data.coTitulaire.etatCivil}}
           </td>
         </tr>
         <tr>
           <td>
             <span>Email:</span>
-            {{data.coTitulaire.email}}
+            {{data.data.coTitulaire.email}}
           </td>
           <td>
             <span>Telephone fixe:</span>
-            {{data.coTitulaire.telephoneFixe}}
+            {{data.data.coTitulaire.telephoneFixe}}
           </td>
           <td>
             <span>Telephone professionel:</span>
-            {{data.coTitulaire.telephoneProfessionel}}
+            {{data.data.coTitulaire.telephoneProfessionel}}
           </td>
           <td>
             <span>Portable:</span>
-            {{data.coTitulaire.portable}}
+            {{data.data.coTitulaire.portable}}
           </td>
         </tr>
         <tr>
           <td>
             <span>Permis:</span>
-            {{data.coTitulaire.permis}}
+            {{data.data.coTitulaire.permis}}
           </td>
           <td>
             <span>Profession:</span>
-            {{data.coTitulaire.profession}}
+            {{data.data.coTitulaire.profession}}
           </td>
           <td>
             <span>Employeur:</span>
-            {{data.coTitulaire.employeur}}
+            {{data.data.coTitulaire.employeur}}
           </td>
           <td>
             <span>Depuis:</span>
-            {{data.coTitulaire.depuis}}
+            {{data.data.coTitulaire.depuis}}
           </td>
         </tr>
         <tr>
           <td>
             <span>Revenue mensuel:</span>
-            {{data.coTitulaire.revenueMensuel}}
+            {{data.data.coTitulaire.revenueMensuel}}
           </td>
           <td>
             <span>Gerance actuelle:</span>
-            {{data.coTitulaire.geranceActuelle}}
+            {{data.data.coTitulaire.geranceActuelle}}
           </td>
           <td>
             <span>loyer actuelle:</span>
-            {{data.coTitulaire.loyerActuelle}}
+            {{data.data.coTitulaire.loyerActuelle}}
           </td>
           <td>
             <span>Charges:</span>
-            {{data.coTitulaire.poursuites}}
+            {{data.data.coTitulaire.poursuites}}
           </td>
         </tr>
         <tr>
           <td>
             <span>Poursuites:</span>
-            {{data.coTitulaire.poursuites}}
+            {{data.data.coTitulaire.poursuites}}
           </td>
           <td>
             <span>Protection:</span>
-            {{data.coTitulaire.protection}}
+            {{data.data.coTitulaire.protection}}
           </td>
         </tr>
         <tr>
           <td>
             <span>Si tuteur:</span>
-            {{data.coTitulaire.siTuteur}}
+            {{data.data.coTitulaire.siTuteur}}
           </td>
         </tr>
       </table>
@@ -282,60 +283,60 @@
         <tr>
           <td>
             <span>Logement:</span>
-            {{data.plusDetails.logement}}
+            {{data.data.plusDetails.logement}}
           </td>
           <td>
           <span>Noms du titulaire:</span>
-          {{data.plusDetails.nomsDuTitulaireOuCoTitulaire}}
+          {{data.data.plusDetails.nomsDuTitulaireOuCoTitulaire}}
           </td>
         </tr>
         <tr>
           <td>
           <span>Occupants adultes:</span>
-          {{data.plusDetails.occupantsAdultes}}
+          {{data.data.plusDetails.occupantsAdultes}}
           </td>
           <td>
           <span>Occupants enfants:</span>
-          {{data.plusDetails.occupantsEnfants}}
+          {{data.data.plusDetails.occupantsEnfants}}
           </td>
         </tr>
         <tr>
           <td>
           <span>Liste des animaux:</span>
-          {{data.plusDetails.animaux}}
+          {{data.data.plusDetails.animaux}}
           </td>
           <td>
             <span>Instruments:</span>
-            {{data.plusDetails.instruments}}
+            {{data.data.plusDetails.instruments}}
           </td>
         </tr>
         <tr>
           <td>
           <span>Plaques du vehicule:</span>
-          {{data.plusDetails.noPlaques}}
+          {{data.data.plusDetails.noPlaques}}
           </td>
         </tr>
         <tr>
           <td>
           <span> Contrat de bail actuel résilié:</span>
-          {{data.plusDetails.siBailResilie}}
+          {{data.data.plusDetails.siBailResilie}}
           </td>
           <td>
-          <span>Resilie par:</span>
-          {{data.plusDetails.resiliePar}}
+          <span>Resilie par le:</span>
+          {{data.data.plusDetails.resiliePar}}
           </td>
         </tr>
         <tr>
           <td>
           <span>Motif du demenagement:</span>
-          {{data.plusDetails.motifDuDemenagement}}
+          {{data.data.plusDetails.motifDuDemenagement}}
           </td>
         </tr>
       </table>
     </mat-tab>
     <mat-tab label="Fichiers">
         <table class="files">
-        <tr *ngFor="let file of data.attachement;">
+        <tr *ngFor="let file of data.data.attachement;">
           <td>{{file.filename}}</td>
           <td>{{file.name}}</td>
           <td>

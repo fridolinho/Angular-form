@@ -3,7 +3,9 @@
   z-index: 1;
   width: 80%;
   margin: 20px auto;
-
+  .mat-horizontal-content-container{
+    padding: 0;
+  }
   label {
     margin-right: 20px;
   }
@@ -70,19 +72,6 @@
         font-size: 14px;
       }
     }
-    button {
-      border: 1px solid #ccc;
-      display: inline-block;
-      padding: 6px 12px;
-      cursor: pointer;
-      background-color: white;
-      font-size: 14px;
-      top:0;
-      bottom:0;
-      left: 100px;
-      outline: none;
-      margin-bottom: 10px;
-    }
   }
 
   .added_files {
@@ -144,6 +133,11 @@
 
   *, *::before, *::after {
     box-sizing: border-box;
+  }
+  .form-action {
+    button {
+      padding: 1px 1px 1px 30px;
+    }
   }
 }
 
