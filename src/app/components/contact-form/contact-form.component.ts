@@ -169,11 +169,7 @@ export class ContactFormComponent implements OnInit {
       const filePath = `${singlefile.name}-${Date.now()}`;
       const uploadTask = await this.storage.upload(filePath, singlefile.file);
       const url = await uploadTask.ref.getDownloadURL();
-      if (!url) {
-        button.classList.remove('spin');
-        this.toastr. error('erreur de connexion!');
-        return;
-      }
+
       delete singlefile.file;
       this.attachement.push({...singlefile, src: url});
       if (length === i + 1) {
@@ -196,7 +192,6 @@ export class ContactFormComponent implements OnInit {
           plusDetails: this.fourthFormGroup.value,
           attachement: this.attachement
         };
-        console.log(currentData);
         try {
           this.orderService.SendOrder(currentData);
           button.classList.remove('spin');
@@ -207,11 +202,6 @@ export class ContactFormComponent implements OnInit {
         }
       }
     });
-    setTimeout(() => {
-      button.classList.remove('spin');
-      this.toastr.error('erreur de connexion');
-      return;
-    }, 3000);
   }
 
   toUppercase() {
