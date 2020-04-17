@@ -13,6 +13,7 @@ export class SingleOrderComponent implements OnInit {
               private datePipe: DatePipe
               ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
 }

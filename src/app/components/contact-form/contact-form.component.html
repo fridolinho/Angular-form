@@ -94,7 +94,13 @@
               <td>
                 <mat-form-field>
                   <mat-label>Date de visite</mat-label>
-                  <input matInput formControlName="dateDeVisite" [matDatepicker]="pickervisite" [min] = "todayDate"  [max] = "maxDate">
+                  <input
+                    matInput
+                    formControlName="dateDeVisite"
+                    [matDatepicker]="pickervisite"
+                    [min] = "todayDate"  [max] = "maxDate"
+                    (dateChange)="enableAmmenagement($event)"
+                  >
                   <mat-datepicker-toggle matSuffix [for]="pickervisite"></mat-datepicker-toggle>
                   <mat-datepicker #pickervisite startView="year" [startAt]="startDate"></mat-datepicker>
                 </mat-form-field>
@@ -102,7 +108,13 @@
               <td>
                 <mat-form-field>
                   <mat-label>Date d' ammenagement souhaitée</mat-label>
-                  <input matInput formControlName="dateDemmenagementSouhaitee" [matDatepicker]="pickerAmmenagement" [min] = "todayDate"  [max] = "maxDate">
+                  <input
+                    matInput
+                    formControlName="dateDemmenagementSouhaitee"
+                    [matDatepicker]="pickerAmmenagement"
+                    [min] = "visitDate"  [max] = "maxDate"
+                    [disabled]="ammenagementStatus"
+                  >
                   <mat-datepicker-toggle matSuffix [for]="pickerAmmenagement"></mat-datepicker-toggle>
                   <mat-datepicker #pickerAmmenagement startView="year" [startAt]="todayDate"></mat-datepicker>
                 </mat-form-field>

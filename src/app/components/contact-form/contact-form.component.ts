@@ -46,6 +46,8 @@ export class ContactFormComponent implements OnInit {
   coLocatiare = false;
   disableSelect = false;
   showResiliePar = false;
+  ammenagementStatus = true;
+  visitDate = this.todayDate;
 
   constructor(
     private fb: FormBuilder,
@@ -262,6 +264,15 @@ export class ContactFormComponent implements OnInit {
       this.showResiliePar = true;
     } else {
       this.showResiliePar = false;
+    }
+  }
+
+  enableAmmenagement(event) {
+    if (event.target.value !== '') {
+      this.ammenagementStatus = false;
+      this.visitDate = event.target.value.toDate();
+    } else {
+      this.ammenagementStatus = true;
     }
   }
 }
