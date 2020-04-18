@@ -1,5 +1,6 @@
 .single-order {
   overflow: scroll;
+  -webkit-overflow-scrolling: touch;
   .single_table {
     table-layout: fixed;
     padding-top: 20px;
@@ -47,4 +48,7 @@
       }
     }
   }
+}
+.single-order > * {
+  -webkit-transform: translateZ(0px);
 }
