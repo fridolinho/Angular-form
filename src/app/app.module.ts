@@ -42,6 +42,7 @@ import { SingleOrderComponent } from './components/view-users/single-order/singl
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatListModule } from '@angular/material/list';
 import { ToastrModule } from 'ngx-toastr';
+import { PrintpageComponent } from './components/view-users/printpage/printpage.component';
 
 export const MY_FORMATS = {
   parse: {
@@ -63,7 +64,8 @@ export const MY_FORMATS = {
     HeaderComponent,
     TermsComponent,
     ContactFormComponent,
-    SingleOrderComponent
+    SingleOrderComponent,
+    PrintpageComponent
   ],
   imports: [
     BrowserModule,

@@ -5,8 +5,6 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { MatRadioChange } from '@angular/material/radio';
 import { ToastContainerDirective, ToastrService } from 'ngx-toastr';
 
-
-
 export enum Documenttype {
   'Identite' = 'Pièce d’identité où permis de séjour',
   'OfficeDesPoursuites' = 'Attestation ORIGINALE de l’Office des poursuites',

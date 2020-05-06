@@ -17,7 +17,6 @@ export class SingleOrderComponent implements OnInit {
     document.getElementsByTagName('body')[0].classList.add('open-modal');
     const modal = document.getElementById('single-order');
     modal.ontouchmove = (e) => {
-      alert('modal scrolling');
       e.preventDefault();
       document.getElementById('single-order').scroll();
     };
