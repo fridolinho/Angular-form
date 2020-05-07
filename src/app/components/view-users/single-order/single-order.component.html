@@ -1,0 +1,349 @@
+<div class="single-order" id="single-order">
+  <div>Print</div>
+  <mat-tab-group>
+    <mat-tab label="Immobilier">
+      <table class="single_table">
+        <tr>
+          <td *ngIf="data.data.immobilier.adresse" colspan="2"><span>Adresse:</span>{{data.data.immobilier.adresse}}</td>
+          <td *ngIf="data.data.immobilier.npa"><span>NPA:</span>{{data.data.immobilier.npa}}</td>
+          <td *ngIf="data.data.immobilier.localite"><span>Localite:</span>{{data.data.immobilier.localite}}</td>
+        </tr>
+        <tr>
+          <td *ngIf="data.data.locataire.precedentLoc" colspan="2"><span>Precedent locataire:</span>{{data.data.immobilier.precedentLoc}}</td>
+          <td *ngIf="data.data.immobilier.referenceObjet" colspan="2"><span>Référence:</span>{{data.data.immobilier.referenceObjet}}</td>
+        </tr>
+        <tr>
+          <td *ngIf="data.data.immobilier.piece"><span>Pieces:</span>{{data.data.immobilier.piece}}</td>
+          <td *ngIf="data.data.immobilier.etage"><span>Etage:</span>{{data.data.immobilier.etage}}</td>
+          <td *ngIf="data.data.immobilier.loyerNet"><span>Loyer:</span>{{data.data.immobilier.loyerNet}}</td>
+          <td *ngIf="data.data.immobilier.charges"><span>Charges:</span>{{data.data.immobilier.charges}}</td>
+        </tr>
+        <tr>
+          <td *ngIf="data.data.immobilier.parking" colspan="2"><span>Parking:</span>{{data.data.immobilier.parking}}</td>
+          <td *ngIf="data.data.immobilier.chfCharges" colspan="2"><span>Charges:</span>{{data.data.immobilier.chfCharges}}</td>
+        </tr>
+        <tr>
+          <td *ngIf="data.data.immobilier.dateDemmenagementSouhaitee" colspan="2">
+            <span>Date d' ammenagement:</span>
+            {{ data.data.immobilier.dateDemmenagementSouhaitee | date: 'dd-MM-yyyy' }}
+          </td>
+          <td *ngIf="data.data.immobilier.dateDeVisite">
+            <span>Date de visite</span>
+            {{data.data.immobilier.dateDeVisite | date: 'dd-MM-yyyy' }}
+          </td>
+        </tr>
+      </table>
+    </mat-tab>
+    <mat-tab label="Locataire">
+      <table class="single_table">
+        <tr>
+          <td *ngIf="data.data.locataire.locataire">
+            <span>Genre</span>
+            {{data.data.locataire.locataire}}
+          </td>
+        </tr>
+        <tr>
+          <td *ngIf="data.data.locataire.nom" colspan="2">
+            <span>Nom:</span>
+            {{data.data.locataire.nom}}
+          </td>
+          <td *ngIf="data.data.locataire.prenom" colspan="2">
+            <span>Prenom:</span>
+            {{data.data.locataire.prenom}}
+          </td>
+        </tr>
+        <tr>
+          <td *ngIf="data.data.locataire.adresseActuelle">
+            <span>Adresse actuelle:</span>
+            {{data.data.locataire.adresseActuelle}}
+          </td>
+          <td *ngIf="data.data.locataire.adresseLegale">
+            <span>Adresse legale:</span>
+            {{data.data.locataire.adresseLegale}}
+          </td>
+          <td *ngIf="data.data.locataire.npa">
+            <span>NPA:</span>
+            {{data.data.locataire.npa}}
+          </td>
+          <td *ngIf="data.data.locataire.localite">
+            <span>Localite:</span>
+            {{data.data.locataire.localite}}
+          </td>
+        </tr>
+        <tr>
+          <td *ngIf="data.data.locataire.nationalite">
+            <span>Nationalite:</span>
+            {{data.data.locataire.nationalite}}
+          </td>
+          <td *ngIf="data.data.locataire.lieuOrigine">
+            <span>Lieu d' origine:</span>
+            {{data.data.locataire.lieuOrigine}}
+          </td>
+          <td *ngIf="data.data.locataire.dateDeNaissance">
+            <span>Date de naissaince:</span>
+            {{data.data.locataire.dateDeNaissance | date: 'dd-MM-yyyy'}}
+          </td>
+          <td *ngIf="data.data.locataire.etatCivil">
+            <span>Etat civil:</span>
+            {{data.data.locataire.etatCivil}}
+          </td>
+        </tr>
+        <tr>
+          <td *ngIf="data.data.locataire.email">
+            <span>Email:</span>
+            {{data.data.locataire.email}}
+          </td>
+          <td *ngIf="data.data.locataire.telephoneFixe">
+            <span>Telephone fixe:</span>
+            {{data.data.locataire.telephoneFixe}}
+          </td>
+          <td *ngIf="data.data.locataire.telephoneProfessionel">
+            <span>Telephone professionel:</span>
+            {{data.data.locataire.telephoneProfessionel}}
+          </td>
+          <td *ngIf="data.data.locataire.portable">
+            <span>Portable:</span>
+            {{data.data.locataire.portable}}
+          </td>
+        </tr>
+        <tr>
+          <td *ngIf="data.data.locataire.permisType">
+            <span>permis:</span>
+            {{data.data.locataire.permisType}}
+          </td>
+          <td *ngIf="data.data.locataire.profession">
+            <span>Profession:</span>
+            {{data.data.locataire.profession}}
+          </td>
+          <td *ngIf="data.data.locataire.employeur">
+            <span>Employeur:</span>
+            {{data.data.locataire.employeur}}
+          </td>
+          <td *ngIf="data.data.locataire.depuis">
+            <span>Depuis:</span>
+            {{data.data.locataire.depuis | date}}
+          </td>
+        </tr>
+        <tr>
+          <td *ngIf="data.data.locataire.revenueMensuel">
+            <span>Revenue mensuel:</span>
+            {{data.data.locataire.revenueMensuel}}
+          </td>
+          <td *ngIf="data.data.locataire.geranceActuelle">
+            <span>Gerance actuelle:</span>
+            {{data.data.locataire.geranceActuelle}}
+          </td>
+          <td *ngIf="data.data.locataire.loyerActuelle">
+            <span>Loyer actuelle:</span>
+            {{data.data.locataire.loyerActuelle}}
+          </td>
+          <td *ngIf="data.data.locataire.charges">
+            <span>Charges:</span>
+            {{data.data.locataire.charges}}
+          </td>
+        </tr>
+        <tr>
+          <td *ngIf="data.data.locataire.poursuites">
+            <span>Poursuites:</span>
+            {{data.data.locataire.poursuites}}
+          </td>
+          <td *ngIf="data.data.locataire.protection">
+            <span>Protection:</span>
+            {{data.data.locataire.protection}}
+          </td>
+        </tr>
+      </table>
+    </mat-tab>
+    <mat-tab label="Co-titulaire" *ngIf="data.data.coTitulaire.portable">
+      <table class="single_table">
+        <tr>
+          <td *ngIf="data.data.coTitulaire.locataire">
+            <span>Genre:</span>
+            {{data.data.coTitulaire.locataire}}
+          </td>
+        </tr>
+        <tr>
+          <td *ngIf="data.data.coTitulaire.nom">
+            <span>Nom:</span>
+            {{data.data.coTitulaire.nom}}</td>
+          <td *ngIf="data.data.coTitulaire.prenom">
+            <span>Prenom:</span>
+            {{data.data.coTitulaire.prenom}}
+          </td>
+        </tr>
+        <tr>
+          <td *ngIf="data.data.coTitulaire.adresseActuelle">
+          <span>Adresse actuelle:</span>
+          {{data.data.coTitulaire.adresseActuelle}}
+          </td>
+          <td *ngIf="data.data.coTitulaire.adresseSiDifferente">
+            <span>Adresse legale:</span>
+            {{data.data.coTitulaire.adresseSiDifferente}}
+          </td>
+          <td *ngIf="data.data.coTitulaire.npa">
+            <span>NPA :</span>
+            {{data.data.coTitulaire.npa}}
+          </td>
+          <td *ngIf="data.data.coTitulaire.localite">
+            <span>Localite:</span>
+            {{data.data.coTitulaire.localite}}
+          </td>
+        </tr>
+        <tr>
+          <td *ngIf="data.data.coTitulaire.nationalite">
+            <span>Nationalite:</span>
+            {{data.data.coTitulaire.nationalite}}
+          </td>
+          <td *ngIf="data.data.coTitulaire.lieuDorigine">
+            <span>Lieu d'origine:</span>
+            {{data.data.coTitulaire.lieuDorigine}}
+          </td>
+          <td *ngIf="data.data.coTitulaire.dateDeNaissance">
+            <span>Date ne naissance:</span>
+            {{(data.data.coTitulaire.dateDeNaissance) ? (data.data.coTitulaire.dateDeNaissance | date: 'dd-MM-yyyy') : '' }}
+          </td>
+          <td *ngIf="data.data.coTitulaire.etatCivil">
+            <span>Etat civil:</span>
+            {{data.data.coTitulaire.etatCivil}}
+          </td>
+        </tr>
+        <tr>
+          <td *ngIf="data.data.coTitulaire.email">
+            <span>Email:</span>
+            {{data.data.coTitulaire.email}}
+          </td>
+          <td *ngIf="data.data.coTitulaire.telephoneFixe">
+            <span>Telephone fixe:</span>
+            {{data.data.coTitulaire.telephoneFixe}}
+          </td>
+          <td *ngIf="data.data.coTitulaire.telephoneProfessionel">
+            <span>Telephone professionel:</span>
+            {{data.data.coTitulaire.telephoneProfessionel}}
+          </td>
+          <td *ngIf="data.data.coTitulaire.portable">
+            <span>Portable:</span>
+            {{data.data.coTitulaire.portable}}
+          </td>
+        </tr>
+        <tr>
+          <td *ngIf="data.data.coTitulaire.permis">
+            <span>Permis:</span>
+            {{data.data.coTitulaire.permis}}
+          </td>
+          <td *ngIf="data.data.coTitulaire.profession">
+            <span>Profession:</span>
+            {{data.data.coTitulaire.profession}}
+          </td>
+          <td *ngIf="data.data.coTitulaire.employeur">
+            <span>Employeur:</span>
+            {{data.data.coTitulaire.employeur}}
+          </td>
+          <td *ngIf="data.data.coTitulaire.depuis">
+            <span>Depuis:</span>
+            {{data.data.coTitulaire.depuis}}
+          </td>
+        </tr>
+        <tr>
+          <td *ngIf="data.data.coTitulaire.revenueMensuel">
+            <span>Revenue mensuel:</span>
+            {{data.data.coTitulaire.revenueMensuel}}
+          </td>
+          <td *ngIf="data.data.coTitulaire.geranceActuelle">
+            <span>Gerance actuelle:</span>
+            {{data.data.coTitulaire.geranceActuelle}}
+          </td>
+          <td *ngIf="data.data.coTitulaire.loyerActuelle">
+            <span>loyer actuelle:</span>
+            {{data.data.coTitulaire.loyerActuelle}}
+          </td>
+          <td *ngIf="data.data.coTitulaire.charges">
+            <span>Charges:</span>
+            {{data.data.coTitulaire.charges}}
+          </td>
+        </tr>
+        <tr>
+          <td *ngIf="data.data.coTitulaire.poursuites">
+            <span>Poursuites:</span>
+            {{data.data.coTitulaire.poursuites}}
+          </td>
+          <td *ngIf="data.data.coTitulaire.protection">
+            <span>Protection:</span>
+            {{data.data.coTitulaire.protection}}
+          </td>
+        </tr>
+      </table>
+    </mat-tab>
+    <mat-tab label="Plus de details">
+      <table class="single_table">
+        <tr>
+          <td *ngIf="data.data.plusDetails.logement">
+            <span>Logement:</span>
+            {{data.data.plusDetails.logement}}
+          </td>
+          <td *ngIf="data.data.plusDetails.nomsDuTitulaireOuCoTitulaire">
+          <span>Noms du titulaire:</span>
+          {{data.data.plusDetails.nomsDuTitulaireOuCoTitulaire}}
+          </td>
+        </tr>
+        <tr>
+          <td *ngIf="data.data.plusDetails.occupantsAdultes">
+          <span>Occupants adultes:</span>
+          {{data.data.plusDetails.occupantsAdultes}}
+          </td>
+          <td *ngIf="data.data.plusDetails.occupantsEnfants">
+          <span>Occupants enfants:</span>
+          {{data.data.plusDetails.occupantsEnfants}}
+          </td>
+        </tr>
+        <tr>
+          <td *ngIf="data.data.plusDetails.animaux">
+          <span>Liste des animaux:</span>
+          {{data.data.plusDetails.animaux}}
+          </td>
+          <td *ngIf="data.data.plusDetails.instruments">
+            <span>Instruments:</span>
+            {{data.data.plusDetails.instruments}}
+          </td>
+        </tr>
+        <tr>
+          <td *ngIf="data.data.plusDetails.noPlaques">
+          <span>Plaques du vehicule:</span>
+          {{data.data.plusDetails.noPlaques}}
+          </td>
+        </tr>
+        <tr>
+          <td *ngIf="data.data.plusDetails.siBailResilie">
+          <span> Contrat de bail actuel résilié:</span>
+          {{data.data.plusDetails.siBailResilie}}
+          </td>
+          <td *ngIf="data.data.plusDetails.resiliePar">
+          <span>Resilie par le:</span>
+          {{data.data.plusDetails.resiliePar}}
+          </td>
+        </tr>
+        <tr>
+          <td *ngIf="data.data.plusDetails.motifDuDemenagement">
+          <span>Motif du demenagement:</span>
+          {{data.data.plusDetails.motifDuDemenagement}}
+          </td>
+        </tr>
+      </table>
+    </mat-tab>
+    <mat-tab label="Fichiers">
+        <table class="files">
+        <tr *ngFor="let file of data.data.attachement;">
+          <td>{{file.filename}}</td>
+          <td>{{file.name}}</td>
+          <td>
+            <a href="{{file.src}}">
+              <mat-icon>get_app</mat-icon>
+            </a>
+          </td>
+        </tr>
+      </table>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+
+<!--  <mat-icon><a href="{{file.src}}" download>get_app</a></mat-icon>-->

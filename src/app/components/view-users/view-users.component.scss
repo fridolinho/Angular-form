@@ -1,57 +1,15 @@
-.file_form {
-  position: relative;
-  margin-top: 10px;
-  mat-form-field {
-    margin-right: 20px;
+.order-table-container {
+  padding: 0 30px;
+  font-size: 12px;
+  h2 {
+    font-size: 13px;
   }
-  form {
+  mat-list-item {
+    font-size: 12px;
+    white-space: nowrap;
     display: inline-block;
-
-    .file_upload {
-      border: 1px solid #ccc;
-      display: inline-block;
-      padding: 6px 12px;
-      cursor: pointer;
-      font-size: 14px;
-    }
-  }
-  button {
-    border: 1px solid #ccc;
-    display: inline-block;
-    padding: 6px 12px;
-    cursor: pointer;
-    background-color: white;
-    font-size: 14px;
-    top:0;
-    bottom:0;
-    left: 100px;
-    outline: none;
-  }
-}
-
-.added_files {
-  margin-top: 20px;
-  .added_file {
-    position: relative;
-    display: inline-block;
-    img {
-      width: 150px;
-      height: 150px;
-      margin-right: 10px;
-    }
-    .removeImg {
-      visibility: hidden;
-      width: 20px;
-      color: red;
-      position: absolute;
-      right: 20px;
-      font-size: 20px;
-      font-weight: bold;
-    }
-  }
-  .added_file:hover {
-    .removeImg {
-      visibility: visible;
+    overflow: hidden;
+    mat-icon {
       cursor: pointer;
     }
   }

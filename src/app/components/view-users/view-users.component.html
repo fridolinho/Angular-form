@@ -1,1 +1,56 @@
-<p>View orders</p>
+<div class="order-table-container">
+  <mat-list class="header">
+    <div fxLayout="row wrap" class="bk-light">
+      <mat-list-item  fxFlex="25%" class="extend">
+        <h2>Nom du client</h2>
+      </mat-list-item>
+      <mat-list-item fxFlex="25%">
+        <h2>Reference objet</h2>
+      </mat-list-item>
+      <mat-list-item fxShow fxHide.xs fxFlex="25%">
+        <h2>Date d' ammenagement</h2>
+      </mat-list-item>
+      <mat-list-item fxFlex="25%">
+        <h2>Actions</h2>
+      </mat-list-item>
+    </div>
+  </mat-list>
+  <mat-list>
+    <div fxLayout="row wrap" class="bk-ligh" *ngFor="let order of orders">
+        <mat-list-item fxFlex="25%">
+          {{order.data.locataire.nom}} {{order.data.locataire.prenom}}
+        </mat-list-item>
+
+      <mat-list-item fxFlex="25%">
+        {{order.data.immobilier.referenceObjet}}
+      </mat-list-item>
+
+      <mat-list-item fxFlex="25%" fxShow fxHide.xs>
+        {{order.data.immobilier.dateDemmenagementSouhaitee}}
+      </mat-list-item>
+
+      <mat-list-item fxFlex="25%">
+        <mat-icon
+          class="open"
+          matTooltip="click to open"
+          matTooltipPosition="left"
+          (click)="showDetails(order.id)"
+          #{{order.id}}>
+          open_in_new
+        </mat-icon>
+        <mat-icon
+          matTooltip="Print"
+          matTooltipPosition="above"
+        >print</mat-icon>
+        <mat-icon
+          class="delete"
+          matTooltip="delete order"
+          matTooltipPosition="right"
+          (click)="deleteOrder(order.id)"
+        >
+          close
+        </mat-icon>
+      </mat-list-item>
+    </div>
+  </mat-list>
+</div>
