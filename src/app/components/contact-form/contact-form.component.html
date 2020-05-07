@@ -87,6 +87,7 @@
                   <mat-label>Charges</mat-label>
                   <span matPrefix> CHF &nbsp;</span>
                   <input matInput formControlName="chfCharges" type="number" min="0" >
+
                 </mat-form-field>
               </td>
             </tr>
@@ -138,6 +139,10 @@
         </ng-template>
         <div class="locataire">
           <h2>LOCATAIRE</h2>
+          <mat-radio-group aria-label="Select an option" formControlName="locataire" required>
+            <mat-radio-button value="male">Monsieur</mat-radio-button>
+            <mat-radio-button value="female">Madame</mat-radio-button>
+          </mat-radio-group>
           <br />
           <table cellspacing="0">
             <tr>
@@ -155,13 +160,13 @@
               <td>
                 <mat-form-field>
                   <mat-label>Nom</mat-label>
-                  <input matInput formControlName="nom">
+                  <input matInput formControlName="nom" required>
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field>
                   <mat-label>Prénom</mat-label>
-                  <input matInput formControlName="prenom">
+                  <input matInput formControlName="prenom" required>
                 </mat-form-field>
               </td>
               <td>
@@ -194,6 +199,7 @@
                 <mat-form-field>
                   <mat-label>Nationalité</mat-label>
                   <input matInput formControlName="nationalite" (keyup)=checkCountry($event)>
+
                 </mat-form-field>
               </td>
               <td>
@@ -229,6 +235,7 @@
                   <input matInput formControlName="telephoneProfessionel" >
                 </mat-form-field>
               </td>
+
               <td>
                 <mat-form-field>
                   <mat-label>Téléphone portable</mat-label>
@@ -266,6 +273,30 @@
             <tr>
               <td>
                 <mat-form-field>
+                  <mat-label>Date de naissance</mat-label>
+                  <input matInput formControlName="dateDeNaissance" [matDatepicker]="pickerLocataire" required>
+                  <mat-datepicker-toggle matSuffix [for]="pickerLocataire"></mat-datepicker-toggle>
+                  <mat-datepicker #pickerLocataire startView="year" [startAt]="startDate"></mat-datepicker>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Etat civil</mat-label>
+                  <select matNativeControl formControlName="etatCivil" required>
+                    <option value="célibataire">Célibataire</option>
+                    <option value="marrier">Marrier</option>
+                    <option value="divorcé">Divorcé</option>
+                    <option value="veuf">Veuf</option>
+                  </select>
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+
+          <table cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field appearance="fill">
                   <mat-label>Profession</mat-label>
                   <input matInput formControlName="profession">
                 </mat-form-field>
@@ -474,6 +505,30 @@
             <tr>
               <td>
                 <mat-form-field>
+                  <mat-label>Date de naissance</mat-label>
+                  <input matInput formControlName="dateDeNaissance" [matDatepicker]="pickerCoTitulaire">
+                  <mat-datepicker-toggle matSuffix [for]="pickerCoTitulaire"></mat-datepicker-toggle>
+                  <mat-datepicker #pickerCoTitulaire startView="year" [startAt]="startDate"></mat-datepicker>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Etat civil</mat-label>
+                  <select matNativeControl formControlName="etatCivil">
+                    <option value="célibataire">Célibataire</option>
+                    <option value="marrier">Marrier</option>
+                    <option value="divorcé">Divorcé</option>
+                    <option value="veuf">Veuf</option>
+                  </select>
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+
+          <table cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field appearance="fill">
                   <mat-label>Profession</mat-label>
                   <input matInput formControlName="profession">
                 </mat-form-field>
@@ -545,6 +600,10 @@
           <button mat-button matStepperNext>Suivant</button>
         </div>
       </form>
+      <div>
+        <button mat-button matStepperPrevious>Précédent</button>
+        <button mat-button matStepperNext>Suivant</button>
+      </div>
     </mat-step>
 
     <!-- co-owner details ends here -->
@@ -722,6 +781,10 @@
             Envoyer
             <span class="spinner"></span>
           </button>
+        <div>
+          <button mat-button matStepperPrevious>Précédent</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+          <button mat-button [disabled]="!fourthFormGroup.valid" (click)="submitForm()">Save</button>
         </div>
       </form>
     </mat-step>

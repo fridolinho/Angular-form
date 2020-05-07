@@ -3,6 +3,7 @@ import { OrderService } from 'src/app/shared/services/order.service';
 import { MatDialog } from '@angular/material/dialog';
 import { SingleOrderComponent } from './single-order/single-order.component';
 
+
 @Component({
   selector: 'app-view-users',
   templateUrl: './view-users.component.html',
@@ -16,6 +17,7 @@ export class ViewUsersComponent implements OnInit {
     private orderService: OrderService,
     public dialog: MatDialog
   ) {}
+
 
   ngOnInit(): void {
     this.getAllOrders();

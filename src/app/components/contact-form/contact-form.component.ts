@@ -74,7 +74,6 @@ export class ContactFormComponent implements OnInit {
       charges: this.fb.control(200, [Validators.min(0), Validators.required]),
       referenceObjet: this.fb.control('ID003/2017', [Validators.required]),
       parking: this.fb.control('Parking exterieur', []),
-      chfCharges: this.fb.control(120, [Validators.min(0)]),
       dateDemmenagementSouhaitee: this.fb.control('', [Validators.required]),
       dateDeVisite: this.fb.control('', [Validators.required]),
     });
@@ -114,6 +113,7 @@ export class ContactFormComponent implements OnInit {
       prenom: this.fb.control('', []),
       adresseActuelle: this.fb.control('', []),
       adresseSiDifferente: this.fb.control(''),
+
       npa: this.fb.control(null, [Validators.min(0)]),
       localite: this.fb.control(null, [Validators.min(0)]),
       nationalite: this.fb.control('', []),
@@ -209,6 +209,11 @@ export class ContactFormComponent implements OnInit {
     const data = this.fourthFormGroup.value;
     const upperData = data.noPlaques.toUpperCase();
     this.fourthFormGroup.patchValue({noPlaques: upperData});
+  }
+
+  clickInput() {
+    this.input = document.getElementById('file_upload');
+    this.input.click();
   }
 
   clickInput() {
