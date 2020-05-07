@@ -1,5 +1,9 @@
 .file_form {
   position: relative;
+  margin-top: 10px;
+  mat-form-field {
+    margin-right: 20px;
+  }
   form {
     display: inline-block;
 

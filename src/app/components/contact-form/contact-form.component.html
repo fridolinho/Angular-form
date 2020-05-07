@@ -75,7 +75,7 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Parking</mat-label>
-                  <mat-select formControlName="parking" required>
+                  <mat-select formControlName="parking">
                     <mat-option value="parking_ext">Parking EXT</mat-option>
                     <mat-option value="parking_couv">Parking COUV</mat-option>
                     <mat-option value="garage">Garage</mat-option>
@@ -86,7 +86,7 @@
                 <mat-form-field appearance="fill">
                   <mat-label>Charges</mat-label>
                   <span matPrefix> CHF &nbsp;</span>
-                  <input matInput formControlName="chfCharges" (keypress)="numberOnly($event)" type="number" required>
+                  <input matInput formControlName="chfCharges" (keypress)="numberOnly($event)" type="number">
                 </mat-form-field>
               </td>
             </tr>
@@ -114,7 +114,7 @@
           </table>
         </div>
         <div>
-          <button mat-button matStepperNext [disabled]="!firstFormGroup.valid">Next</button>
+          <button mat-button matStepperNext [disabled]="!firstFormGroup.valid">Suivant</button>
         </div>
       </form>
     </mat-step>
@@ -126,7 +126,7 @@
         <ng-template matStepLabel>Details du locataire</ng-template>
         <div class="locataire">
           <h2>LOCATAIRE</h2>
-          <mat-radio-group aria-label="Select an option" formControlName="locataire">
+          <mat-radio-group aria-label="Select an option" formControlName="locataire" required>
             <mat-radio-button value="male">Monsieur</mat-radio-button>
             <mat-radio-button value="female">Madame</mat-radio-button>
           </mat-radio-group>
@@ -136,13 +136,13 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Nom</mat-label>
-                  <input matInput formControlName="nom">
+                  <input matInput formControlName="nom" required>
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Prénom</mat-label>
-                  <input matInput formControlName="prenom">
+                  <input matInput formControlName="prenom" required>
                 </mat-form-field>
               </td>
               <td>
@@ -168,7 +168,7 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Nationalité</mat-label>
-                  <input matInput formControlName="nationalite">
+                  <input matInput formControlName="nationalite" required>
                 </mat-form-field>
               </td>
               <td>
@@ -191,28 +191,6 @@
                 </mat-form-field>
               </td>
             </tr>
-          </table>
-
-          <table cellspacing="0">
-            <tr>
-              <td>
-                <mat-form-field appearance="fill">
-                  <mat-label>Date de naissance</mat-label>
-                  <input matInput formControlName="dateDeNaissance" [matDatepicker]="pickerLocataire" required>
-                  <mat-datepicker-toggle matSuffix [for]="pickerLocataire"></mat-datepicker-toggle>
-                  <mat-datepicker #pickerLocataire startView="year" [startAt]="startDate"></mat-datepicker>
-                </mat-form-field>
-              </td>
-              <td>
-                <mat-form-field appearance="fill">
-                  <mat-label>Etat civil</mat-label>
-                  <input matInput formControlName="etatCivil" required>
-                </mat-form-field>
-              </td>
-            </tr>
-          </table>
-
-          <table cellspacing="0">
             <tr>
               <td>
                 <mat-form-field appearance="fill">
@@ -236,6 +214,30 @@
                 <mat-form-field appearance="fill">
                   <mat-label>E-mail</mat-label>
                   <input matInput formControlName="email" required>
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+
+          <table cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Date de naissance</mat-label>
+                  <input matInput formControlName="dateDeNaissance" [matDatepicker]="pickerLocataire" required>
+                  <mat-datepicker-toggle matSuffix [for]="pickerLocataire"></mat-datepicker-toggle>
+                  <mat-datepicker #pickerLocataire startView="year" [startAt]="startDate"></mat-datepicker>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Etat civil</mat-label>
+                  <select matNativeControl formControlName="etatCivil" required>
+                    <option value="célibataire">Célibataire</option>
+                    <option value="marrier">Marrier</option>
+                    <option value="divorcé">Divorcé</option>
+                    <option value="veuf">Veuf</option>
+                  </select>
                 </mat-form-field>
               </td>
             </tr>
@@ -298,14 +300,14 @@
             <tr>
               <td>
                 <label>Avez-vous des poursuites à votre encontre</label>
-                <mat-radio-group aria-label="Select an option" formControlName="poursuites">
+                <mat-radio-group aria-label="Select an option" formControlName="poursuites" required>
                   <mat-radio-button value="male">Oui</mat-radio-button>
                   <mat-radio-button value="female">Non</mat-radio-button>
                 </mat-radio-group>
               </td>
               <td>
                 <label>Etes-vous au bénéfice d'une mesure de protection de l’adulte</label>
-                <mat-radio-group aria-label="Select an option" formControlName="protection">
+                <mat-radio-group aria-label="Select an option" formControlName="protection" required>
                   <mat-radio-button value="male">Oui</mat-radio-button>
                   <mat-radio-button value="female">Non</mat-radio-button>
                 </mat-radio-group>
@@ -314,8 +316,8 @@
           </table>
         </div>
         <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext [disabled]="!secondFormGroup.valid">Next</button>
+          <button mat-button matStepperPrevious>Précédent</button>
+          <button mat-button matStepperNext [disabled]="!secondFormGroup.valid">Suivant</button>
         </div>
       </form>
     </mat-step>
@@ -394,28 +396,6 @@
                 </mat-form-field>
               </td>
             </tr>
-          </table>
-
-          <table cellspacing="0">
-            <tr>
-              <td>
-                <mat-form-field appearance="fill">
-                  <mat-label>Date de naissance</mat-label>
-                  <input matInput formControlName="dateDeNaissance" [matDatepicker]="pickerCoTitulaire">
-                  <mat-datepicker-toggle matSuffix [for]="pickerCoTitulaire"></mat-datepicker-toggle>
-                  <mat-datepicker #pickerCoTitulaire startView="year" [startAt]="startDate"></mat-datepicker>
-                </mat-form-field>
-              </td>
-              <td>
-                <mat-form-field appearance="fill">
-                  <mat-label>Etat civil</mat-label>
-                  <input matInput formControlName="etatCivil">
-                </mat-form-field>
-              </td>
-            </tr>
-          </table>
-
-          <table cellspacing="0">
             <tr>
               <td>
                 <mat-form-field appearance="fill">
@@ -439,6 +419,30 @@
                 <mat-form-field appearance="fill">
                   <mat-label>E-mail</mat-label>
                   <input matInput formControlName="email">
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+
+          <table cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Date de naissance</mat-label>
+                  <input matInput formControlName="dateDeNaissance" [matDatepicker]="pickerCoTitulaire">
+                  <mat-datepicker-toggle matSuffix [for]="pickerCoTitulaire"></mat-datepicker-toggle>
+                  <mat-datepicker #pickerCoTitulaire startView="year" [startAt]="startDate"></mat-datepicker>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Etat civil</mat-label>
+                  <select matNativeControl formControlName="etatCivil">
+                    <option value="célibataire">Célibataire</option>
+                    <option value="marrier">Marrier</option>
+                    <option value="divorcé">Divorcé</option>
+                    <option value="veuf">Veuf</option>
+                  </select>
                 </mat-form-field>
               </td>
             </tr>
@@ -528,8 +532,8 @@
         </div>
       </form>
       <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperPrevious>Précédent</button>
+        <button mat-button matStepperNext>Suivant</button>
       </div>
     </mat-step>
 
@@ -586,23 +590,24 @@
           <table cellspading="0">
             <tr>
               <td>
-                <mat-checkbox formControlName="animaux">Animal</mat-checkbox>
+                <mat-checkbox formControlName="animaux">Animaux</mat-checkbox>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>le(s)quel(s)</mat-label>
-                  <input matInput formControlName="siAnimaux">
+                  <input matInput formControlName="siAnimaux" placeholder="Ex: chien, chat, etc ...">
+                  <mat-hint>List separated with commas(,)</mat-hint>
                 </mat-form-field>
               </td>
             </tr>
             <tr>
               <td>
-                <mat-checkbox formControlName="vehicules">Animal</mat-checkbox>
+                <mat-checkbox formControlName="vehicules">Véhicules</mat-checkbox>
               </td>
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Numéro(s) de plaques</mat-label>
-                  <input matInput formControlName="noPlaques">
+                  <input matInput formControlName="noPlaques" onkeyup="this.value = this.value.toUpperCase()">
                 </mat-form-field>
               </td>
             </tr>
@@ -613,7 +618,8 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>le(s)quel(s)</mat-label>
-                  <input matInput formControlName="instruments">
+                  <input matInput formControlName="instruments" placeholder="Ex: Piano, guitar, etc ..">
+                  <mat-hint>List separated with commas(,)</mat-hint>
                 </mat-form-field>
               </td>
             </tr>
@@ -651,25 +657,36 @@
           <div class="image-uploader">
             <div class="file_form" >
               <label for="file_upload" class="file_upload">
-                <i class="fa fa-cloud-upload"></i> upload files
+                <button (click)="clickInput()">upload files</button>
               </label>
-              <input type="file" (change)="onSelectFile($event)" name="file" id="file_upload" />
+              <input type="file" (change)="onSelectFile($event)" name="file" id="file_upload" hidden/>
             </div>
-            <div *ngIf="images?.length > 0">
+            <div *ngIf="localfiles?.length > 0">
               <div class="added_files" >
-                <div *ngFor="let image of images;" class="added_file">
-                  <img src="{{image.src}}"/>
-                </div>
+                <table cellspacing="0">
+                  <tr *ngFor="let file of localfiles;">
+                    <td>
+                      <mat-icon>attach_file</mat-icon>
+                    </td>
+                    <td>
+                      {{file.name}}
+                    <td>
+                    <td>
+                      <mat-icon (click)="removeFile(file.name)">delete</mat-icon>
+                    </td>
+                  </tr>
+                </table>
               </div>
             </div>
           </div>
+
           <mat-checkbox formControlName="tosAgreement">
             I have read and agreed <a href="">Terms & conditions</a> for this agreement
           </mat-checkbox>
         </div>
 
         <div>
-          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperPrevious>Précédent</button>
           <button mat-button (click)="stepper.reset()">Reset</button>
           <button mat-button [disabled]="!fourthFormGroup.valid" (click)="submitForm()">Save</button>
         </div>

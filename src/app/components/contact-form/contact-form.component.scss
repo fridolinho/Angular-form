@@ -80,39 +80,15 @@
     }
   }
 
-  .added_files {
-    margin-top: 20px;
-    .added_file {
-      position: relative;
-      display: inline-block;
-      img {
-        width: 150px;
-        height: 150px;
-        margin-right: 10px;
-      }
-      .removeImg {
-        visibility: hidden;
-        width: 20px;
-        color: red;
-        position: absolute;
-        right: 20px;
-        font-size: 20px;
-        font-weight: bold;
-      }
-    }
-    .added_file:hover {
-      .removeImg {
-        visibility: visible;
-        cursor: pointer;
-      }
-    }
-  }
-
   .file_form {
     position: relative;
+    margin-top: 10px;
+    mat-form-field {
+      margin-right: 20px;
+    }
     form {
       display: inline-block;
-  
+
       .file_upload {
         border: 1px solid #ccc;
         display: inline-block;
@@ -132,37 +108,22 @@
       bottom:0;
       left: 100px;
       outline: none;
+      margin-bottom: 10px;
     }
   }
-  
+
   .added_files {
     margin-top: 20px;
-    .added_file {
-      position: relative;
-      display: inline-block;
-      img {
-        width: 150px;
-        height: 150px;
-        margin-right: 10px;
-      }
-      .removeImg {
-        visibility: hidden;
-        width: 20px;
-        color: red;
-        position: absolute;
-        right: 20px;
-        font-size: 20px;
-        font-weight: bold;
-      }
-    }
-    .added_file:hover {
-      .removeImg {
-        visibility: visible;
-        cursor: pointer;
+    tr {
+      display: block;
+      td {
+        flex: 0;
+        padding: 2px 10px;
+        margin-right: 20px;
+        min-width: 30px;
       }
     }
   }
-  
 }
 
 @media (max-width: 901px) {
